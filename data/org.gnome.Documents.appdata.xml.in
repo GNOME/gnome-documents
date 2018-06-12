@@ -32,20 +32,20 @@
     <kudo>SearchProvider</kudo>
     <kudo>UserDocs</kudo>
   </kudos>
-  <url type="bugtracker">https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-documents</url>
+  <url type="bugtracker">https://gitlab.gnome.org/GNOME/gnome-documents/issues</url>
   <url type="donation">http://www.gnome.org/friends</url>
   <url type="homepage">https://wiki.gnome.org/Apps/Documents</url>
   <url type="translate">https://wiki.gnome.org/TranslationProject</url>
   <developer_name>The GNOME Project</developer_name>
   <screenshots>
     <screenshot type="default">
-      <image type="source">https://git.gnome.org/browse/gnome-documents/plain/data/screenshots/gnome-documents-1.png</image>
+      <image type="source">https://gitlab.gnome.org/GNOME/gnome-documents/raw/master/data/screenshots/gnome-documents-1.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://git.gnome.org/browse/gnome-documents/plain/data/screenshots/gnome-documents-2.png</image>
+      <image type="source">https://gitlab.gnome.org/GNOME/gnome-documents/raw/master/data/screenshots/gnome-documents-2.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://git.gnome.org/browse/gnome-documents/plain/data/screenshots/gnome-documents-3.png</image>
+      <image type="source">https://gitlab.gnome.org/GNOME/gnome-documents/raw/master/data/screenshots/gnome-documents-3.png</image>
     </screenshot>
   </screenshots>
   <project_group>GNOME</project_group>
