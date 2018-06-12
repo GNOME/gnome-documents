@@ -50,7 +50,7 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://git.gnome.org/browse/gnome-online-accounts"
+                    "url": "https://gitlab.gnome.org/GNOME/gnome-online-accounts.git"
                 }
             ]
         },
@@ -60,7 +60,7 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://git.gnome.org/browse/gnome-desktop"
+                    "url": "https://gitlab.gnome.org/GNOME/gnome-desktop.git"
                 }
             ]
         },
@@ -80,7 +80,7 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://git.gnome.org/browse/libgdata"
+                    "url": "https://gitlab.gnome.org/GNOME/libgdata.git"
                 }
             ]
         },
@@ -89,7 +89,7 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://git.gnome.org/browse/libzapojit"
+                    "url": "https://gitlab.gnome.org/GNOME/libzapojit.git"
                 }
             ]
         },
@@ -127,7 +127,7 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://git.gnome.org/browse/evince"
+                    "url": "https://gitlab.gnome.org/GNOME/evince.git"
                 }
             ]
         },
@@ -138,7 +138,7 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://git.gnome.org/browse/tracker"
+                    "url": "https://gitlab.gnome.org/GNOME/tracker.git"
                 }
             ]
         },
@@ -154,7 +154,7 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://git.gnome.org/browse/tracker-miners"
+                    "url": "https://gitlab.gnome.org/GNOME/tracker-miners.git"
                 }
             ]
         },
@@ -175,7 +175,7 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://git.gnome.org/browse/gnome-documents"
+                    "url": "https://gitlab.gnome.org/GNOME/gnome-documents.git"
                 }
             ]
         }
