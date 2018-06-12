@@ -49,7 +49,7 @@
                 <title>Bugs</title>
 
                 <para>The bug tracker can be reached by visiting the
-                website <ulink url="https://bugzilla.gnome.org/buglist.cgi?product=gnome-documents&amp;component=books">https://bugzilla.gnome.org/buglist.cgi?product=gnome-documents&amp;component=books</ulink>.
+                website <ulink url="https://gitlab.gnome.org/GNOME/gnome-documents/issues">https://gitlab.gnome.org/GNOME/gnome-documents/issues</ulink>.
                 Before sending a bug report, please verify that you have
                 the latest version of gnome-books. Many bugs (major and
                 minor) are fixed at each release, and if yours is out of
