@@ -25,20 +25,20 @@
     <kudo>HiDpiIcon</kudo>
     <kudo>ModernToolkit</kudo>
   </kudos>
-  <url type="bugtracker">https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-documents</url>
+  <url type="bugtracker">https://gitlab.gnome.org/GNOME/gnome-documents/issues</url>
   <url type="donation">http://www.gnome.org/friends</url>
   <url type="homepage">https://wiki.gnome.org/Apps/Books</url>
   <url type="translate">https://wiki.gnome.org/TranslationProject</url>
   <developer_name>The GNOME Project</developer_name>
   <screenshots>
     <screenshot type="default">
-      <image type="source">https://git.gnome.org/browse/gnome-documents/plain/data/screenshots/gnome-books-1.png</image>
+      <image type="source">https://gitlab.gnome.org/GNOME/gnome-documents/raw/master/data/screenshots/gnome-books-1.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://git.gnome.org/browse/gnome-documents/plain/data/screenshots/gnome-books-2.png</image>
+      <image type="source">https://gitlab.gnome.org/GNOME/gnome-documents/raw/master/data/screenshots/gnome-books-2.png</image>
     </screenshot>
     <screenshot>
-      <image type="source">https://git.gnome.org/browse/gnome-documents/plain/data/screenshots/gnome-books-3.png</image>
+      <image type="source">https://gitlab.gnome.org/GNOME/gnome-documents/raw/master/data/screenshots/gnome-books-3.png</image>
     </screenshot>
   </screenshots>
   <update_contact>debarshir_at_gnome.org</update_contact>
