@@ -24,9 +24,7 @@
         "cflags": "-O2 -g",
         "cxxflags": "-O2 -g",
         "env": {
-            "V": "1",
-            "PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_GIRDIR": "/app/share/gir-1.0",
-            "PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_TYPELIBDIR": "/app/lib/girepository-1.0"
+            "V": "1"
         }
     },
     "cleanup": [ "/include", "/lib/pkgconfig",
