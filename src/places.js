@@ -60,7 +60,6 @@ var PlacesDialog = new Lang.Class({
             // This is a hack to find out if evDoc implements the
             // EvDocument.DocumentLinks interface or not.
             docHasLinks = evDoc.has_document_links();
-        } catch (e if e instanceof TypeError) {
         } catch (e) {
         }
 

@@ -315,9 +315,10 @@ var EvinceView = new Lang.Class({
             // the following invocation to work.
             let evDoc = this._model.get_document();
             evDoc.find_text();
-        } catch (e if e instanceof TypeError) {
-            canFind = false;
         } catch (e) {
+            if (e instanceof TypeError) {
+                canFind = false;
+            }
         }
 
         this.getAction('find').enabled = (this.hasPages && canFind);
