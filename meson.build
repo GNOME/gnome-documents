@@ -30,8 +30,6 @@ documents_pkglibdir = join_paths(documents_libdir, meson.project_name())
 
 documents_schemadir = join_paths(documents_datadir, 'glib-2.0', 'schemas')
 
-documents_debug = get_option('buildtype').contains('debug')
-
 cc = meson.get_compiler('c')
 
 config_h = configuration_data()
