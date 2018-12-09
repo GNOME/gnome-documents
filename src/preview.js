@@ -413,7 +413,7 @@ var PreviewToolbar = new Lang.Class({
         this.addBackButton();
 
         // menu button, on the right of the toolbar
-        let menuButton = new Gtk.MenuButton({ image: new Gtk.Image ({ icon_name: 'open-menu-symbolic' }),
+        let menuButton = new Gtk.MenuButton({ image: new Gtk.Image ({ icon_name: 'view-more-symbolic' }),
                                               menu_model: this._getPreviewMenu(),
                                               action_name: 'view.gear-menu' });
         this.toolbar.pack_end(menuButton);

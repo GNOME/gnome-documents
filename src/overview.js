@@ -633,6 +633,7 @@ const OverviewToolbar = new Lang.Class({
             customTitle = null;
             if (!this._collBackButton) {
                 this._collBackButton = this.addBackButton();
+                this.toolbar.child_set_property(this._collBackButton, "position", 0);
                 this._collBackButton.show();
             }
         } else {
@@ -665,13 +666,15 @@ const OverviewToolbar = new Lang.Class({
         this.toolbar.set_custom_title(this._stackSwitcher);
         this._checkCollectionWidgets();
 
+        this.addSearchButton('view.search');
+        this.addMenuButton();
+
         let selectionButton = new Gtk.Button({ image: new Gtk.Image ({ icon_name: 'object-select-symbolic' }),
                                                tooltip_text: _("Select Items"),
                                                action_name: 'view.selection-mode' });
         this.toolbar.pack_end(selectionButton);
 
         this._addViewMenuButton();
-        this.addSearchButton('view.search');
 
         // connect to active collection changes while in this mode
         this._collectionId =

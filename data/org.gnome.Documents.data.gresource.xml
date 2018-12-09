@@ -2,6 +2,8 @@
 <gresources>
   <gresource prefix="/org/gnome/Documents">
     <file>application.css</file>
+    <file preprocess="xml-stripblanks">ui/books-app-menu.ui</file>
+    <file preprocess="xml-stripblanks">ui/documents-app-menu.ui</file>
     <file preprocess="xml-stripblanks">ui/organize-collection-dialog.ui</file>
     <file preprocess="xml-stripblanks">ui/preview-context-menu.ui</file>
     <file preprocess="xml-stripblanks">ui/preview-menu.ui</file>
@@ -12,11 +14,9 @@
     <file alias="ui/thumbnail-frame.png" preprocess="to-pixdata">media/thumbnail-frame.png</file>
   </gresource>
   <gresource prefix="/org/gnome/Documents/gtk">
-    <file alias="menus.ui" preprocess="xml-stripblanks">ui/app-menu.ui</file>
     <file alias="help-overlay.ui" preprocess="xml-stripblanks">ui/help-overlay.ui</file>
   </gresource>
   <gresource prefix="/org/gnome/Books/gtk">
-    <file alias="menus.ui" preprocess="xml-stripblanks">ui/app-menu.ui</file>
     <file alias="help-overlay.ui" preprocess="xml-stripblanks">ui/help-overlay.ui</file>
   </gresource>
 </gresources>

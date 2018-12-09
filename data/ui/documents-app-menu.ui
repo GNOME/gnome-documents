@@ -17,12 +17,10 @@
       </item>
       <item>
         <attribute name="action">app.about</attribute>
-        <attribute name="label" translatable="yes">About</attribute>
-      </item>
-      <item>
-        <attribute name="action">app.quit</attribute>
-        <attribute name="label" translatable="yes" context="app menu">Quit</attribute>
+        <attribute name="label" translatable="yes">About Documents</attribute>
       </item>
     </section>
   </menu>
 </interface>
+
+

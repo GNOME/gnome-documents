@@ -86,12 +86,32 @@ var MainToolbar = new Lang.Class({
         return res;
     },
 
+    addMenuButton: function() {
+      let path = null;
+      let model_name = null;
+      if (pkg.name == 'org.gnome.Books') {
+        path = "/org/gnome/Documents/ui/books-app-menu.ui";
+      } else {
+        path = "/org/gnome/Documents/ui/documents-app-menu.ui";
+      }
+
+      let builder = Gtk.Builder.new_from_resource(path);
+      let model = builder.get_object('app-menu');
+      let menuButton = new Gtk.MenuButton({ image: new Gtk.Image ({ icon_name: 'open-menu-symbolic' }),
+                                            tooltip_text: Gettext.pgettext("menu button tooltip", "Menu"),
+                                            visible: true });
+      menuButton.set_menu_model(model);
+
+      this.toolbar.pack_end(menuButton);
+      return menuButton;
+    },
+
     addSearchButton: function(actionName) {
         let searchButton = new Gtk.ToggleButton({ image: new Gtk.Image ({ icon_name: 'edit-find-symbolic' }),
                                                   tooltip_text: Gettext.pgettext("toolbar button tooltip", "Search"),
                                                   action_name: actionName,
                                                   visible: true });
-        this.toolbar.pack_end(searchButton);
+        this.toolbar.pack_start(searchButton);
         return searchButton;
     },
 
