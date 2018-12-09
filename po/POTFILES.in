@@ -6,7 +6,8 @@ data/org.gnome.books.gschema.xml
 data/org.gnome.Documents.appdata.xml.in
 data/org.gnome.Documents.desktop.in
 data/org.gnome.documents.gschema.xml
-data/ui/app-menu.ui
+data/ui/books-app-menu.ui
+data/ui/documents-app-menu.ui
 data/ui/help-overlay.ui
 data/ui/organize-collection-dialog.ui
 data/ui/preview-context-menu.ui
