@@ -1,12 +1,12 @@
 include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
 
 variables:
-    BUNDLE: "gnome-documents-dev.flatpak"
     GIT_SUBMODULE_STRATEGY: normal
 
 flatpak-documents:
     image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master'
     variables:
+        BUNDLE: "gnome-documents-dev.flatpak"
         MANIFEST_PATH: "flatpak/org.gnome.Documents.json"
         #MESON_ARGS: "-Dprofile=development"
         FLATPAK_MODULE: "gnome-documents"
@@ -18,6 +18,7 @@ flatpak-documents:
 flatpak-books:
     image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master'
     variables:
+        BUNDLE: "gnome-books-dev.flatpak"
         MANIFEST_PATH: "flatpak/org.gnome.Books.json"
         #MESON_ARGS: "-Dprofile=development"
         FLATPAK_MODULE: "gnome-books"
