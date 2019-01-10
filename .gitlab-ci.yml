@@ -11,7 +11,7 @@ flatpak-documents:
         #MESON_ARGS: "-Dprofile=development"
         FLATPAK_MODULE: "gnome-documents"
         RUNTIME_REPO: "https://sdk.gnome.org/gnome-nightly.flatpakrepo"
-        APP_ID: "org.gnome.DocumentsDevel"
+        APP_ID: "org.gnome.Documents"
     extends: .flatpak
 
 
@@ -22,5 +22,5 @@ flatpak-books:
         #MESON_ARGS: "-Dprofile=development"
         FLATPAK_MODULE: "gnome-books"
         RUNTIME_REPO: "https://sdk.gnome.org/gnome-nightly.flatpakrepo"
-        APP_ID: "org.gnome.BooksDevel"
+        APP_ID: "org.gnome.Books"
     extends: .flatpak
