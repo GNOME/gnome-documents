@@ -28,6 +28,7 @@ const WebKit2 = imports.gi.WebKit2;
 
 const _ = imports.gettext.gettext;
 
+const Application = imports.application;
 const Documents = imports.documents;
 const Preview = imports.preview;
 const Utils = imports.utils;
@@ -68,6 +69,13 @@ var EPUBView = new Lang.Class({
 
     createView: function() {
         let view = new Gepub.Widget();
+
+        this.invertedStyle = new WebKit2.UserStyleSheet(
+            'body { background: black; filter: invert(100%); }',
+            WebKit2.UserContentInjectedFrames.ALL_FRAMES,
+            WebKit2.UserStyleLevel.USER,
+            null, null,
+        );
 
         let fc = view.get_find_controller();
         fc.connect('found-text', Lang.bind(this, function(view, matchCount, data) {
@@ -158,6 +166,15 @@ var EPUBView = new Lang.Class({
 
     get canFullscreen() {
         return true;
+    },
+
+    set nightMode(v) {
+        if (this.view && Application.application.isBooks) {
+            if (v)
+                this.view.get_user_content_manager().add_style_sheet(this.invertedStyle);
+            else
+                this.view.get_user_content_manager().remove_all_style_sheets();
+        }
     },
 
     search: function(str) {
