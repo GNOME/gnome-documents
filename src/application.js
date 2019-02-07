@@ -342,6 +342,7 @@ var Application = new Lang.Class({
 
         EvDoc.init();
 
+        application = this;
         settings = new Gio.Settings({ schema_id: 'org.gnome.documents' });
 
         let gtkSettings = Gtk.Settings.get_default();
