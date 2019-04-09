@@ -290,16 +290,6 @@ gd_create_collection_icon (gint base_size,
 }
 
 void
-gd_ev_view_find_changed (EvView *view,
-                         EvJobFind *job,
-                         gint page)
-{
-  ev_view_find_changed (view,
-                        ev_job_find_get_results (job),
-                        page);
-}
-
-void
 gd_show_about_dialog (GtkWindow *parent)
 {
   GApplication *app;

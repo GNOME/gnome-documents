@@ -512,15 +512,12 @@ var EvinceView = new Lang.Class({
         this._jobFind = EvView.JobFind.new(evDoc, this._model.get_page(), evDoc.get_n_pages(),
                                            str, false);
         this._jobFind.connect('updated', Lang.bind(this, this._onSearchJobUpdated));
+        this._evView.find_started(this._jobFind);
 
         this._jobFind.scheduler_push_job(EvView.JobPriority.PRIORITY_NONE);
     },
 
     _onSearchJobUpdated: function(job, page) {
-        // FIXME: ev_job_find_get_results() returns a GList **
-        // and thus is not introspectable
-        GdPrivate.ev_view_find_changed(this._evView, job, page);
-
         let hasResults = job.has_results();
         this.getAction('find-prev').enabled = hasResults;
         this.getAction('find-next').enabled = hasResults;
