@@ -19,6 +19,7 @@
  *
  */
 
+const GObject = imports.gi.GObject;
 const Lang = imports.lang;
 const Signals = imports.signals;
 
@@ -32,15 +33,15 @@ var WindowMode = {
     SEARCH: 6,
 };
 
-var ModeController = new Lang.Class({
-    Name: 'ModeController',
+var ModeController = GObject.registerClass(
+    class ModeController extends GObject.Object {
 
-    _init: function() {
+    _init() {
         this._mode = WindowMode.NONE;
         this._history = [];
-    },
+    }
 
-    goBack: function(steps) {
+    goBack(steps) {
         if (!steps)
             steps = 1;
 
@@ -67,9 +68,9 @@ var ModeController = new Lang.Class({
         this._mode = tmp;
 
         this.emit('window-mode-changed', this._mode, oldMode);
-    },
+    }
 
-    setWindowMode: function(mode) {
+    setWindowMode(mode) {
         let oldMode = this._mode;
 
         if (oldMode == mode)
@@ -79,9 +80,9 @@ var ModeController = new Lang.Class({
         this._mode = mode;
 
         this.emit('window-mode-changed', this._mode, oldMode);
-    },
+    }
 
-    getWindowMode: function() {
+    getWindowMode() {
         return this._mode;
     }
 });

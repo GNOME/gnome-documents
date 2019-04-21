@@ -20,6 +20,7 @@
  */
 
 const Gio = imports.gi.Gio;
+const GObject = imports.gi.GObject;
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 const Signals = imports.signals;
@@ -51,10 +52,10 @@ var ChangeEventType = {
 
 const _RDF_TYPE = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
 
-const ChangeEvent = new Lang.Class({
-    Name: 'ChangeEvent',
+const ChangeEvent = GObject.registerClass(
+    class ChangeEvent extends GObject.Object {
 
-    _init: function(urnId, predicateId, isDelete) {
+    _init(urnId, predicateId, isDelete) {
         this.urnId = urnId;
         this.predicateId = predicateId;
 
@@ -62,17 +63,17 @@ const ChangeEvent = new Lang.Class({
             this.type = ChangeEventType.DELETED;
         else
             this.type = ChangeEventType.CREATED;
-    },
+    }
 
-    setResolvedValues: function(urn, predicate) {
+    setResolvedValues(urn, predicate) {
         this.urn = urn;
         this.predicate = predicate;
 
         if (predicate != _RDF_TYPE)
             this.type = ChangeEventType.CHANGED;
-    },
+    }
 
-    merge: function(event) {
+    merge(event) {
         // deletions or creations override the current type
         if (event.type == ChangeEventType.DELETED ||
             event.type == ChangeEventType.CREATED) {
@@ -84,10 +85,10 @@ const ChangeEvent = new Lang.Class({
 const CHANGE_MONITOR_TIMEOUT = 500; // msecs
 const CHANGE_MONITOR_MAX_ITEMS = 500; // items
 
-var TrackerChangeMonitor = new Lang.Class({
-    Name: 'TrackerChangeMonitor',
+var TrackerChangeMonitor = GObject.registerClass(
+    class TrackerChangeMonitor extends GObject.Object {
 
-    _init: function() {
+    _init() {
         this._pendingChanges = {};
         this._unresolvedIds = {};
 
@@ -96,9 +97,9 @@ var TrackerChangeMonitor = new Lang.Class({
 
         this._resourceService = new TrackerResourcesService();
         this._resourceService.connectSignal('GraphUpdated', Lang.bind(this, this._onGraphUpdated));
-    },
+    }
 
-    _onGraphUpdated: function(proxy, senderName, [className, deleteEvents, insertEvents]) {
+    _onGraphUpdated(proxy, senderName, [className, deleteEvents, insertEvents]) {
         deleteEvents.forEach(Lang.bind(this,
             function(event) {
                 this._addPendingEvent(event, true);
@@ -108,9 +109,9 @@ var TrackerChangeMonitor = new Lang.Class({
             function(event) {
                 this._addPendingEvent(event, false);
             }));
-    },
+    }
 
-    _addPendingEvent: function(event, isDelete) {
+    _addPendingEvent(event, isDelete) {
         if (this._pendingEventsId != 0)
             Mainloop.source_remove(this._pendingEventsId);
 
@@ -123,9 +124,9 @@ var TrackerChangeMonitor = new Lang.Class({
         else
             this._pendingEventsId =
                 Mainloop.timeout_add(CHANGE_MONITOR_TIMEOUT, Lang.bind(this, this._processEvents));
-    },
+    }
 
-    _processEvents: function() {
+    _processEvents() {
         let events = this._pendingEvents;
         let idTable = this._unresolvedIds;
 
@@ -170,9 +171,9 @@ var TrackerChangeMonitor = new Lang.Class({
             }));
 
         return false;
-    },
+    }
 
-    _addEvent: function(event) {
+    _addEvent(event) {
         let urn = event.urn;
         let oldEvent = this._pendingChanges[urn];
 
@@ -182,9 +183,9 @@ var TrackerChangeMonitor = new Lang.Class({
         } else {
             this._pendingChanges[urn] = event;
         }
-    },
+    }
 
-    _sendEvents: function(events, idTable) {
+    _sendEvents(events, idTable) {
         events.forEach(Lang.bind(this,
             function(event) {
                 event.setResolvedValues(idTable[event.urnId], idTable[event.predicateId]);

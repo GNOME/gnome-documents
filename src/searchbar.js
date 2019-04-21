@@ -21,6 +21,7 @@
 
 const Gdk = imports.gi.Gdk;
 const GLib = imports.gi.GLib;
+const GObject = imports.gi.GObject;
 const Gtk = imports.gi.Gtk;
 
 const Lang = imports.lang;
@@ -28,17 +29,16 @@ const Lang = imports.lang;
 const Application = imports.application;
 const Manager = imports.manager;
 
-var Searchbar = new Lang.Class({
-    Name: 'Searchbar',
-    Extends: Gtk.SearchBar,
+var Searchbar = GObject.registerClass({
     Signals: {
         'activate-result': {}
-    },
+    }
+}, class Searchbar extends Gtk.SearchBar {
 
-    _init: function() {
+    _init() {
         this.searchChangeBlocked = false;
 
-        this.parent();
+        super._init();
 
         // subclasses will create this.searchEntry
         let searchWidget = this.createSearchWidget();
@@ -55,17 +55,17 @@ var Searchbar = new Lang.Class({
             }));
 
         this.show_all();
-    },
+    }
 
-    createSearchWidget: function() {
+    createSearchWidget() {
         log('Error: Searchbar implementations must override createSearchWidget');
-    },
+    }
 
-    entryChanged: function() {
+    entryChanged() {
         log('Error: Searchbar implementations must override entryChanged');
-    },
+    }
 
-    handleEvent: function(event) {
+    handleEvent(event) {
         // Skip if the search bar is shown and the focus is elsewhere
         if (this.search_mode_enabled && !this.searchEntry.is_focus)
             return false;
@@ -80,13 +80,13 @@ var Searchbar = new Lang.Class({
         if (retval == Gdk.EVENT_STOP)
             this.searchEntry.grab_focus_without_selecting();
         return retval;
-    },
+    }
 
-    reveal: function() {
+    reveal() {
         this.search_mode_enabled = true;
-    },
+    }
 
-    conceal: function() {
+    conceal() {
         this.search_mode_enabled = false;
 
         // clear all the search properties when hiding the entry
@@ -94,12 +94,11 @@ var Searchbar = new Lang.Class({
     }
 });
 
-var Dropdown = new Lang.Class({
-    Name: 'Dropdown',
-    Extends: Gtk.Popover,
+var Dropdown = GObject.registerClass(
+    class Dropdown extends Gtk.Popover {
 
-    _init: function() {
-        this.parent({ position: Gtk.PositionType.BOTTOM });
+    _init() {
+        super._init({ position: Gtk.PositionType.BOTTOM });
 
         let grid = new Gtk.Grid({ orientation: Gtk.Orientation.HORIZONTAL,
                                   row_homogeneous: true,

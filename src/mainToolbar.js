@@ -22,6 +22,7 @@
 
 const Gd = imports.gi.Gd;
 const GLib = imports.gi.GLib;
+const GObject = imports.gi.GObject;
 const Gtk = imports.gi.Gtk;
 
 const Gettext = imports.gettext;
@@ -32,15 +33,14 @@ const Lang = imports.lang;
 const Application = imports.application;
 const Searchbar = imports.searchbar;
 
-var MainToolbar = new Lang.Class({
-    Name: 'MainToolbar',
-    Extends: Gtk.Box,
+var MainToolbar = GObject.registerClass(
+    class MainToolbar extends Gtk.Box {
 
-    _init: function() {
+    _init() {
         this._model = null;
         this._handleEvent = true;
 
-        this.parent({ orientation: Gtk.Orientation.VERTICAL });
+        super._init({ orientation: Gtk.Orientation.VERTICAL });
         this.show();
 
         this.toolbar = new Gtk.HeaderBar({ hexpand: true });
@@ -68,25 +68,25 @@ var MainToolbar = new Lang.Class({
                 Application.documentManager.disconnect(loadErrorId);
                 Application.documentManager.disconnect(passwordNeededId);
             }));
-    },
+    }
 
-    createSearchbar: function() {
+    createSearchbar() {
         return null;
-    },
+    }
 
-    _onLoadErrorOrPassword: function() {
+    _onLoadErrorOrPassword() {
         this._handleEvent = false;
-    },
+    }
 
-    handleEvent: function(event) {
+    handleEvent(event) {
         if (!this._handleEvent)
             return false;
 
         let res = this.searchbar.handleEvent(event);
         return res;
-    },
+    }
 
-    addMenuButton: function() {
+    addMenuButton() {
       let model_name = null;
 
       let builder = Gtk.Builder.new_from_resource("/org/gnome/Documents/ui/documents-app-menu.ui");
@@ -98,18 +98,18 @@ var MainToolbar = new Lang.Class({
 
       this.toolbar.pack_end(menuButton);
       return menuButton;
-    },
+    }
 
-    addSearchButton: function(actionName) {
+    addSearchButton(actionName) {
         let searchButton = new Gtk.ToggleButton({ image: new Gtk.Image ({ icon_name: 'edit-find-symbolic' }),
                                                   tooltip_text: Gettext.pgettext("toolbar button tooltip", "Search"),
                                                   action_name: actionName,
                                                   visible: true });
         this.toolbar.pack_start(searchButton);
         return searchButton;
-    },
+    }
 
-    addBackButton: function() {
+    addBackButton() {
         let backButton = new Gtk.Button({ image: new Gtk.Image({ icon_name: 'go-previous-symbolic' }),
                                           tooltip_text: _("Back"),
                                           action_name: 'view.go-back' });

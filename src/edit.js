@@ -19,6 +19,7 @@
 
 const WebKit = imports.gi.WebKit2;
 const GLib = imports.gi.GLib;
+const GObject = imports.gi.GObject;
 const Gtk = imports.gi.Gtk;
 const _ = imports.gettext.gettext;
 
@@ -31,26 +32,25 @@ const Preview = imports.preview;
 
 const _BLANK_URI = "about:blank";
 
-var EditView = new Lang.Class({
-    Name: 'EditView',
-    Extends: Preview.Preview,
+var EditView = GObject.registerClass(
+    class EditView extends Preview.Preview {
 
-    _init: function(overlay, mainWindow) {
-        this.parent(overlay, mainWindow);
+    _init(overlay, mainWindow) {
+        super._init(overlay, mainWindow);
 
         let doc = Application.documentManager.getActiveItem();
         if (doc.uri)
             this._webView.load_uri(doc.uri);
-    },
+    }
 
-    createActions: function() {
+    createActions() {
         return [
             { name: 'view-current',
               callback: Lang.bind(this, this._viewCurrent) }
         ];
-    },
+    }
 
-    createView: function() {
+    createView() {
         let overlay = new Gtk.Overlay();
 
         this._webView = new WebKit.WebView();
@@ -73,32 +73,32 @@ var EditView = new Lang.Class({
         cookie_manager.set_persistent_storage(jarfile, WebKit.CookiePersistentStorage.SQLITE);
         overlay.show_all();
         return overlay;
-    },
+    }
 
-    createToolbar: function() {
+    createToolbar() {
         return new EditToolbar(this);
-    },
+    }
 
-    onLoadStarted: function() {
+    onLoadStarted() {
         this.getAction('view-current').enabled = false;
-    },
+    }
 
-    onLoadFinished: function(manager, doc) {
+    onLoadFinished(manager, doc) {
         if (doc.uri)
             this.getAction('view-current').enabled = true;
-    },
+    }
 
-    goBack: function() {
+    goBack() {
         Application.documentManager.setActiveItem(null);
         Application.modeController.goBack(2);
-    },
+    }
 
-    _viewCurrent: function() {
+    _viewCurrent() {
         Application.modeController.goBack();
         Application.documentManager.reloadActiveItem();
-    },
+    }
 
-    _onProgressChanged: function() {
+    _onProgressChanged() {
         if (!this._webView.uri || this._webView.uri == _BLANK_URI)
             return;
 
@@ -119,21 +119,20 @@ var EditView = new Lang.Class({
         if (loading || progress == 1.0)
             value = progress;
         this._progressBar.fraction = value;
-    },
+    }
 
-    _onTimeoutExpired: function() {
+    _onTimeoutExpired() {
         this._timeoutId = 0;
         this._progressBar.hide();
         return false;
     }
 });
 
-const EditToolbar = new Lang.Class({
-    Name: 'EditToolbar',
-    Extends: Preview.PreviewToolbar,
+const EditToolbar = GObject.registerClass(
+    class EditToolbar extends Preview.PreviewToolbar {
 
-    _init: function(preview) {
-        this.parent(preview);
+    _init(preview) {
+        super._init(preview);
 
         // view button, on the right of the toolbar
         let viewButton = new Gtk.Button({ label: _("View"),
@@ -141,13 +140,13 @@ const EditToolbar = new Lang.Class({
                                           visible: true });
         viewButton.get_style_context().add_class('suggested-action');
         this.toolbar.pack_end(viewButton);
-    },
+    }
 
-    createSearchbar: function() {
+    createSearchbar() {
         return null;
-    },
+    }
 
-    handleEvent: function(event) {
+    handleEvent(event) {
         return false;
     }
 });

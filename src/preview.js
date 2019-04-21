@@ -2,6 +2,7 @@ const GdPrivate = imports.gi.GdPrivate;
 const Gio = imports.gi.Gio;
 const Gdk = imports.gi.Gdk;
 const GLib = imports.gi.GLib;
+const GObject = imports.gi.GObject;
 const Gtk = imports.gi.Gtk;
 
 const Lang = imports.lang;
@@ -19,11 +20,10 @@ const Utils = imports.utils;
 const _ICON_SIZE = 32;
 const _PDF_LOADER_TIMEOUT = 400;
 
-var Preview = new Lang.Class({
-    Name: 'Preview',
-    Extends: Gtk.Stack,
+var Preview = GObject.registerClass(
+    class Preview extends Gtk.Stack {
 
-    _init: function(overlay, mainWindow) {
+    _init(overlay, mainWindow) {
         this._lastSearch = '';
         this._loadShowId = 0;
         this._controlsFlipId = 0;
@@ -33,7 +33,7 @@ var Preview = new Lang.Class({
         this.overlay = overlay;
         this.mainWindow = mainWindow;
 
-        this.parent({ homogeneous: true,
+        super._init({ homogeneous: true,
                       transition_type: Gtk.StackTransitionType.CROSSFADE });
 
         this.actionGroup = this._createActionGroup();
@@ -112,9 +112,9 @@ var Preview = new Lang.Class({
                     this._nightModeId = 0;
                 }
             }));
-    },
+    }
 
-    _getDefaultActions: function() {
+    _getDefaultActions() {
         let backAccels = ['Back'];
         if (this.get_direction() == Gtk.TextDirection.LTR)
             backAccels.push('<Alt>Left');
@@ -140,9 +140,9 @@ var Preview = new Lang.Class({
               callback: Lang.bind(this, this.goBack),
               accels: backAccels }
         ];
-    },
+    }
 
-    _properties: function() {
+    _properties() {
         let doc = Application.documentManager.getActiveItem();
         if (!doc)
             return;
@@ -151,19 +151,19 @@ var Preview = new Lang.Class({
         dialog.connect('response', Lang.bind(this, function(widget, response) {
             widget.destroy();
         }));
-    },
+    }
 
-    _openCurrent: function() {
+    _openCurrent() {
         let doc = Application.documentManager.getActiveItem();
         if (doc)
             doc.open(this.mainWindow, Gtk.get_current_event_time());
-    },
+    }
 
-    _updateNightMode: function() {
+    _updateNightMode() {
         this.nightMode = Application.settings.get_boolean('night-mode');
-    },
+    }
 
-    _onFullscreenChanged: function(action) {
+    _onFullscreenChanged(action) {
         let fullscreen = action.state.get_boolean();
 
         this.toolbar.visible = !fullscreen;
@@ -188,15 +188,15 @@ var Preview = new Lang.Class({
         }
 
         this._syncControlsVisible();
-    },
+    }
 
-    getFullscreenToolbar: function() {
+    getFullscreenToolbar() {
         return this._fsToolbar;
-    },
+    }
 
     get controlsVisible() {
         return this._controlsVisible;
-    },
+    }
 
     set controlsVisible(visible) {
         // reset any pending timeout, as we're about to change controls state
@@ -207,17 +207,17 @@ var Preview = new Lang.Class({
 
         this._controlsVisible = visible;
         this._syncControlsVisible();
-    },
+    }
 
-    _flipControlsTimeout: function() {
+    _flipControlsTimeout() {
         this._controlsFlipId = 0;
         let visible = this.controlsVisible;
         this.controlsVisible = !visible;
 
         return false;
-    },
+    }
 
-     queueControlsFlip: function() {
+     queueControlsFlip() {
          if (this._controlsFlipId)
              return;
 
@@ -225,16 +225,16 @@ var Preview = new Lang.Class({
          let doubleClick = settings.gtk_double_click_time;
 
          this._controlsFlipId = Mainloop.timeout_add(doubleClick, Lang.bind(this, this._flipControlsTimeout));
-     },
+     }
 
-     cancelControlsFlip: function() {
+     cancelControlsFlip() {
          if (this._controlsFlipId != 0) {
              Mainloop.source_remove(this._controlsFlipId);
              this._controlsFlipId = 0;
          }
-     },
+     }
 
-    _syncControlsVisible: function() {
+    _syncControlsVisible() {
         if (this._controlsVisible) {
             if (this._fsToolbar)
                 this._fsToolbar.reveal();
@@ -242,9 +242,9 @@ var Preview = new Lang.Class({
             if (this._fsToolbar)
                 this._fsToolbar.conceal();
         }
-    },
+    }
 
-    _createActionGroup: function() {
+    _createActionGroup() {
         let actions = this.createActions().concat(this._getDefaultActions());
         let actionGroup = new Gio.SimpleActionGroup();
         Utils.populateActionGroup(actionGroup, actions, 'view');
@@ -257,47 +257,47 @@ var Preview = new Lang.Class({
         }
 
         return actionGroup;
-    },
+    }
 
-    createActions: function() {
+    createActions() {
         return [];
-    },
+    }
 
-    createNavControls: function() {
+    createNavControls() {
         return new PreviewNavControls(this, this.overlay);
-    },
+    }
 
-    activateResult: function() {
+    activateResult() {
         this.findNext();
-    },
+    }
 
-    createFullscreenToolbar: function() {
+    createFullscreenToolbar() {
         return new PreviewFullscreenToolbar(this);
-    },
+    }
 
-    createToolbar: function() {
+    createToolbar() {
         return new PreviewToolbar(this);
-    },
+    }
 
-    createView: function() {
+    createView() {
         throw(new Error('Not implemented'));
-    },
+    }
 
-    createContextMenu: function() {
+    createContextMenu() {
         let builder = new Gtk.Builder();
         builder.add_from_resource('/org/gnome/Documents/ui/preview-context-menu.ui');
         let model = builder.get_object('preview-context-menu');
         return Gtk.Menu.new_from_model(model);
-    },
+    }
 
-    _clearLoadTimer: function() {
+    _clearLoadTimer() {
         if (this._loadShowId != 0) {
             Mainloop.source_remove(this._loadShowId);
             this._loadShowId = 0;
         }
-    },
+    }
 
-    onPasswordNeeded: function(manager, doc) {
+    onPasswordNeeded(manager, doc) {
         this._clearLoadTimer();
         this._spinner.stop();
 
@@ -307,9 +307,9 @@ var Preview = new Lang.Class({
             if (response == Gtk.ResponseType.CANCEL || response == Gtk.ResponseType.DELETE_EVENT)
                 Application.documentManager.setActiveItem(null);
         }));
-    },
+    }
 
-    onLoadStarted: function(manager, doc) {
+    onLoadStarted(manager, doc) {
         this._clearLoadTimer();
         this._loadShowId = Mainloop.timeout_add(_PDF_LOADER_TIMEOUT, Lang.bind(this, function() {
             this._loadShowId = 0;
@@ -318,95 +318,94 @@ var Preview = new Lang.Class({
             this._spinner.start();
             return false;
         }));
-    },
+    }
 
-    onLoadFinished: function(manager, doc) {
+    onLoadFinished(manager, doc) {
         this._clearLoadTimer();
         this._spinner.stop();
 
         this.set_visible_child_name('view');
         this.getAction('open-current').enabled = (doc.defaultAppName != null);
         this._updateNightMode();
-    },
+    }
 
-    onLoadError: function(manager, doc, message, exception) {
+    onLoadError(manager, doc, message, exception) {
         this._clearLoadTimer();
         this._spinner.stop();
 
         this._errorBox.update(message, exception.message);
         this.set_visible_child_name('error');
-    },
+    }
 
-    getAction: function(name) {
+    getAction(name) {
         return this.actionGroup.lookup_action(name);
-    },
+    }
 
-    goBack: function() {
+    goBack() {
         Application.documentManager.setActiveItem(null);
         Application.modeController.goBack();
-    },
+    }
 
-    goPrev: function() {
+    goPrev() {
         throw (new Error('Not implemented'));
-    },
+    }
 
-    goNext: function() {
+    goNext() {
         throw (new Error('Not implemented'));
-    },
+    }
 
     get hasPages() {
         return false;
-    },
+    }
 
     get page() {
         return 0;
-    },
+    }
 
     get numPages() {
         return 0;
-    },
+    }
 
-    search: function(str) {
+    search(str) {
         this._lastSearch = str;
-    },
+    }
 
     get lastSearch() {
         return this._lastSearch;
-    },
+    }
 
     get fullscreen() {
         if (!this.canFullscreen)
             return false;
 
         return this.getAction('fullscreen').state.get_boolean();
-    },
+    }
 
     get canFullscreen() {
         return false;
-    },
+    }
 
     set nightMode(v) {
         // do nothing
-    },
+    }
 
-    findPrev: function() {
+    findPrev() {
         throw (new Error('Not implemented'));
-    },
+    }
 
-    findNext: function() {
+    findNext() {
         throw (new Error('Not implemented'));
     }
 });
 
-var PreviewToolbar = new Lang.Class({
-    Name: 'PreviewToolbar',
-    Extends: MainToolbar.MainToolbar,
+var PreviewToolbar = GObject.registerClass(
+    class PreviewToolbar extends MainToolbar.MainToolbar {
 
-    _init: function(preview) {
+    _init(preview) {
         this._fsStateId = 0;
         this.preview = preview;
 
-        this.parent();
+        super._init();
         this.toolbar.set_show_close_button(true);
 
         // back button, on the left of the toolbar
@@ -425,9 +424,9 @@ var PreviewToolbar = new Lang.Class({
             if (this._fsStateId > 0)
                 this.preview.getAction('fullscreen').disconnect(this._fsStateId);
         }));
-    },
+    }
 
-    _getPreviewMenu: function() {
+    _getPreviewMenu() {
         let builder = new Gtk.Builder();
         builder.add_from_resource('/org/gnome/Documents/ui/preview-menu.ui');
         let menu = builder.get_object('preview-menu');
@@ -440,18 +439,18 @@ var PreviewToolbar = new Lang.Class({
         }
 
         return menu;
-    },
+    }
 
-    _addNightmodeButton: function() {
+    _addNightmodeButton() {
         let nightmodeButton = new Gtk.ToggleButton({ image: new Gtk.Image ({ icon_name: 'display-brightness-symbolic' }),
                                                      tooltip_text: _("Night Mode"),
                                                      action_name: 'app.night-mode',
                                                      visible: true });
         this.toolbar.pack_end(nightmodeButton);
         return nightmodeButton;
-    },
+    }
 
-    _addFullscreenButton: function() {
+    _addFullscreenButton() {
         this._fullscreenButton = new Gtk.Button({ image: new Gtk.Image ({ icon_name: 'view-fullscreen-symbolic' }),
                                                   tooltip_text: _("Fullscreen"),
                                                   action_name: 'view.fullscreen',
@@ -461,9 +460,9 @@ var PreviewToolbar = new Lang.Class({
         let action = this.preview.getAction('fullscreen');
         this._fsStateId = action.connect('notify::state', Lang.bind(this, this._fullscreenStateChanged));
         this._fullscreenStateChanged();
-    },
+    }
 
-    _fullscreenStateChanged: function() {
+    _fullscreenStateChanged() {
         let action = this.preview.getAction('fullscreen');
         let fullscreen = action.state.get_boolean();
 
@@ -471,13 +470,13 @@ var PreviewToolbar = new Lang.Class({
             this._fullscreenButton.image.icon_name = 'view-restore-symbolic';
         else
             this._fullscreenButton.image.icon_name = 'view-fullscreen-symbolic';
-    },
+    }
 
-    createSearchbar: function() {
+    createSearchbar() {
         return new PreviewSearchbar(this.preview);
-    },
+    }
 
-    updateTitle: function() {
+    updateTitle() {
         let primary = null;
         let doc = Application.documentManager.getActiveItem();
 
@@ -488,15 +487,14 @@ var PreviewToolbar = new Lang.Class({
     }
 });
 
-const PreviewFullscreenToolbar = new Lang.Class({
-    Name: 'PreviewFullscreenToolbar',
-    Extends: Gtk.Revealer,
+const PreviewFullscreenToolbar = GObject.registerClass({
     Signals: {
         'show-controls': {}
-    },
+    }
+}, class PreviewFullscreenToolbar extends Gtk.Revealer {
 
-    _init: function(preview) {
-        this.parent({ valign: Gtk.Align.START });
+    _init(preview) {
+        super._init({ valign: Gtk.Align.START });
 
         this.toolbar = preview.createToolbar();
 
@@ -524,17 +522,17 @@ const PreviewFullscreenToolbar = new Lang.Class({
                 preview.actionGroup.disconnect(signalId);
             });
         }));
-    },
+    }
 
-    handleEvent: function(event) {
+    handleEvent(event) {
         this.toolbar.handleEvent(event);
-    },
+    }
 
-    reveal: function() {
+    reveal() {
         this.set_reveal_child(true);
-    },
+    }
 
-    conceal: function() {
+    conceal() {
         this.set_reveal_child(false);
         this.toolbar.preview.getAction('find').change_state(GLib.Variant.new('b', false));
     }
@@ -543,10 +541,10 @@ const PreviewFullscreenToolbar = new Lang.Class({
 const _AUTO_HIDE_TIMEOUT = 2;
 var PREVIEW_NAVBAR_MARGIN = 30;
 
-var PreviewNavControls = new Lang.Class({
-    Name: 'PreviewNavControls',
+var PreviewNavControls = GObject.registerClass(
+    class PreviewNavControls extends GObject.Object {
 
-    _init: function(preview, overlay) {
+    _init(preview, overlay) {
         this._barRevealer = null;
         this.preview = preview;
         this._overlay = overlay;
@@ -615,32 +613,32 @@ var PreviewNavControls = new Lang.Class({
                                                        widget: this.preview.view });
         this._tapGesture.connect('released', Lang.bind(this, this._onMultiPressReleased));
         this._tapGesture.connect('stopped', Lang.bind(this, this._onMultiPressStopped));
-    },
+    }
 
-    createBarWidget: function() {
+    createBarWidget() {
         return null;
-    },
+    }
 
-    _onEnterNotify: function() {
+    _onEnterNotify() {
         this._unqueueAutoHide();
         return false;
-    },
+    }
 
-    _onLeaveNotify: function() {
+    _onLeaveNotify() {
         this._queueAutoHide();
         return false;
-    },
+    }
 
-    _motionTimeout: function() {
+    _motionTimeout() {
         this._motionId = 0;
         this._visibleInternal = true;
         this._updateVisibility();
         if (this.barWidget && !this.barWidget.hover)
             this._queueAutoHide();
         return false;
-    },
+    }
 
-    _onMotion: function(widget, event) {
+    _onMotion(widget, event) {
         if (this._motionId != 0)
             return false;
 
@@ -650,48 +648,48 @@ var PreviewNavControls = new Lang.Class({
 
         this._motionId = Mainloop.idle_add(Lang.bind(this, this._motionTimeout));
         return false;
-    },
+    }
 
-    _onMultiPressReleased: function() {
+    _onMultiPressReleased() {
         this._tapGesture.set_state(Gtk.EventSequenceState.CLAIMED);
         this._visibleInternal = !this._visibleInternal;
         this._unqueueAutoHide();
         this._updateVisibility();
-    },
+    }
 
-    _onMultiPressStopped: function() {
+    _onMultiPressStopped() {
         this._tapGesture.set_state(Gtk.EventSequenceState.DENIED);
-    },
+    }
 
-    _onPrevClicked: function() {
+    _onPrevClicked() {
         this.preview.goPrev();
-    },
+    }
 
-    _onNextClicked: function() {
+    _onNextClicked() {
         this.preview.goNext();
-    },
+    }
 
-    _autoHide: function() {
+    _autoHide() {
         this._autoHideId = 0;
         this._visibleInternal = false;
         this._updateVisibility();
         return false;
-    },
+    }
 
-    _unqueueAutoHide: function() {
+    _unqueueAutoHide() {
         if (this._autoHideId == 0)
             return;
 
         Mainloop.source_remove(this._autoHideId);
         this._autoHideId = 0;
-    },
+    }
 
-    _queueAutoHide: function() {
+    _queueAutoHide() {
         this._unqueueAutoHide();
         this._autoHideId = Mainloop.timeout_add_seconds(_AUTO_HIDE_TIMEOUT, Lang.bind(this, this._autoHide));
-    },
+    }
 
-    _updateVisibility: function() {
+    _updateVisibility() {
         let currentPage = this.preview.page;
         let numPages = this.preview.numPages;
 
@@ -708,22 +706,22 @@ var PreviewNavControls = new Lang.Class({
 
         this._prevRevealer.reveal_child = currentPage > 0;
         this._nextRevealer.reveal_child = numPages > currentPage + 1;
-    },
+    }
 
-    show: function() {
+    show() {
         this._visible = true;
         this._visibleInternal = true;
         this._updateVisibility();
         this._queueAutoHide();
-    },
+    }
 
-    hide: function() {
+    hide() {
         this._visible = false;
         this._visibleInternal = false;
         this._updateVisibility();
-    },
+    }
 
-    destroy: function() {
+    destroy() {
         if (this._barRevealer)
             this._barRevealer.destroy();
         this._prevRevealer.destroy();
@@ -732,22 +730,21 @@ var PreviewNavControls = new Lang.Class({
     }
 });
 
-var PreviewSearchbar = new Lang.Class({
-    Name: 'PreviewSearchbar',
-    Extends: Searchbar.Searchbar,
+var PreviewSearchbar = GObject.registerClass(
+    class PreviewSearchbar extends Searchbar.Searchbar {
 
-    _init: function(preview) {
+    _init(preview) {
         this.preview = preview;
 
-        this.parent();
+        super._init();
 
         this.connect('notify::search-mode-enabled', Lang.bind(this, function() {
             let action = this.preview.getAction('find');
             action.change_state(GLib.Variant.new('b', this.search_mode_enabled));
         }));
-    },
+    }
 
-    createSearchWidget: function() {
+    createSearchWidget() {
         let box = new Gtk.Box({ orientation: Gtk.Orientation.HORIZONTAL,
                                 halign: Gtk.Align.CENTER});
         box.get_style_context().add_class('linked');
@@ -771,14 +768,14 @@ var PreviewSearchbar = new Lang.Class({
         box.add(this._next);
 
         return box;
-    },
+    }
 
-    entryChanged: function() {
+    entryChanged() {
         this.preview.search(this.searchEntry.get_text());
-    },
+    }
 
-    reveal: function() {
-        this.parent();
+    reveal() {
+        super.reveal();
 
         if (!this.searchEntry.get_text()) {
             this.searchEntry.set_text(this.preview.lastSearch);
@@ -786,11 +783,11 @@ var PreviewSearchbar = new Lang.Class({
         }
 
         this.preview.search(this.searchEntry.get_text());
-    },
+    }
 
-    conceal: function() {
+    conceal() {
         this.searchChangeBlocked = true;
-        this.parent();
+        super.conceal();
         this.searchChangeBlocked = false;
     }
 });

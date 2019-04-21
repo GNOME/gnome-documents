@@ -68,11 +68,10 @@ const DocumentUpdateType = {
     DELETE_SHARE_LINK: 4
 };
 
-var SharingDialog = new Lang.Class({
-    Name: 'SharingDialog',
-    Extends: Gtk.Dialog,
+var SharingDialog = GObject.registerClass(
+    class SharingDialog extends Gtk.Dialog {
 
-    _init: function() {
+    _init() {
         let urn = Application.selectionController.getSelection();
         this._doc = Application.documentManager.getItemById(urn);
 
@@ -98,7 +97,7 @@ var SharingDialog = new Lang.Class({
         this._changePermissionVisible = false;
 
         let toplevel = Application.application.get_windows()[0];
-        this.parent({ resizable: false,
+        super._init({ resizable: false,
                       transient_for: toplevel,
                       modal: true,
                       destroy_with_parent: true,
@@ -237,9 +236,9 @@ var SharingDialog = new Lang.Class({
 
         this.show_all();
         this._updatePermissionButtons();
-    },
+    }
 
-    _ensureTreeview: function() {
+    _ensureTreeview() {
         if (this._model) {
             this._model.clear();
             return;
@@ -271,9 +270,9 @@ var SharingDialog = new Lang.Class({
         if (child)
             child.destroy();
         this._scrolledWin.add(this._treeView);
-    },
+    }
 
-    _onPermissionsButtonClicked: function() {
+    _onPermissionsButtonClicked() {
         this._changePermissionVisible = !this._changePermissionVisible;
         if (!this._changePermissionVisible) {
             this._changeButton.set_sensitive(false);
@@ -281,15 +280,15 @@ var SharingDialog = new Lang.Class({
         }
 
         this._updatePermissionButtons();
-    },
+    }
 
-    _permissionChangeFinished: function() {
+    _permissionChangeFinished() {
         this._changePermissionVisible = false;
         this._changeButton.set_sensitive(true);
         this._updatePermissionButtons();
-    },
+    }
 
-    _updateSettingString: function() {
+    _updateSettingString() {
         let primary = '';
         let detail = '';
 
@@ -310,9 +309,9 @@ var SharingDialog = new Lang.Class({
 
         this._setting.label = primary;
         this._settingDetail.label = detail;
-    },
+    }
 
-    _updatePermissionButtons: function() {
+    _updatePermissionButtons() {
         if (this._changePermissionVisible) {
             this._changeButton.label = _("Save");
             this._setting.hide();
@@ -334,10 +333,10 @@ var SharingDialog = new Lang.Class({
             this._privateRadio.hide();
             this._publicBox.hide();
         }
-    },
+    }
 
     // Return a feed containing the acl related to the entry
-    _refreshEntryACL: function() {
+    _refreshEntryACL() {
         this._entry.get_rules_async(this._service, null, null, Lang.bind(this,
             function(entry, result) {
                 try {
@@ -347,9 +346,9 @@ var SharingDialog = new Lang.Class({
                     logError(e, 'Error getting ACL Feed');
                 }
             }));
-    },
+    }
 
-    _getAccountNames: function() {
+    _getAccountNames() {
         let retval = [];
         let sources = Application.sourceManager.getForProviderType('google');
 
@@ -360,10 +359,10 @@ var SharingDialog = new Lang.Class({
             }));
 
         return retval;
-    },
+    }
 
     // Get the roles, and make a new array containing strings that start with capital letters
-    _getUserRoleString: function(role) {
+    _getUserRoleString(role) {
         if (role.charAt(0) == 'o')
             return _("Owner"); // Owner permission for document user listed in treeview
 
@@ -374,10 +373,10 @@ var SharingDialog = new Lang.Class({
             return _("Can view"); // Reader permission for document user listed in treeview
 
         return '';
-    },
+    }
 
     // Get each entry (person) from the feed, and get the scope for each person, and then store the emails and values in an array
-    _getScopeRulesEntry: function() {
+    _getScopeRulesEntry() {
         let entries = this._feed.get_entries();
         let accountNames = this._getAccountNames();
 
@@ -436,10 +435,10 @@ var SharingDialog = new Lang.Class({
             this._noPermission.show();
             this._noPermission.set_text(_("You can ask %s for access").format(ownerId));
         }
-    },
+    }
 
     // Get the role for the new contact from the combobox
-    _getNewContactRule: function() {
+    _getNewContactRule() {
         let activeItem = this._comboBoxText.get_active();
         let role;
 
@@ -451,10 +450,10 @@ var SharingDialog = new Lang.Class({
         return new GData.AccessRule({ role: role,
                                       scope_type: GData.ACCESS_SCOPE_USER,
                                       scope_value: this._contactEntry.get_text() });
-    },
+    }
 
     // Send the new contact and its permissions to Google Docs
-    _onAddClicked: function() {
+    _onAddClicked() {
         let accessRule = this._getNewContactRule();
         let aclLink = this._entry.look_up_link(GData.LINK_ACCESS_CONTROL_LIST);
 
@@ -474,27 +473,27 @@ var SharingDialog = new Lang.Class({
                         this._showErrorDialog(_("The document was not updated"));
                     }
                 }));
-    },
+    }
 
     // Get the scope from the radiobuttons
-    _getNewScopeType: function() {
+    _getNewScopeType() {
         let scope = GData.ACCESS_SCOPE_USER;
         if (this._publicRadio.get_active())
             scope = GData.ACCESS_SCOPE_DEFAULT;
 
         return scope;
-    },
+    }
 
     // Get the role from the checkbox
-    _getNewRole: function() {
+    _getNewRole() {
         let role = GData.DOCUMENTS_ACCESS_ROLE_READER;
         if (this._pubEditCheck.get_active())
             role = GData.DOCUMENTS_ACCESS_ROLE_WRITER;
 
         return role;
-    },
+    }
 
-    _insertNewPermission: function(scopeType, role) {
+    _insertNewPermission(scopeType, role) {
         let aclLink = this._entry.look_up_link(GData.LINK_ACCESS_CONTROL_LIST);
         let accessRule = new GData.AccessRule({ scope_type: scopeType,
                                                 role: role });
@@ -512,9 +511,9 @@ var SharingDialog = new Lang.Class({
 
                     this._permissionChangeFinished();
                 }));
-    },
+    }
 
-    _sendNewDocumentRule: function() {
+    _sendNewDocumentRule() {
         let newScopeType = this._getNewScopeType();
         let newRole = this._getNewRole();
         let entries = this._feed.get_entries();
@@ -604,15 +603,15 @@ var SharingDialog = new Lang.Class({
                         }
                     }));
         }
-    },
+    }
 
-    _isValidEmail: function() {
+    _isValidEmail() {
         let emailString = this._contactEntry.get_text();
         // Use Ross Kendell's RegEx to check for valid email address
         return /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/.test(emailString);
-    },
+    }
 
-    _showErrorDialog: function(errorStr) {
+    _showErrorDialog(errorStr) {
         let errorDialog = new Gtk.MessageDialog ({ transient_for: this,
                                                    modal: true,
                                                    destroy_with_parent: true,

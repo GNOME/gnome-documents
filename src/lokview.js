@@ -30,6 +30,7 @@ try {
 
 const Gdk = imports.gi.Gdk;
 const GLib = imports.gi.GLib;
+const GObject = imports.gi.GObject;
 const Gtk = imports.gi.Gtk;
 const _ = imports.gettext.gettext;
 
@@ -97,20 +98,25 @@ function isOpenDocumentFormat(mimeType) {
     return false;
 }
 
-var LOKView = new Lang.Class({
-    Name: 'LOKView',
-    Extends: Preview.Preview,
+print('Gjs Value Of Preview.Preview: ' + Preview.Preview);
+print('Gjs Value Of Preview.PreviewNavControls: ' + Preview.PreviewNavControls);
+print('Gjs Value Of Preview.PreviewToolbar: ' + Preview.PreviewToolbar);
+print('Gjs Value Of Preview.PreviewSearchbar: ' + Preview.PreviewSearchbar);
+print('Gjs Value Of Preview.PREVIEW_NAVBAR_MARGIN: ' + Preview.PREVIEW_NAVBAR_MARGIN);
+print('Preview\'s keys: ' + Object.keys(Preview));
+var LOKView = GObject.registerClass(
+    class LOKView extends Preview.Preview {
 
-    _init: function(overlay, mainWindow) {
-        this.parent(overlay, mainWindow);
+    _init(overlay, mainWindow) {
+        super._init(overlay, mainWindow);
 
         this._progressBar = new Gtk.ProgressBar({ halign: Gtk.Align.FILL,
                                                   valign: Gtk.Align.START });
         this._progressBar.get_style_context().add_class('osd');
         this.overlay.add_overlay(this._progressBar);
-    },
+    }
 
-    createActions: function() {
+    createActions() {
         return [
             { name: 'zoom-in',
               callback: Lang.bind(this, this._zoomIn),
@@ -122,9 +128,9 @@ var LOKView = new Lang.Class({
               callback: Lang.bind(this, this._copy),
               accels: ['<Primary>c'] }
         ];
-    },
+    }
 
-    createView: function() {
+    createView() {
         let sw = new Gtk.ScrolledWindow({ hexpand: true,
                                           vexpand: true });
         sw.get_style_context().add_class('documents-scrolledwin');
@@ -142,58 +148,58 @@ var LOKView = new Lang.Class({
         }
 
         return sw;
-    },
+    }
 
-    onLoadFinished: function(manager, doc) {
-        this.parent(manager, doc);
+    onLoadFinished(manager, doc) {
+        super.onLoadFinished(manager, doc);
 
         if (!isAvailable())
             return;
         this._doc = doc;
         this._lokview.open_document(doc.uriToLoad, '{}', null, Lang.bind(this, this._onDocumentOpened));
         this._progressBar.show();
-    },
+    }
 
-    _onDocumentOpened: function(res, doc) {
+    _onDocumentOpened(res, doc) {
         // TODO: Call _finish and check failure
         this._progressBar.hide();
         this.set_visible_child_name('view');
         this._lokview.set_edit(false);
-    },
+    }
 
-    _copy: function() {
+    _copy() {
         let [selectedText, mimeType] = this._lokview.copy_selection('text/plain;charset=utf-8');
         let display = Gdk.Display.get_default();
         let clipboard = Gtk.Clipboard.get_default(display);
 
         clipboard.set_text(selectedText, selectedText.length);
-    },
+    }
 
-    _zoomIn: function() {
+    _zoomIn() {
         // FIXME: https://bugs.documentfoundation.org/show_bug.cgi?id=97301
         if (!this._doc)
             return;
         let zoomLevel = this._lokview.get_zoom() * ZOOM_IN_FACTOR;
         this._lokview.set_zoom(zoomLevel);
-    },
+    }
 
-    _zoomOut: function() {
+    _zoomOut() {
         // FIXME: https://bugs.documentfoundation.org/show_bug.cgi?id=97301
         if (!this._doc)
             return;
         let zoomLevel = this._lokview.get_zoom() * ZOOM_OUT_FACTOR;
         this._lokview.set_zoom(zoomLevel);
-    },
+    }
 
-    _onCanZoomInChanged: function() {
+    _onCanZoomInChanged() {
         this.getAction('zoom-in').enabled = this._lokview.can_zoom_in;
-    },
+    }
 
-    _onCanZoomOutChanged: function() {
+    _onCanZoomOutChanged() {
         this.getAction('zoom-out').enabled = this._lokview.can_zoom_out;
-    },
+    }
 
-    _onButtonPressEvent: function(widget, event) {
+    _onButtonPressEvent(widget, event) {
         let button = event.get_button()[1];
 
         if (button == 3) {
@@ -203,17 +209,17 @@ var LOKView = new Lang.Class({
         }
 
         return false;
-   },
+    }
 
-    _onProgressChanged: function() {
+    _onProgressChanged() {
         this._progressBar.fraction = this._lokview.load_progress;
-    },
+    }
 
-    _onTextSelection: function(hasSelection) {
+    _onTextSelection(hasSelection) {
         this.getAction('copy').enabled = hasSelection;
-    },
+    }
 
-    goPrev: function() {
+    goPrev() {
         let currentPart = this._lokview.get_part();
         currentPart -= 1;
         if (currentPart < 0)
@@ -221,9 +227,9 @@ var LOKView = new Lang.Class({
         this._lokview.set_part(currentPart);
         // FIXME: https://bugs.documentfoundation.org/show_bug.cgi?id=97236
         this._lokview.reset_view();
-    },
+    }
 
-    goNext: function() {
+    goNext() {
         let totalParts  = this._lokview.get_parts();
         let currentPart = this._lokview.get_part();
         currentPart += 1;
@@ -232,15 +238,15 @@ var LOKView = new Lang.Class({
         this._lokview.set_part(currentPart);
         // FIXME: https://bugs.documentfoundation.org/show_bug.cgi?id=97236
         this._lokview.reset_view();
-    },
+    }
 
     get hasPages() {
         return this._doc ? isOpenDocumentPartDocument(this._doc.mimeType) : false;
-    },
+    }
 
     get page() {
         return this._lokview.get_part();
-    },
+    }
 
     get numPages() {
         return this._lokview.get_parts();

@@ -22,6 +22,7 @@
 const GdPrivate = imports.gi.GdPrivate;
 const Gdk = imports.gi.Gdk;
 const GLib = imports.gi.GLib;
+const GObject = imports.gi.GObject;
 const Gtk = imports.gi.Gtk;
 
 const Lang = imports.lang;
@@ -37,14 +38,13 @@ const _CONFIGURE_ID_TIMEOUT = 100; // msecs
 const _WINDOW_MIN_WIDTH = 600;
 const _WINDOW_MIN_HEIGHT = 500;
 
-var MainWindow = new Lang.Class({
-    Name: 'MainWindow',
-    Extends: Gtk.ApplicationWindow,
+var MainWindow = GObject.registerClass(
+    class MainWindow extends Gtk.ApplicationWindow {
 
-    _init: function(app) {
+    _init(app) {
         this._configureId = 0;
 
-        this.parent({ application: app,
+        super._init({ application: app,
                       width_request: _WINDOW_MIN_WIDTH,
                       height_request: _WINDOW_MIN_HEIGHT,
                       window_position: Gtk.WindowPosition.CENTER,
@@ -78,9 +78,9 @@ var MainWindow = new Lang.Class({
 
         this._embed = new Embed.Embed(this);
         this.add(this._embed);
-    },
+    }
 
-    _saveWindowGeometry: function() {
+    _saveWindowGeometry() {
         let window = this.get_window();
         let state = window.get_state();
 
@@ -95,9 +95,9 @@ var MainWindow = new Lang.Class({
         let position = this.get_position();
         variant = GLib.Variant.new ('ai', position);
         Application.settings.set_value('window-position', variant);
-    },
+    }
 
-    _onConfigureEvent: function(widget, event) {
+    _onConfigureEvent(widget, event) {
         let window = this.get_window();
         let state = window.get_state();
 
@@ -115,16 +115,16 @@ var MainWindow = new Lang.Class({
                 this._saveWindowGeometry();
                 return false;
             }));
-    },
+    }
 
-    _onWindowStateEvent: function(widget, event) {
+    _onWindowStateEvent(widget, event) {
         let window = widget.get_window();
         let state = window.get_state();
         let maximized = (state & Gdk.WindowState.MAXIMIZED);
         Application.settings.set_boolean('window-maximized', maximized);
-    },
+    }
 
-    _onButtonPressEvent: function(widget, event) {
+    _onButtonPressEvent(widget, event) {
         let button = event.get_button()[1];
         let clickCount = event.get_click_count()[1];
 
@@ -143,14 +143,14 @@ var MainWindow = new Lang.Class({
         }
 
         return false;
-    },
+    }
 
-    _onKeyPressEvent: function(widget, event) {
+    _onKeyPressEvent(widget, event) {
         let toolbar = this._embed.getMainToolbar();
         return toolbar.handleEvent(event);
-    },
+    }
 
-    _quit: function() {
+    _quit() {
         // remove configure event handler if still there
         if (this._configureId != 0) {
             Mainloop.source_remove(this._configureId);
@@ -161,9 +161,9 @@ var MainWindow = new Lang.Class({
         this._saveWindowGeometry();
 
         return false;
-    },
+    }
 
-    showAbout: function() {
+    showAbout() {
         GdPrivate.show_about_dialog(this);
     }
 });

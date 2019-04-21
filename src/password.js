@@ -19,6 +19,7 @@
  *
  */
 
+const GObject = imports.gi.GObject;
 const Gtk = imports.gi.Gtk;
 const _ = imports.gettext.gettext;
 
@@ -26,13 +27,12 @@ const Application = imports.application;
 
 const Lang = imports.lang;
 
-var PasswordDialog = new Lang.Class({
-    Name: 'PasswordDialog',
-    Extends: Gtk.Dialog,
+var PasswordDialog = GObject.registerClass(
+    class PasswordDialog extends Gtk.Dialog {
 
-    _init: function(doc) {
+    _init(doc) {
         let toplevel = Application.application.get_windows()[0];
-        this.parent({ resizable: false,
+        super._init({ resizable: false,
                       transient_for: toplevel,
                       modal: true,
                       destroy_with_parent: true,

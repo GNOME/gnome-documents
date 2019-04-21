@@ -92,14 +92,13 @@ function TrackerExtractPriority() {
 
 const MINER_REFRESH_TIMEOUT = 60; /* seconds */
 
-var Application = new Lang.Class({
-    Name: 'Application',
-    Extends: Gtk.Application,
+var Application = GObject.registerClass({
     Signals: {
         'miners-changed': {}
-    },
+    }
+}, class Application extends Gtk.Application {
 
-    _init: function() {
+    _init() {
         this.minersRunning = [];
         this._activationTimestamp = Gdk.CURRENT_TIME;
         this._extractPriority = null;
@@ -112,14 +111,14 @@ var Application = new Lang.Class({
         // needed by data/ui/view-menu.ui
         GObject.type_ensure(Gio.ThemedIcon);
 
-        this.parent({ application_id: appid,
+        super._init({ application_id: appid,
                       inactivity_timeout: 12000 });
 
         this.add_main_option('version', 'v'.charCodeAt(0), GLib.OptionFlags.NONE, GLib.OptionArg.NONE,
                              _("Show the version of the program"), null);
-    },
+    }
 
-    _initGettingStarted: function() {
+    _initGettingStarted() {
         let manager = TrackerControl.MinerManager.new_full(false);
 
         let languages = GLib.get_language_names();
@@ -153,9 +152,9 @@ var Application = new Lang.Class({
 
         if (!this.gettingStartedLocation)
             log('Can\'t find a valid getting started PDF document');
-    },
+    }
 
-    _nightModeCreateHook: function(action) {
+    _nightModeCreateHook(action) {
         settings.connect('changed::night-mode', Lang.bind(this,
             function() {
                 let state = settings.get_value('night-mode');
@@ -169,17 +168,17 @@ var Application = new Lang.Class({
         let state = settings.get_value('night-mode');
         let gtkSettings = Gtk.Settings.get_default();
         gtkSettings.gtk_application_prefer_dark_theme = state.get_boolean();
-    },
+    }
 
-    _onActionQuit: function() {
+    _onActionQuit() {
         this._mainWindow.destroy();
-    },
+    }
 
-    _onActionAbout: function() {
+    _onActionAbout() {
         this._mainWindow.showAbout();
-    },
+    }
 
-    _onActionHelp: function() {
+    _onActionHelp() {
         try {
             Gtk.show_uri_on_window(this._mainWindow,
                                    'help:gnome-documents',
@@ -187,14 +186,14 @@ var Application = new Lang.Class({
         } catch (e) {
             logError(e, 'Unable to display help');
         }
-    },
+    }
 
-    _onActionNightMode: function(action) {
+    _onActionNightMode(action) {
         let state = action.get_state();
         settings.set_value('night-mode', GLib.Variant.new('b', !state.get_boolean()));
-    },
+    }
 
-    _createMiners: function(callback) {
+    _createMiners(callback) {
         let count = 3;
 
         this.gdataMiner = new Miners.GDataMiner(Lang.bind(this,
@@ -217,9 +216,9 @@ var Application = new Lang.Class({
                 if (count == 0)
                     callback();
             }));
-    },
+    }
 
-    _refreshMinerNow: function(miner) {
+    _refreshMinerNow(miner) {
         let env = GLib.getenv('DOCUMENTS_DISABLE_MINERS');
         if (env)
             return false;
@@ -253,9 +252,9 @@ var Application = new Lang.Class({
             }));
 
         return false;
-    },
+    }
 
-    _refreshMiners: function() {
+    _refreshMiners() {
         if (sourceManager.hasProviderType('google')) {
             try {
                 // startup a refresh of the gdocs cache
@@ -282,9 +281,9 @@ var Application = new Lang.Class({
                 logError(e, 'Unable to start Zpj miner');
             }
         }
-    },
+    }
 
-    _startMiners: function() {
+    _startMiners() {
         this._createMiners(Lang.bind(this,
             function() {
                 this._refreshMiners();
@@ -294,9 +293,9 @@ var Application = new Lang.Class({
                 this._sourceRemovedId = sourceManager.connect('item-removed',
                                                               Lang.bind(this, this._refreshMiners));
             }));
-    },
+    }
 
-    _stopMiners: function() {
+    _stopMiners() {
         if (this._sourceAddedId != 0) {
             sourceManager.disconnect(this._sourceAddedId);
             this._sourceAddedId = 0;
@@ -316,9 +315,9 @@ var Application = new Lang.Class({
         this.gdataMiner = null;
         this.owncloudMiner = null;
         this.zpjMiner = null;
-    },
+    }
 
-    _themeChanged: function(gtkSettings) {
+    _themeChanged(gtkSettings) {
         let screen = Gdk.Screen.get_default();
 
         if (gtkSettings.gtk_theme_name == 'Adwaita') {
@@ -334,11 +333,11 @@ var Application = new Lang.Class({
         } else if (cssProvider != null) {
             Gtk.StyleContext.remove_provider_for_screen(screen, cssProvider);
         }
-    },
+    }
 
-    vfunc_startup: function() {
+    vfunc_startup() {
         application = this;
-        this.parent();
+        super.vfunc_startup();
         String.prototype.format = Format.format;
 
         EvDoc.init();
@@ -396,9 +395,9 @@ var Application = new Lang.Class({
         ];
 
         Utils.populateActionGroup(this, actionEntries, 'app');
-    },
+    }
 
-    _createWindow: function() {
+    _createWindow() {
         if (this._mainWindow)
             return;
 
@@ -417,10 +416,10 @@ var Application = new Lang.Class({
 
         // start miners
         this._startMiners();
-    },
+    }
 
-    vfunc_dbus_register: function(connection, path) {
-        this.parent(connection, path);
+    vfunc_dbus_register(connection, path) {
+        super.vfunc_dbus_register(connection, path);
 
         if (this._searchProvider != null)
             throw(new Error('ShellSearchProvider already instantiated - dbus_register called twice?'));
@@ -437,27 +436,27 @@ var Application = new Lang.Class({
         }
 
         return true;
-    },
+    }
 
-    vfunc_dbus_unregister: function(connection, path) {
+    vfunc_dbus_unregister(connection, path) {
         if (this._searchProvider != null) {
             this._searchProvider.unexport(connection);
             this._searchProvider = null;
         }
 
-        this.parent(connection, path);
-    },
+        super.vfunc_dbus_unregister(connection, path);
+    }
 
-    vfunc_handle_local_options: function(options) {
+    vfunc_handle_local_options(options) {
         if (options.contains('version')) {
             print(pkg.version);
             return 0;
         }
 
         return -1;
-    },
+    }
 
-    vfunc_activate: function() {
+    vfunc_activate() {
         if (!this._mainWindow) {
             this._createWindow();
             modeController.setWindowMode(WindowMode.WindowMode.DOCUMENTS);
@@ -465,9 +464,9 @@ var Application = new Lang.Class({
 
         this._mainWindow.present_with_time(this._activationTimestamp);
         this._activationTimestamp = Gdk.CURRENT_TIME;
-    },
+    }
 
-    _clearState: function() {
+    _clearState() {
         // clean up signals
         changeMonitor.disconnectAll();
         documentManager.disconnectAll();
@@ -492,17 +491,17 @@ var Application = new Lang.Class({
 
         if (this._extractPriority)
             this._extractPriority.ClearRdfTypesRemote();
-    },
+    }
 
-    _onWindowDestroy: function(window) {
+    _onWindowDestroy(window) {
         this._mainWindow = null;
 
         // clear our state in an idle, so other handlers connected
         // to 'destroy' have the chance to perform their cleanups first
         Mainloop.idle_add(Lang.bind(this, this._clearState));
-    },
+    }
 
-    _onActivateResult: function(provider, urn, terms, timestamp) {
+    _onActivateResult(provider, urn, terms, timestamp) {
         this._createWindow();
 
         let doc = documentManager.getItemById(urn);
@@ -534,26 +533,26 @@ var Application = new Lang.Class({
                     }
                 }));
         }
-    },
+    }
 
-    _onLaunchSearch: function(provider, terms, timestamp) {
+    _onLaunchSearch(provider, terms, timestamp) {
         this._createWindow();
         modeController.setWindowMode(WindowMode.WindowMode.DOCUMENTS);
         searchController.setString(terms.join(' '));
 
         this._activationTimestamp = timestamp;
         this.activate();
-    },
+    }
 
-    getScaleFactor: function() {
+    getScaleFactor() {
         let scaleFactor = 1;
         if (this._mainWindow)
             scaleFactor = this._mainWindow.get_scale_factor();
 
         return scaleFactor;
-    },
+    }
 
-    getGdkWindow: function() {
+    getGdkWindow() {
         let window = null;
         if (this._mainWindow)
             window = this._mainWindow.get_window();

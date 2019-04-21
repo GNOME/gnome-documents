@@ -17,6 +17,7 @@
  *
  */
 
+const GObject = imports.gi.GObject;
 const Gtk = imports.gi.Gtk;
 
 const EvDocument = imports.gi.EvinceDocument;
@@ -25,13 +26,12 @@ const Application = imports.application;
 
 const Lang = imports.lang;
 
-var PlacesDialog = new Lang.Class({
-    Name: 'PlacesDialog',
-    Extends: Gtk.Dialog,
+var PlacesDialog = GObject.registerClass(
+    class PlacesDialog extends Gtk.Dialog {
 
-    _init: function(model, bookmarks) {
+    _init(model, bookmarks) {
         let toplevel = Application.application.get_windows()[0];
-        this.parent({ resizable: true,
+        super._init({ resizable: true,
                       transient_for: toplevel,
                       modal: true,
                       destroy_with_parent: true,
@@ -45,9 +45,9 @@ var PlacesDialog = new Lang.Class({
         this._bookmarks = bookmarks;
         this._createWindow();
         this.show_all();
-    },
+    }
 
-    _createWindow: function() {
+    _createWindow() {
         let contentArea = this.get_content_area();
         this._stack = new Gtk.Stack({ border_width: 5,
                                       homogeneous: true });
@@ -90,21 +90,21 @@ var PlacesDialog = new Lang.Class({
             let switcher = new Gtk.StackSwitcher({ stack: this._stack });
             header.set_custom_title(switcher);
         }
-    },
+    }
 
-    _handleLink: function(link) {
+    _handleLink(link) {
         if (link.action.type == EvDocument.LinkActionType.GOTO_DEST) {
             this._gotoDest(link.action.dest);
         }
         this.response(Gtk.ResponseType.DELETE_EVENT);
-    },
+    }
 
-    _handleBookmark: function(bookmark) {
+    _handleBookmark(bookmark) {
         this._model.set_page(bookmark.page_number);
         this.response(Gtk.ResponseType.DELETE_EVENT);
-    },
+    }
 
-    _gotoDest: function(dest) {
+    _gotoDest(dest) {
         switch (dest.type) {
         case EvDocument.LinkDestType.PAGE:
         case EvDocument.LinkDestType.XYZ:
@@ -120,9 +120,9 @@ var PlacesDialog = new Lang.Class({
             this._model.set_page_by_label(dest.page_label);
             break;
         }
-    },
+    }
 
-    _addPage: function(widget) {
+    _addPage(widget) {
         widget.document_model = this._model;
         this._stack.add_titled(widget, widget.name, widget.name);
     }

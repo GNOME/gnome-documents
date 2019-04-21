@@ -23,6 +23,7 @@ const Gd = imports.gi.Gd;
 const GdPrivate = imports.gi.GdPrivate;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
+const GObject = imports.gi.GObject;
 const Lang = imports.lang;
 const Search = imports.search;
 
@@ -51,19 +52,19 @@ var QueryFlags = {
 
 var LOCAL_DOCUMENTS_COLLECTIONS_IDENTIFIER = 'gd:collection:local:';
 
-var QueryBuilder = new Lang.Class({
-    Name: 'QueryBuilder',
+var QueryBuilder = GObject.registerClass(
+    class QueryBuilder extends GObject.Object {
 
-    _init: function(context) {
+    _init(context) {
         this._context = context;
-    },
+    }
 
-    _createQuery: function(sparql) {
+    _createQuery(sparql) {
         return { sparql: sparql,
                  activeSource: this._context.sourceManager.getActiveItem() };
-    },
+    }
 
-    _buildFilterString: function(currentType, flags, isFtsEnabled) {
+    _buildFilterString(currentType, flags, isFtsEnabled) {
         let filters = [];
 
         if (!isFtsEnabled)
@@ -75,17 +76,17 @@ var QueryBuilder = new Lang.Class({
         }
 
         return 'FILTER (' + filters.join(' && ') + ')';
-    },
+    }
 
-    _buildOptional: function() {
+    _buildOptional() {
         let sparql =
             'OPTIONAL { ?urn nco:creator ?creator . } ' +
             'OPTIONAL { ?urn nco:publisher ?publisher . } ';
 
         return sparql;
-    },
+    }
 
-    _addWhereClauses: function(partsList, global, flags, searchTypes, ftsQuery) {
+    _addWhereClauses(partsList, global, flags, searchTypes, ftsQuery) {
         // build an array of WHERE clauses; each clause maps to one
         // type of resource we're looking for.
         searchTypes.forEach(Lang.bind(this,
@@ -103,9 +104,9 @@ var QueryBuilder = new Lang.Class({
                 part += ' }';
                 partsList.push(part);
             }));
-    },
+    }
 
-    _buildWhere: function(global, flags) {
+    _buildWhere(global, flags) {
         let whereSparql = 'WHERE { ';
         let whereParts = [];
         let searchTypes = [];
@@ -142,9 +143,9 @@ var QueryBuilder = new Lang.Class({
         whereSparql += ' }';
 
         return whereSparql;
-    },
+    }
 
-    _buildQueryInternal: function(global, flags, offsetController, sortBy) {
+    _buildQueryInternal(global, flags, offsetController, sortBy) {
         let whereSparql = this._buildWhere(global, flags);
         let tailSparql = '';
 
@@ -194,28 +195,28 @@ var QueryBuilder = new Lang.Class({
             whereSparql + tailSparql;
 
         return sparql;
-    },
+    }
 
-    buildSingleQuery: function(flags, resource) {
+    buildSingleQuery(flags, resource) {
         let sparql = this._buildQueryInternal(false, flags, null);
         sparql = sparql.replace(/\?urn/g, '<' + resource + '>');
 
         return this._createQuery(sparql);
-    },
+    }
 
-    buildGlobalQuery: function(flags, offsetController, sortBy) {
+    buildGlobalQuery(flags, offsetController, sortBy) {
         return this._createQuery(this._buildQueryInternal(true, flags, offsetController, sortBy));
-    },
+    }
 
-    buildCountQuery: function(flags) {
+    buildCountQuery(flags) {
         let sparql = 'SELECT DISTINCT COUNT(?urn) ' +
             this._buildWhere(true, flags);
 
         return this._createQuery(sparql);
-    },
+    }
 
     // queries for all the items which are part of the given collection
-    buildCollectionIconQuery: function(resource) {
+    buildCollectionIconQuery(resource) {
         let sparql =
             ('SELECT ' +
              '?urn ' +
@@ -225,10 +226,10 @@ var QueryBuilder = new Lang.Class({
              'LIMIT 4').replace(/\?collUrn/, '<' + resource + '>');
 
         return this._createQuery(sparql);
-    },
+    }
 
     // queries for all the collections the given item is part of
-    buildFetchCollectionsQuery: function(resource) {
+    buildFetchCollectionsQuery(resource) {
         let sparql =
             ('SELECT ' +
              '?urn ' +
@@ -236,25 +237,25 @@ var QueryBuilder = new Lang.Class({
             ).replace(/\?docUrn/, '<' + resource + '>');
 
         return this._createQuery(sparql);
-    },
+    }
 
     // adds or removes the given item to the given collection
-    buildSetCollectionQuery: function(itemUrn, collectionUrn, setting) {
+    buildSetCollectionQuery(itemUrn, collectionUrn, setting) {
         let sparql = ('%s { <%s> nie:isPartOf <%s> }'
                      ).format((setting ? 'INSERT' : 'DELETE'), itemUrn, collectionUrn);
         return this._createQuery(sparql);
-    },
+    }
 
     // bumps the mtime to current time for the given resource
-    buildUpdateMtimeQuery: function(resource) {
+    buildUpdateMtimeQuery(resource) {
         let time = GdPrivate.iso8601_from_timestamp(GLib.get_real_time() / GLib.USEC_PER_SEC);
         let sparql = ('INSERT OR REPLACE { <%s> nie:contentLastModified \"%s\" }'
                      ).format(resource, time);
 
         return this._createQuery(sparql);
-    },
+    }
 
-    buildCreateCollectionQuery: function(name) {
+    buildCreateCollectionQuery(name) {
         let time = GdPrivate.iso8601_from_timestamp(GLib.get_real_time() / GLib.USEC_PER_SEC);
         let sparql = ('INSERT { _:res a nfo:DataContainer ; a nie:DataObject ; ' +
                       'nie:contentLastModified \"' + time + '\" ; ' +
@@ -262,9 +263,9 @@ var QueryBuilder = new Lang.Class({
                       'nao:identifier \"' + LOCAL_DOCUMENTS_COLLECTIONS_IDENTIFIER + name + '\" }');
 
         return this._createQuery(sparql);
-    },
+    }
 
-    buildDeleteResourceQuery: function(resource) {
+    buildDeleteResourceQuery(resource) {
         let sparql = ('DELETE { <%s> a rdfs:Resource }').format(resource);
 
         return this._createQuery(sparql);

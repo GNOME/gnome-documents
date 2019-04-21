@@ -21,6 +21,7 @@
 
 const Gd = imports.gi.Gd;
 const Gettext = imports.gettext;
+const GObject = imports.gi.GObject;
 const Gtk = imports.gi.Gtk;
 const TrackerControl = imports.gi.TrackerControl;
 const _ = imports.gettext.gettext;
@@ -33,10 +34,10 @@ const Mainloop = imports.mainloop;
 
 var DELETE_TIMEOUT = 10; // seconds
 
-var DeleteNotification = new Lang.Class({
-    Name: 'DeleteNotification',
+var DeleteNotification = GObject.registerClass(
+    class DeleteNotification extends GObject.Object {
 
-    _init: function(docs) {
+    _init(docs) {
         this._docs = docs;
         this.widget = new Gtk.Grid({ orientation: Gtk.Orientation.HORIZONTAL,
                                      column_spacing: 12 });
@@ -89,9 +90,9 @@ var DeleteNotification = new Lang.Class({
                 this._deleteItems();
                 return false;
             }));
-    },
+    }
 
-    _deleteItems: function() {
+    _deleteItems() {
         this._docs.forEach(Lang.bind(this,
             function(doc) {
                 doc.trash();
@@ -99,9 +100,9 @@ var DeleteNotification = new Lang.Class({
 
         this._removeTimeout();
         this.widget.destroy();
-    },
+    }
 
-    _removeTimeout: function() {
+    _removeTimeout() {
         if (this._timeoutId != 0) {
             Mainloop.source_remove(this._timeoutId);
             this._timeoutId = 0;
@@ -109,10 +110,10 @@ var DeleteNotification = new Lang.Class({
     }
 });
 
-var PrintNotification = new Lang.Class({
-    Name: 'PrintNotification',
+var PrintNotification = GObject.registerClass(
+    class PrintNotification extends GObject.Object {
 
-    _init: function(printOp, doc) {
+    _init(printOp, doc) {
         this.widget = null;
         this._printOp = printOp;
         this._doc = doc;
@@ -121,9 +122,9 @@ var PrintNotification = new Lang.Class({
                               Lang.bind(this, this._onPrintBegin));
         this._printOp.connect('status-changed',
                               Lang.bind(this, this._onPrintStatus));
-    },
+    }
 
-    _onPrintBegin: function() {
+    _onPrintBegin() {
         this.widget = new Gtk.Grid({ orientation: Gtk.Orientation.VERTICAL,
                                      row_spacing: 6 });
 
@@ -148,9 +149,9 @@ var PrintNotification = new Lang.Class({
             }));
 
         Application.notificationManager.addNotification(this);
-    },
+    }
 
-    _onPrintStatus: function() {
+    _onPrintStatus() {
         if (!this.widget)
             return;
 
@@ -169,10 +170,10 @@ var PrintNotification = new Lang.Class({
 const REMOTE_MINER_TIMEOUT = 10; // seconds
 const TRACKER_MINER_FILES_NAME = 'org.freedesktop.Tracker1.Miner.Files';
 
-const IndexingNotification = new Lang.Class({
-    Name: 'IndexingNotification',
+const IndexingNotification = GObject.registerClass(
+    class IndexingNotification extends GObject.Object {
 
-    _init: function() {
+    _init() {
         this._closed = false;
         this._timeoutId = 0;
 
@@ -187,9 +188,9 @@ const IndexingNotification = new Lang.Class({
 
         Application.application.connect('miners-changed', Lang.bind(this, this._checkNotification));
         Application.modeController.connect('window-mode-changed', Lang.bind(this, this._checkNotification));
-    },
+    }
 
-    _checkNotification: function() {
+    _checkNotification() {
         if (Application.modeController.getWindowMode() == WindowMode.WindowMode.PREVIEW_EV) {
             this._destroy(false);
             return;
@@ -220,9 +221,9 @@ const IndexingNotification = new Lang.Class({
         } else {
             this._destroy(false);
         }
-    },
+    }
 
-    _onTimeoutExpired: function() {
+    _onTimeoutExpired() {
         this._timeoutId = 0;
 
         let primary = null;
@@ -243,16 +244,16 @@ const IndexingNotification = new Lang.Class({
         this._display(primary, null);
 
         return false;
-    },
+    }
 
-    _removeTimeout: function() {
+    _removeTimeout() {
         if (this._timeoutId != 0) {
             Mainloop.source_remove(this._timeoutId);
             this._timeoutId = 0;
         }
-    },
+    }
 
-    _buildWidget: function() {
+    _buildWidget() {
         this.widget = new Gtk.Grid({ orientation: Gtk.Orientation.HORIZONTAL,
                                      column_spacing: 12 });
 
@@ -286,9 +287,9 @@ const IndexingNotification = new Lang.Class({
         this.widget.add(close);
 
         Application.notificationManager.addNotification(this);
-    },
+    }
 
-    _update: function(primaryText, secondaryText) {
+    _update(primaryText, secondaryText) {
         this._primaryLabel.label = primaryText;
         this._secondaryLabel.label = secondaryText;
 
@@ -299,9 +300,9 @@ const IndexingNotification = new Lang.Class({
             this._primaryLabel.vexpand = true;
             this._secondaryLabel.hide();
         }
-    },
+    }
 
-    _display: function(primaryText, secondaryText) {
+    _display(primaryText, secondaryText) {
         if (this._closed) {
             return;
         }
@@ -310,9 +311,9 @@ const IndexingNotification = new Lang.Class({
             this._buildWidget();
 
         this._update(primaryText, secondaryText);
-    },
+    }
 
-    _destroy: function(closed) {
+    _destroy(closed) {
         this._removeTimeout();
 
         if (this.widget) {
@@ -324,12 +325,11 @@ const IndexingNotification = new Lang.Class({
     }
 });
 
-var NotificationManager = new Lang.Class({
-    Name: 'NotificationManager',
-    Extends: Gtk.Revealer,
+var NotificationManager = GObject.registerClass(
+    class NotificationManager extends Gtk.Revealer {
 
-    _init: function() {
-        this.parent({ halign: Gtk.Align.CENTER,
+    _init() {
+        super._init({ halign: Gtk.Align.CENTER,
                       valign: Gtk.Align.START });
 
         let frame = new Gtk.Frame();
@@ -343,17 +343,17 @@ var NotificationManager = new Lang.Class({
 
         // add indexing monitor notification
         this._indexingNotification = new IndexingNotification();
-    },
+    }
 
-    addNotification: function(notification) {
+    addNotification(notification) {
         this._grid.add(notification.widget);
         notification.widget.connect('destroy', Lang.bind(this, this._onWidgetDestroy));
 
         this.show_all();
         this.reveal_child = true;
-    },
+    }
 
-    _onWidgetDestroy: function() {
+    _onWidgetDestroy() {
         let children = this._grid.get_children();
 
         if (children.length == 0)

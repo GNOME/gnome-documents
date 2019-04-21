@@ -27,9 +27,7 @@ const Gtk = imports.gi.Gtk;
 
 const Lang = imports.lang;
 
-var FullscreenAction = new Lang.Class({
-    Name: 'FullscreenAction',
-    Extends: GObject.Object,
+var FullscreenAction = GObject.registerClass({
     Implements: [Gio.Action],
     Properties: {
         'enabled': GObject.ParamSpec.boolean('enabled', 'enabled', 'Whether the action is enabled',
@@ -42,33 +40,34 @@ var FullscreenAction = new Lang.Class({
         'window': GObject.ParamSpec.object('window', 'Window', 'The GtkWindow',
                                            GObject.ParamFlags.READABLE | GObject.ParamFlags.WRITABLE,
                                            Gtk.Window.$gtype)
-    },
+    }
+}, class FullscreenAction extends GObject.Object {
 
-    _init: function(params) {
+    _init(params) {
         this._enabled = true;
         this._fullscreen = false;
         this._window = null;
         this._windowStateId = 0;
 
-        this.parent(params);
-    },
+        super._init(params);
+    }
 
-    _disconnectFromWindow: function() {
+    _disconnectFromWindow() {
         if (this._windowStateId != 0) {
             this._window.disconnect(this._windowStateId);
             this._windowStateId = 0;
         }
-    },
+    }
 
-    _connectToWindow: function() {
+    _connectToWindow() {
         if (this._window) {
             this._windowStateId = this._window.connect('window-state-event',
                                                        Lang.bind(this, this._onWindowStateEvent));
             this._onWindowStateEvent();
         }
-    },
+    }
 
-    _onWindowStateEvent: function() {
+    _onWindowStateEvent() {
         let window = this._window.get_window();
         if (!window)
             return;
@@ -80,9 +79,9 @@ var FullscreenAction = new Lang.Class({
 
         this._fullscreen = fullscreen;
         this.notify('state');
-    },
+    }
 
-    _changeState: function(fullscreen) {
+    _changeState(fullscreen) {
         if (!this._window)
             return;
 
@@ -90,40 +89,40 @@ var FullscreenAction = new Lang.Class({
             this._window.fullscreen();
         else
             this._window.unfullscreen();
-    },
+    }
 
-    vfunc_activate: function() {
+    vfunc_activate() {
         this._changeState(!this._fullscreen);
-    },
+    }
 
-    vfunc_change_state: function(state) {
+    vfunc_change_state(state) {
         let fullscreen = state.get_boolean();
         this._changeState(fullscreen);
-    },
+    }
 
-    vfunc_get_enabled: function() {
+    vfunc_get_enabled() {
         return this.enabled;
-    },
+    }
 
-    vfunc_get_name: function() {
+    vfunc_get_name() {
         return this.name;
-    },
+    }
 
-    vfunc_get_parameter_type: function() {
+    vfunc_get_parameter_type() {
         return this.parameter_type;
-    },
+    }
 
-    vfunc_get_state: function() {
+    vfunc_get_state() {
         return this.state;
-    },
+    }
 
-    vfunc_get_state_hint: function() {
+    vfunc_get_state_hint() {
         return null;
-    },
+    }
 
-    vfunc_get_state_type: function() {
+    vfunc_get_state_type() {
         return this.state_type;
-    },
+    }
 
     set enabled(v) {
         if (v == this._enabled)
@@ -131,27 +130,27 @@ var FullscreenAction = new Lang.Class({
 
         this._enabled = v;
         this.notify('enabled');
-    },
+    }
 
     get enabled() {
         return this._enabled;
-    },
+    }
 
     get name() {
         return 'fullscreen';
-    },
+    }
 
     get parameter_type() {
         return null;
-    },
+    }
 
     get state() {
         return new GLib.Variant('b', this._fullscreen);
-    },
+    }
 
     get state_type() {
         return new GLib.VariantType('b');
-    },
+    }
 
     set window(w) {
         if (w == this._window)
@@ -162,9 +161,9 @@ var FullscreenAction = new Lang.Class({
         this._connectToWindow();
 
         this.notify('window');
-    },
+    }
 
     get window() {
         return this._window;
-    },
+    }
 });

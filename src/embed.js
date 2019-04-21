@@ -31,18 +31,18 @@ const Overview = imports.overview;
 const WindowMode = imports.windowMode;
 
 const GLib = imports.gi.GLib;
+const GObject = imports.gi.GObject;
 const Gtk = imports.gi.Gtk;
 const _ = imports.gettext.gettext;
 
-const View = new Lang.Class({
-    Name: 'View',
-    Extends: Gtk.Overlay,
+const View = GObject.registerClass(
+    class View extends Gtk.Overlay {
 
-    _init: function(window) {
+    _init(window) {
         this._toolbar = null;
         this._window = window;
 
-        this.parent();
+        super._init();
 
         this._stack = new Gtk.Stack({ visible: true,
                                       homogeneous: true,
@@ -53,16 +53,16 @@ const View = new Lang.Class({
         this.add_overlay(Application.notificationManager);
 
         this.show();
-    },
+    }
 
-    _clearPreview: function() {
+    _clearPreview() {
         if (this._preview) {
             this._preview.destroy();
             this._preview = null;
         }
-    },
+    }
 
-    _createPreview: function(mode) {
+    _createPreview(mode) {
         let constructor;
         switch (mode) {
         case WindowMode.WindowMode.PREVIEW_EV:
@@ -80,20 +80,20 @@ const View = new Lang.Class({
 
         this._preview = new constructor(this, this._window);
         this._stack.add_named(this._preview, 'preview');
-    },
+    }
 
-    _ensureOverview: function(mode) {
+    _ensureOverview(mode) {
         if (!this._overview) {
             this._overview = new Overview.OverviewStack();
             this._stack.add_named(this._overview, 'overview');
         }
 
         this._overview.windowMode = mode;
-    },
+    }
 
-    _onActivateResult: function() {
+    _onActivateResult() {
         this.view.activateResult();
-    },
+    }
 
     set windowMode(mode) {
         let fromPreview = !!this._preview;
@@ -136,23 +136,22 @@ const View = new Lang.Class({
                                                 Lang.bind(this, this._onActivateResult));
             this._window.get_titlebar().add(this._toolbar);
         }
-    },
+    }
 
     get toolbar() {
         return this._toolbar;
-    },
+    }
 
     get view() {
         return this._stack.visible_child;
     }
 });
 
-var Embed = new Lang.Class({
-    Name: 'Embed',
-    Extends: Gtk.Box,
+var Embed = GObject.registerClass(
+    class Embed extends Gtk.Box {
 
-    _init: function(mainWindow) {
-        this.parent({ orientation: Gtk.Orientation.VERTICAL,
+    _init(mainWindow) {
+        super._init({ orientation: Gtk.Orientation.VERTICAL,
                       visible: true });
 
         let titlebar = new Gtk.Grid({ visible: true });
@@ -173,9 +172,9 @@ var Embed = new Lang.Class({
                                              Lang.bind(this, this._onSearchChanged));
 
         this._view.windowMode = Application.modeController.getWindowMode();
-    },
+    }
 
-    _onSearchChanged: function() {
+    _onSearchChanged() {
         // Whenever a search constraint is specified we want to switch to
         // the search mode, and when all constraints have been lifted we
         // want to go back to the previous mode which can be either
@@ -202,19 +201,19 @@ var Embed = new Lang.Class({
             let searchAction = this._view.view.getAction('search');
             searchAction.change_state(GLib.Variant.new('b', true));
         }
-    },
+    }
 
-    _onWindowModeChanged: function(object, newMode, oldMode) {
+    _onWindowModeChanged(object, newMode, oldMode) {
         this._view.windowMode = newMode;
-    },
+    }
 
-    getMainToolbar: function() {
+    getMainToolbar() {
         if (this._view.view.canFullscreen &&
             this._view.view.fullscreen)
             return this._view.view.getFullscreenToolbar();
 
         return this._view.toolbar;
-    },
+    }
 
     get view() {
         return this._view;

@@ -20,18 +20,18 @@
  */
 
 const GLib = imports.gi.GLib;
+const GObject = imports.gi.GObject;
 const Gtk = imports.gi.Gtk;
 
 const Lang = imports.lang;
 
 const _ICON_SIZE = 128;
 
-var ErrorBox = new Lang.Class({
-    Name: 'ErrorBox',
-    Extends: Gtk.Grid,
+var ErrorBox = GObject.registerClass(
+    class ErrorBox extends Gtk.Grid {
 
-    _init: function(primary, secondary) {
-        this.parent({ orientation: Gtk.Orientation.VERTICAL,
+    _init(primary, secondary) {
+        super._init({ orientation: Gtk.Orientation.VERTICAL,
                       row_spacing: 12,
                       hexpand: true,
                       vexpand: true,
@@ -61,9 +61,9 @@ var ErrorBox = new Lang.Class({
         this.add(this._secondaryLabel);
 
         this.show_all();
-    },
+    }
 
-    update: function(primary, secondary) {
+    update(primary, secondary) {
         let primaryMarkup = '<big><b>' + GLib.markup_escape_text(primary, -1) + '</b></big>';
         let secondaryMarkup = GLib.markup_escape_text(secondary, -1);
 

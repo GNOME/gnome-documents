@@ -24,6 +24,7 @@ const EvView = imports.gi.EvinceView;
 const GdPrivate = imports.gi.GdPrivate;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
+const GObject = imports.gi.GObject;
 const Gtk = imports.gi.Gtk;
 const _ = imports.gettext.gettext;
 
@@ -38,66 +39,65 @@ const Preview = imports.preview;
 const Utils = imports.utils;
 const WindowMode = imports.windowMode;
 
-var EvinceView = new Lang.Class({
-    Name: 'EvinceView',
-    Extends: Preview.Preview,
+var EvinceView = GObject.registerClass(
+    class EvinceView extends Preview.Preview {
 
-    _init: function(overlay, mainWindow) {
+    _init(overlay, mainWindow) {
         this._model = null;
         this._jobFind = null;
         this._pageChanged = false;
         this._hasSelection = false;
         this._viewSelectionChanged = false;
 
-        this.parent(overlay, mainWindow);
+        super._init(overlay, mainWindow);
 
         this.getAction('bookmark-page').enabled = false;
-    },
+    }
 
-    _copy: function() {
+    _copy() {
         this._evView.copy();
-    },
+    }
 
-    _zoomIn: function() {
+    _zoomIn() {
         if (!this._model)
             return;
         this._model.set_sizing_mode(EvView.SizingMode.FREE);
         this._evView.zoom_in();
-    },
+    }
 
-    _zoomOut: function() {
+    _zoomOut() {
         if (!this._model)
             return;
         this._model.set_sizing_mode(EvView.SizingMode.FREE);
         this._evView.zoom_out();
-    },
+    }
 
-    _rotateLeft: function() {
+    _rotateLeft() {
         let rotation = this._model.get_rotation();
         this._model.set_rotation(rotation - 90);
-    },
+    }
 
-    _rotateRight: function() {
+    _rotateRight() {
         let rotation = this._model.get_rotation();
         this._model.set_rotation(rotation + 90);
-    },
+    }
 
-    findPrev: function() {
+    findPrev() {
         this._evView.find_previous();
-    },
+    }
 
-    findNext: function() {
+    findNext() {
         this._evView.find_next();
-    },
+    }
 
-    _places: function() {
+    _places() {
         let dialog = new Places.PlacesDialog(this._model, this._bookmarks);
         dialog.connect('response', Lang.bind(this, function(widget, response) {
             widget.destroy();
         }));
-    },
+    }
 
-    _findStateChanged: function(action) {
+    _findStateChanged(action) {
         let toolbar = this.toolbar;
         if (this.fullscreen)
             toolbar = this.getFullscreenToolbar().toolbar;
@@ -109,9 +109,9 @@ var EvinceView = new Lang.Class({
             toolbar.searchbar.conceal();
             this._evView.find_set_highlight_search(false);
         }
-    },
+    }
 
-    _bookmarkStateChanged: function(action) {
+    _bookmarkStateChanged(action) {
         let pageNumber = this._model.page;
         let bookmark = new GdPrivate.Bookmark({ page_number: pageNumber });
 
@@ -119,9 +119,9 @@ var EvinceView = new Lang.Class({
             this._bookmarks.add(bookmark);
         else
             this._bookmarks.remove(bookmark);
-    },
+    }
 
-    _presentStateChanged: function(action) {
+    _presentStateChanged(action) {
         if (!this._model)
             return;
 
@@ -129,27 +129,27 @@ var EvinceView = new Lang.Class({
             this._promptPresentation();
         else
             this._hidePresentation();
-    },
+    }
 
-    _edit: function() {
+    _edit() {
         Application.modeController.setWindowMode(WindowMode.WindowMode.EDIT);
-    },
+    }
 
-    _print: function() {
+    _print() {
         let doc = Application.documentManager.getActiveItem();
         if (doc)
             doc.print(this.mainWindow);
-    },
+    }
 
-    _scrollUp: function() {
+    _scrollUp() {
         this._evView.scroll(Gtk.ScrollType.PAGE_BACKWARD, false);
-    },
+    }
 
-    _scrollDown: function() {
+    _scrollDown() {
         this._evView.scroll(Gtk.ScrollType.PAGE_FORWARD, false);
-    },
+    }
 
-    createActions: function() {
+    createActions() {
         let actions = [
             { name: 'zoom-in',
               callback: Lang.bind(this, this._zoomIn),
@@ -205,17 +205,17 @@ var EvinceView = new Lang.Class({
                        accels: ['F5'] });
 
         return actions;
-    },
+    }
 
-    createNavControls: function() {
+    createNavControls() {
         return new EvinceViewNavControls(this, this.overlay);
-    },
+    }
 
-    createToolbar: function() {
+    createToolbar() {
         return new EvinceViewToolbar(this);
-    },
+    }
 
-    createView: function() {
+    createView() {
         let sw = new Gtk.ScrolledWindow({ hexpand: true,
                                           vexpand: true });
         sw.get_style_context().add_class('documents-scrolledwin');
@@ -242,23 +242,23 @@ var EvinceView = new Lang.Class({
             this._handleExternalLink));
 
         return sw;
-    },
+    }
 
-    onLoadStarted: function(manager, doc) {
-        this.parent(manager, doc);
+    onLoadStarted(manager, doc) {
+        super.onLoadStarted(manager, doc);
 
         this.getAction('bookmark-page').enabled = false;
         this.getAction('find').enabled = false;
         this.getAction('gear-menu').enabled = false;
         this.getAction('places').enabled = false;
-    },
+    }
 
-    onLoadFinished: function(manager, doc, docModel) {
+    onLoadFinished(manager, doc, docModel) {
         this.controlsVisible = false;
         this._lastSearch = '';
         this._model = docModel;
 
-        this.parent(manager, doc, docModel);
+        super.onLoadFinished(manager, doc, docModel);
 
         docModel.set_sizing_mode(EvView.SizingMode.AUTOMATIC);
 
@@ -293,16 +293,16 @@ var EvinceView = new Lang.Class({
 
         this.set_visible_child_full('view', Gtk.StackTransitionType.NONE);
         this.grab_focus();
-    },
+    }
 
-    onLoadError: function(manager, doc, message, exception) {
+    onLoadError(manager, doc, message, exception) {
         this._controlsVisible = true;
         this._syncControlsVisible();
 
-        this.parent(manager, doc, message, exception);
-    },
+        super.onLoadError(manager, doc, message, exception);
+    }
 
-    _enableSearch: function() {
+    _enableSearch() {
         let canFind = true;
 
         try {
@@ -318,9 +318,9 @@ var EvinceView = new Lang.Class({
         }
 
         this.getAction('find').enabled = (this.hasPages && canFind);
-    },
+    }
 
-    _onPageChanged: function() {
+    _onPageChanged() {
         let pageNumber = this._model.page;
         this._pageChanged = true;
         if (this._metadata)
@@ -333,25 +333,25 @@ var EvinceView = new Lang.Class({
         let hasBookmark = (this._bookmarks.find_bookmark(bookmark) != null);
 
         this.getAction('bookmark-page').change_state(GLib.Variant.new('b', hasBookmark));
-    },
+    }
 
-    _hidePresentation: function() {
+    _hidePresentation() {
         if (this._presentation) {
             this._presentation.close();
             this._presentation = null;
         }
 
         this.getAction('present-current').change_state(GLib.Variant.new('b', false));
-    },
+    }
 
-    _showPresentation: function(output) {
+    _showPresentation(output) {
         this._presentation = new Presentation.PresentationWindow(this._model);
         this._presentation.connect('destroy', Lang.bind(this, this._hidePresentation));
         if (output)
             this._presentation.setOutput(output);
-    },
+    }
 
-    _promptPresentation: function() {
+    _promptPresentation() {
         let outputs = new Presentation.PresentationOutputs();
         if (outputs.list.length < 2) {
             this._showPresentation();
@@ -367,9 +367,9 @@ var EvinceView = new Lang.Class({
                 }));
 
         }
-    },
+    }
 
-    _onViewSelectionChanged: function() {
+    _onViewSelectionChanged() {
         let hasSelection = this._evView.get_has_selection();
         this.getAction('copy').enabled = hasSelection;
 
@@ -383,9 +383,9 @@ var EvinceView = new Lang.Class({
         this._viewSelectionChanged = true;
         if (!hasSelection)
             this.cancelControlsFlip();
-    },
+    }
 
-    _uriRewrite: function(uri) {
+    _uriRewrite(uri) {
         if (uri.substring(0, 3) != 'www.') {
             /* Prepending "http://" when the url is a webpage (starts with
              * "www.").
@@ -406,9 +406,9 @@ var EvinceView = new Lang.Class({
         }
 
         return uri;
-    },
+    }
 
-    _launchExternalUri: function(widget, action) {
+    _launchExternalUri(widget, action) {
         let uri = action.get_uri();
         let screen = widget.get_screen();
         let context = screen.get_display().get_app_launch_context();
@@ -434,22 +434,22 @@ var EvinceView = new Lang.Class({
         } catch (e) {
             logError(e, 'Unable to open external link');
         }
-    },
+    }
 
-    _handleExternalLink: function(widget, action) {
+    _handleExternalLink(widget, action) {
         if (action.type == EvDocument.LinkActionType.EXTERNAL_URI)
             this._launchExternalUri(widget, action);
-    },
+    }
 
-    _onCanZoomInChanged: function() {
+    _onCanZoomInChanged() {
         this.getAction('zoom-in').enabled = this._evView.can_zoom_in;
-    },
+    }
 
-    _onCanZoomOutChanged: function() {
+    _onCanZoomOutChanged() {
         this.getAction('zoom-out').enabled = this._evView.can_zoom_out;
-    },
+    }
 
-    _onButtonPressEvent: function(widget, event) {
+    _onButtonPressEvent(widget, event) {
         let button = event.get_button()[1];
 
         if (button == 3) {
@@ -460,9 +460,9 @@ var EvinceView = new Lang.Class({
 
         this._viewSelectionChanged = false;
         return false;
-   },
+    }
 
-    _onButtonReleaseEvent: function(widget, event) {
+    _onButtonReleaseEvent(widget, event) {
         let button = event.get_button()[1];
         let clickCount = event.get_click_count()[1];
 
@@ -476,26 +476,26 @@ var EvinceView = new Lang.Class({
         this._viewSelectionChanged = false;
 
         return false;
-    },
+    }
 
-    _onScrollbarClick: function() {
+    _onScrollbarClick() {
         this.controlsVisible = false;
         return false;
-    },
+    }
 
-    _onAdjustmentChanged: function() {
+    _onAdjustmentChanged() {
         if (!this._pageChanged)
             this.controlsVisible = false;
         this._pageChanged = false;
-    },
+    }
 
-    search: function(str) {
+    search(str) {
         this._evView.find_search_changed();
 
         if (!this._model)
             return;
 
-        this.parent(str);
+        super.search(str);
 
         if (this._jobFind) {
             if (!this._jobFind.is_finished())
@@ -514,9 +514,9 @@ var EvinceView = new Lang.Class({
         this._jobFind.connect('updated', Lang.bind(this, this._onSearchJobUpdated));
 
         this._jobFind.scheduler_push_job(EvView.JobPriority.PRIORITY_NONE);
-    },
+    }
 
-    _onSearchJobUpdated: function(job, page) {
+    _onSearchJobUpdated(job, page) {
         // FIXME: ev_job_find_get_results() returns a GList **
         // and thus is not introspectable
         GdPrivate.ev_view_find_changed(this._evView, job, page);
@@ -524,9 +524,9 @@ var EvinceView = new Lang.Class({
         let hasResults = job.has_results();
         this.getAction('find-prev').enabled = hasResults;
         this.getAction('find-next').enabled = hasResults;
-    },
+    }
 
-    _loadMetadata: function() {
+    _loadMetadata() {
         let evDoc = this._model.get_document();
         let file = Gio.File.new_for_uri(evDoc.get_uri());
         if (!GdPrivate.is_metadata_supported_for_file(file))
@@ -539,31 +539,31 @@ var EvinceView = new Lang.Class({
             this._model.set_page(val);
 
         return metadata;
-    },
+    }
 
-    goPrev: function() {
+    goPrev() {
         this._evView.previous_page();
-    },
+    }
 
-    goNext: function() {
+    goNext() {
         this._evView.next_page();
-    },
+    }
 
     get hasPages() {
         return this._model ? (this._model.document.get_n_pages() > 0) : false;
-    },
+    }
 
     get page() {
         return this._model ? this._model.page : 0;
-    },
+    }
 
     get numPages() {
         return this._model ? this._model.document.get_n_pages() : 0;
-    },
+    }
 
     get canFullscreen() {
         return true;
-    },
+    }
 
     set nightMode(v) {
         if (this._model)
@@ -571,11 +571,10 @@ var EvinceView = new Lang.Class({
     }
 });
 
-const EvinceViewNavControls = new Lang.Class({
-    Name: 'EvinceViewNavControls',
-    Extends: Preview.PreviewNavControls,
+const EvinceViewNavControls = GObject.registerClass(
+    class EvinceViewNavControls extends Preview.PreviewNavControls {
 
-    createBarWidget: function() {
+    createBarWidget() {
         let barWidget = new GdPrivate.NavBar();
 
         let buttonArea = barWidget.get_button_area();
@@ -597,20 +596,19 @@ const EvinceViewNavControls = new Lang.Class({
         buttonArea.pack_start(button, false, false, 0);
 
         return barWidget;
-    },
+    }
 
-    setModel: function(model) {
+    setModel(model) {
         this.barWidget.document_model = model;
         model.connect('page-changed', Lang.bind(this, this._updateVisibility));
     }
 });
 
-const EvinceViewToolbar = new Lang.Class({
-    Name: 'EvinceViewToolbar',
-    Extends: Preview.PreviewToolbar,
+const EvinceViewToolbar = GObject.registerClass(
+    class EvinceViewToolbar extends Preview.PreviewToolbar {
 
-    _init: function(preview) {
-        this.parent(preview);
+    _init(preview) {
+        super._init(preview);
 
         this._handleEvent = false;
 

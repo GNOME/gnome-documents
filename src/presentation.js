@@ -21,6 +21,7 @@ const EvView = imports.gi.EvinceView;
 const GnomeDesktop = imports.gi.GnomeDesktop;
 const GdPrivate = imports.gi.GdPrivate;
 const Gdk = imports.gi.Gdk;
+const GObject = imports.gi.GObject;
 const Gtk = imports.gi.Gtk;
 const _ = imports.gettext.gettext;
 
@@ -28,16 +29,15 @@ const Lang = imports.lang;
 
 const Application = imports.application;
 
-var PresentationWindow = new Lang.Class({
-    Name: 'PresentationWindow',
-    Extends: Gtk.Window,
+var PresentationWindow = GObject.registerClass(
+    class PresentationWindow extends Gtk.Window {
 
-    _init: function(model) {
+    _init(model) {
         this._model = model;
         this._inhibitId = 0;
 
         let toplevel = Application.application.get_windows()[0];
-        this.parent({ type: Gtk.WindowType.TOPLEVEL,
+        super._init({ type: Gtk.WindowType.TOPLEVEL,
                       transient_for: toplevel,
                       destroy_with_parent: true,
                       title: _("Presentation"),
@@ -51,28 +51,28 @@ var PresentationWindow = new Lang.Class({
         this._createView();
         this.fullscreen();
         this.show_all();
-    },
+    }
 
-    _onPageChanged: function() {
+    _onPageChanged() {
         this.view.current_page = this._model.page;
-    },
+    }
 
-    _onPresentationPageChanged: function() {
+    _onPresentationPageChanged() {
         this._model.page = this.view.current_page;
-    },
+    }
 
-    _onKeyPressEvent: function(widget, event) {
+    _onKeyPressEvent(widget, event) {
         let keyval = event.get_keyval()[1];
         if (keyval == Gdk.KEY_Escape)
             this.close();
-    },
+    }
 
-    setOutput: function(output) {
+    setOutput(output) {
         let [x, y, width, height] = output.get_geometry();
         this.move(x, y);
-    },
+    }
 
-    _createView: function() {
+    _createView() {
         let doc = this._model.get_document();
         let inverted = this._model.inverted_colors;
         let page = this._model.page;
@@ -88,20 +88,20 @@ var PresentationWindow = new Lang.Class({
         this.view.show();
 
         this._inhibitIdle();
-    },
+    }
 
-    close: function() {
+    close() {
         this._uninhibitIdle();
         this.destroy();
-    },
+    }
 
-    _inhibitIdle: function() {
+    _inhibitIdle() {
         this._inhibitId = Application.application.inhibit(null,
                                                           Gtk.ApplicationInhibitFlags.IDLE,
                                                           _("Running in presentation mode"));
-    },
+    }
 
-    _uninhibitIdle: function() {
+    _uninhibitIdle() {
         if (this._inhibitId == 0)
             return;
 
@@ -110,18 +110,17 @@ var PresentationWindow = new Lang.Class({
     }
 });
 
-var PresentationOutputChooser = new Lang.Class({
-    Name: 'PresentationOutputChooser',
-    Extends: Gtk.Dialog,
+var PresentationOutputChooser = GObject.registerClass({
     Signals: {
         'output-activated': {
             param_types: [GnomeDesktop.RROutputInfo.$gtype]
         }
-    },
+    }
+}, class PresentationOutputChooser extends Gtk.Dialog {
 
-    _init: function(outputs) {
+    _init(outputs) {
         let toplevel = Application.application.get_windows()[0];
-        this.parent({ resizable: false,
+        super._init({ resizable: false,
                       modal: true,
                       transient_for: toplevel,
                       destroy_with_parent: true,
@@ -136,9 +135,9 @@ var PresentationOutputChooser = new Lang.Class({
         this._createWindow();
         this._populateList();
         this.show_all();
-    },
+    }
 
-    _populateList: function() {
+    _populateList() {
         let sizeGroup = new Gtk.SizeGroup({ mode: Gtk.SizeGroupMode.HORIZONTAL });
 
         for (let i = 0; i < this._outputs.list.length; i++) {
@@ -181,9 +180,9 @@ var PresentationOutputChooser = new Lang.Class({
             if (!output.is_active())
                 row.sensitive = false;
         }
-    },
+    }
 
-    _onActivated: function(box, row) {
+    _onActivated(box, row) {
         let output = row.get_child().output;
         if (!output.is_active())
             return;
@@ -191,13 +190,13 @@ var PresentationOutputChooser = new Lang.Class({
         this.output = output;
         this.emit('output-activated', this.output);
         this.close();
-    },
+    }
 
-    close: function() {
+    close() {
         this.destroy();
-    },
+    }
 
-    _createWindow: function() {
+    _createWindow() {
         this.connect('response', Lang.bind(this,
             function(widget, response) {
                 this.emit('output-activated', null);
@@ -228,10 +227,10 @@ var PresentationOutputChooser = new Lang.Class({
     }
 });
 
-var PresentationOutputs = new Lang.Class({
-    Name: 'PresentationOutputs',
+var PresentationOutputs = GObject.registerClass(
+    class PresentationOutputs extends GObject.Object {
 
-    _init: function() {
+    _init() {
         this.list = [];
 
         let gdkscreen = Gdk.Screen.get_default();
@@ -243,13 +242,13 @@ var PresentationOutputs = new Lang.Class({
         this._infos = this._config.get_outputs();
 
         this.load();
-    },
+    }
 
-    _onScreenChanged: function() {
+    _onScreenChanged() {
         this.load();
-    },
+    }
 
-    load: function() {
+    load() {
         this.list = [];
         for (let idx in this._infos) {
             let info = this._infos[idx];
