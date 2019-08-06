@@ -429,7 +429,7 @@ const SourceManager = class SourceManager extends Manager.BaseManager {
             if (!object.get_account())
                 return;
 
-            if (!object.get_documents())
+            if (!object.get_files())
                 return;
 
             let source = new Source({ object: object });
