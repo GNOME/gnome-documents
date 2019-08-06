@@ -281,7 +281,7 @@ thumbnail_job_completed_cb (EvJobThumbnail *job,
         }
 
         item = &self->priv->previews[job->page];
-        g_clear_pointer (&item->surface, (GDestroyNotify) cairo_surface_destroy);
+        g_clear_pointer (&item->surface, cairo_surface_destroy);
         item->surface = surface;
         item->loaded = TRUE;
         g_clear_object (&item->job);
@@ -446,7 +446,7 @@ previews_clear (GdNavBar *self)
 
                 preview_item_clear_thumbnail_job (self, item);
 
-                g_clear_pointer (&item->surface, (GDestroyNotify) cairo_surface_destroy);
+                g_clear_pointer (&item->surface, cairo_surface_destroy);
                 g_free (item->label);
                 item->label = NULL;
         }
@@ -660,7 +660,6 @@ gd_nav_bar_enter_notify (GtkWidget        *widget,
 			 GdkEventCrossing *event)
 {
         GdNavBar *self = GD_NAV_BAR (widget);
-        GdNavBarPrivate *priv = self->priv;
 
         if (event->detail != GDK_NOTIFY_INFERIOR) {
                 gd_nav_bar_set_hover (self, TRUE);
@@ -674,7 +673,6 @@ gd_nav_bar_leave_notify (GtkWidget        *widget,
 			 GdkEventCrossing *event)
 {
         GdNavBar *self = GD_NAV_BAR (widget);
-        GdNavBarPrivate *priv = self->priv;
 
         if (event->detail != GDK_NOTIFY_INFERIOR) {
                 gd_nav_bar_set_hover (self, FALSE);
@@ -687,9 +685,6 @@ static void
 gd_nav_bar_size_allocate (GtkWidget     *widget,
 			  GtkAllocation *allocation)
 {
-        GdNavBar *self = GD_NAV_BAR (widget);
-        GdNavBarPrivate *priv = self->priv;
-
         GTK_WIDGET_CLASS (gd_nav_bar_parent_class)->size_allocate (widget, allocation);
 
         if (gtk_widget_get_realized (widget)) {
@@ -704,8 +699,6 @@ gd_nav_bar_size_allocate (GtkWidget     *widget,
 static void
 gd_nav_bar_realize (GtkWidget *widget)
 {
-        GdNavBar *self = GD_NAV_BAR (widget);
-        GdNavBarPrivate *priv = self->priv;
         GtkAllocation allocation;
         GdkWindow *window;
         GdkWindowAttr attributes;
