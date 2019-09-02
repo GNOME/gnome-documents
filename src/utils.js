@@ -149,3 +149,34 @@ function populateActionGroup(actionGroup, actionEntries, prefix) {
         actionGroup.add_action(action);
     });
 }
+
+function replaceFile(file, inputStream, cancellable, callback) {
+    file.replace_async(
+        null, false, Gio.FileCreateFlags.PRIVATE,
+        GLib.PRIORITY_DEFAULT, cancellable,
+        (object, res) => {
+            let outputStream;
+
+            try {
+                outputStream = object.replace_finish(res);
+            } catch (e) {
+                callback(e);
+                return;
+            }
+
+            outputStream.splice_async(
+                inputStream,
+                Gio.OutputStreamSpliceFlags.CLOSE_SOURCE | Gio.OutputStreamSpliceFlags.CLOSE_TARGET,
+                GLib.PRIORITY_DEFAULT, cancellable,
+                (object, res) => {
+                    try {
+                        object.splice_finish(res);
+                    } catch (e) {
+                        callback(e);
+                        return;
+                    }
+
+                    callback(null);
+                });
+        });
+}

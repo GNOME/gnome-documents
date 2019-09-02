@@ -984,34 +984,9 @@ const GoogleDocument = class GoogleDocument extends DocCommon {
                 return;
             }
 
-            localFile.replace_async(
-                null, false, Gio.FileCreateFlags.PRIVATE,
-                GLib.PRIORITY_DEFAULT, cancellable,
-                (object, res) => {
-                    let outputStream;
-
-                    try {
-                        outputStream = object.replace_finish(res);
-                    } catch (e) {
-                        callback(false, e);
-                        return;
-                    }
-
-                    outputStream.splice_async(
-                        inputStream,
-                        Gio.OutputStreamSpliceFlags.CLOSE_SOURCE | Gio.OutputStreamSpliceFlags.CLOSE_TARGET,
-                        GLib.PRIORITY_DEFAULT, cancellable,
-                        (object, res) => {
-                            try {
-                                object.splice_finish(res);
-                            } catch (e) {
-                                callback(false, e);
-                                return;
-                            }
-
-                            callback(false, null);
-                        });
-                });
+            Utils.replaceFile(localFile, inputStream, cancellable, (error) => {
+                callback(false, error);
+            });
         });
     }
 
@@ -1039,32 +1014,9 @@ const GoogleDocument = class GoogleDocument extends DocCommon {
             GLib.mkdir_with_parents(dirPath, 448);
 
             let downloadFile = Gio.File.new_for_path(path);
-            downloadFile.replace_async(
-                null, false, Gio.FileCreateFlags.PRIVATE, GLib.PRIORITY_DEFAULT, null, (source, res) => {
-                    let outputStream;
-
-                    try {
-                        outputStream = downloadFile.replace_finish(res);
-                    } catch (e) {
-                        callback(false);
-                        return;
-                    }
-
-                    outputStream.splice_async(
-                        inputStream,
-                        Gio.OutputStreamSpliceFlags.CLOSE_SOURCE | Gio.OutputStreamSpliceFlags.CLOSE_TARGET,
-                        GLib.PRIORITY_DEFAULT, null,
-                        (source, res) => {
-                            try {
-                                outputStream.splice_finish(res);
-                            } catch (e) {
-                                callback(false);
-                                return;
-                            }
-
-                            callback(true);
-                        });
-                });
+            Utils.replaceFile(downloadFile, inputStream, null, (error) => {
+                callback(!!error);
+            });
         });
     }
 
@@ -1188,38 +1140,9 @@ const OwncloudDocument = class OwncloudDocument extends DocCommon {
                 return;
             }
 
-            localFile.replace_async(
-                null,
-                false,
-                Gio.FileCreateFlags.PRIVATE,
-                GLib.PRIORITY_DEFAULT,
-                cancellable,
-                (object, res) => {
-                    let outputStream;
-
-                    try {
-                        outputStream = object.replace_finish(res);
-                    } catch (e) {
-                        callback(false, e);
-                        return;
-                    }
-
-                    outputStream.splice_async(
-                        inputStream,
-                        Gio.OutputStreamSpliceFlags.CLOSE_SOURCE | Gio.OutputStreamSpliceFlags.CLOSE_TARGET,
-                        GLib.PRIORITY_DEFAULT,
-                        cancellable,
-                        (object, res) => {
-                            try {
-                                object.splice_finish(res);
-                            } catch (e) {
-                                callback(false, e);
-                                return;
-                            }
-
-                            callback(false, null);
-                        });
-                });
+            Utils.replaceFile(localFile, inputStream, cancellable, (error) => {
+                callback(false, error);
+            });
         });
     }
 
@@ -1313,38 +1236,9 @@ const SkydriveDocument = class SkydriveDocument extends DocCommon {
                     return;
                 }
 
-                localFile.replace_async(
-                    null,
-                    false,
-                    Gio.FileCreateFlags.PRIVATE,
-                    GLib.PRIORITY_DEFAULT,
-                    cancellable,
-                    (object, res) => {
-                        let outputStream;
-
-                        try {
-                            outputStream = object.replace_finish(res);
-                        } catch (e) {
-                            callback(false, e);
-                            return;
-                        }
-
-                        outputStream.splice_async(
-                            inputStream,
-                            Gio.OutputStreamSpliceFlags.CLOSE_SOURCE | Gio.OutputStreamSpliceFlags.CLOSE_TARGET,
-                            GLib.PRIORITY_DEFAULT,
-                            cancellable,
-                            (object, res) => {
-                                try {
-                                    object.splice_finish(res);
-                                } catch (e) {
-                                    callback(false, e);
-                                    return;
-                                }
-
-                                callback(false, null);
-                            });
-                    });
+                Utils.replaceFile(localFile, inputStream, cancellable, (error) => {
+                    callback(false, error);
+                });
             });
         });
     }
