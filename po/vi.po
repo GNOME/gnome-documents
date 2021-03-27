@@ -2,15 +2,14 @@
 # Copyright (C) 2015 gnome-documents's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-documents package.
 # Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2011-2013.
-# Trần Ngọc Quân <vnwildman@gmail.com>, 2015, 2017.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2015, 2017, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-documents master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"documents&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-09-14 10:26+0000\n"
-"PO-Revision-Date: 2017-09-16 08:08+0700\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-documents/issues\n"
+"POT-Creation-Date: 2021-03-13 13:14+0000\n"
+"PO-Revision-Date: 2021-03-27 08:00+0700\n"
 "Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
 "Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
 "Language: vi\n"
@@ -20,116 +19,9 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Gtranslator 2.91.7\n"
 
-#: data/org.gnome.Books.appdata.xml.in:7 data/org.gnome.Books.desktop.in:3
-#: src/application.js:112 src/overview.js:1052
-msgid "Books"
-msgstr "Sách"
-
-#: data/org.gnome.Books.appdata.xml.in:8
-msgid "An e-book manager application for GNOME"
-msgstr "Ứng dụng quản lý sách điện tử dành cho môi trường GNOME"
-
-#: data/org.gnome.Books.appdata.xml.in:10
-msgid ""
-"A simple application to access and organize your e-books on GNOME. It is "
-"meant to be a simple and elegant replacement for using a file manager to "
-"deal with e-books."
-msgstr ""
-"Đây là ứng dụng đơn giản để truy cập, tổ chức sách điện tử của bạn trên môi "
-"trường GNOME. Điều đó có nghĩa là nó phù hợp để thay thế cho bộ quản lý tập "
-"tin khi dùng với sách điện tử."
-
-#: data/org.gnome.Books.appdata.xml.in:15
-#: data/org.gnome.Documents.appdata.xml.in:16
-msgid "It lets you:"
-msgstr "Nó giúp bạn:"
-
-#: data/org.gnome.Books.appdata.xml.in:17
-msgid "View recent e-books"
-msgstr "Sách điện tử bạn mới dùng"
-
-#: data/org.gnome.Books.appdata.xml.in:18
-msgid "Search through e-books"
-msgstr "Tìm trong sách điện tử"
-
-#: data/org.gnome.Books.appdata.xml.in:19
-msgid "View e-books (PDF and comics) fullscreen"
-msgstr "Hiển thị sách điện tử (PDF và truyện tranh) ở chế độ toàn màn hình"
-
-#: data/org.gnome.Books.appdata.xml.in:20
-msgid "Print e-books"
-msgstr "In sách điện tử"
-
-#: data/org.gnome.Books.appdata.xml.in:32
-#: data/org.gnome.Documents.appdata.xml.in:39
-msgid "The GNOME Project"
-msgstr "Dự án GNOME"
-
-#: data/org.gnome.Books.desktop.in:4
-msgid "Access, manage and share books"
-msgstr "Truy cập, quản lý và chia sẻ sách điện tử"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Books.desktop.in:7
-msgid "org.gnome.Books"
-msgstr "org.gnome.Books"
-
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Books.desktop.in:15
-msgid "Books;Comics;ePub;PDF;"
-msgstr "Books;sách;điện;tử;Comics;ePub;PDF;"
-
-#: data/org.gnome.books.gschema.xml:5 data/org.gnome.documents.gschema.xml:5
-msgid "View as"
-msgstr "Xem kiểu"
-
-#: data/org.gnome.books.gschema.xml:6 data/org.gnome.documents.gschema.xml:6
-msgid "View as type"
-msgstr "Xem kiểu"
-
-#: data/org.gnome.books.gschema.xml:10 data/org.gnome.documents.gschema.xml:10
-msgid "Sort by"
-msgstr "Xếp theo"
-
-#: data/org.gnome.books.gschema.xml:11 data/org.gnome.documents.gschema.xml:11
-msgid "Sort by type"
-msgstr "Sắp xếp theo kiểu"
-
-#: data/org.gnome.books.gschema.xml:15 data/org.gnome.documents.gschema.xml:15
-msgid "Window size"
-msgstr "Kích thước cửa sổ"
-
-#: data/org.gnome.books.gschema.xml:16 data/org.gnome.documents.gschema.xml:16
-msgid "Window size (width and height)."
-msgstr "Kích thước cửa sổ (rộng và cao)."
-
-#: data/org.gnome.books.gschema.xml:20 data/org.gnome.documents.gschema.xml:20
-msgid "Window position"
-msgstr "Vị trí cửa sổ"
-
-#: data/org.gnome.books.gschema.xml:21 data/org.gnome.documents.gschema.xml:21
-msgid "Window position (x and y)."
-msgstr "Vị trí cửa sổ (x và y)."
-
-#: data/org.gnome.books.gschema.xml:25 data/org.gnome.documents.gschema.xml:25
-msgid "Window maximized"
-msgstr "Cửa sổ đã phóng to"
-
-#: data/org.gnome.books.gschema.xml:26 data/org.gnome.documents.gschema.xml:26
-msgid "Window maximized state"
-msgstr "Trạng thái phóng to cửa sổ"
-
-#: data/org.gnome.books.gschema.xml:30 data/org.gnome.documents.gschema.xml:30
-msgid "Night mode"
-msgstr "Chế độ đêm"
-
-#: data/org.gnome.books.gschema.xml:31 data/org.gnome.documents.gschema.xml:31
-msgid "Whether the application is in night mode."
-msgstr "Có để ứng dụng ở chế độ đêm hay không."
-
 #: data/org.gnome.Documents.appdata.xml.in:7
-#: data/org.gnome.Documents.desktop.in:3 src/application.js:115
-#: src/overview.js:1052
+#: data/org.gnome.Documents.desktop.in:3 src/application.js:105
+#: src/overview.js:1004
 msgid "Documents"
 msgstr "Tài liệu"
 
@@ -148,6 +40,10 @@ msgstr ""
 "trên môi trường GNOME. Điều đó có nghĩa là nó có thể thay thế cho bộ quản lý "
 "tập tin khi dùng tài liệu. Nó được nối thông lên mây thông qua “Tài khoản "
 "GNOME Trực tuyến”."
+
+#: data/org.gnome.Documents.appdata.xml.in:16
+msgid "It lets you:"
+msgstr "Nó giúp bạn:"
 
 #: data/org.gnome.Documents.appdata.xml.in:18
 msgid "View recent local and online documents"
@@ -181,40 +77,82 @@ msgstr "Chọn các thứ ưa thích"
 msgid "Allow opening full featured editor for non-trivial changes"
 msgstr "Cho phép mở trình biên soạn với đầy đủ tính năng khi cần thay đổi ít"
 
+#: data/org.gnome.Documents.appdata.xml.in:39
+msgid "The GNOME Project"
+msgstr "Dự án GNOME"
+
 #: data/org.gnome.Documents.desktop.in:4
 msgid "Access, manage and share documents"
 msgstr "Truy cập, quản lý và chia sẻ tài liệu"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Documents.desktop.in:7
-msgid "org.gnome.Documents"
-msgstr "org.gnome.Documents"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Documents.desktop.in:15
 msgid "Docs;PDF;Document;"
 msgstr "Docs;Tài liệu;Tai lieu;PDF;Document;"
 
-#: data/ui/app-menu.ui:6 src/preview.js:453
+#: data/org.gnome.documents.gschema.xml:5
+msgid "View as"
+msgstr "Xem kiểu"
+
+#: data/org.gnome.documents.gschema.xml:6
+msgid "View as type"
+msgstr "Xem kiểu"
+
+#: data/org.gnome.documents.gschema.xml:10
+msgid "Sort by"
+msgstr "Xếp theo"
+
+#: data/org.gnome.documents.gschema.xml:11
+msgid "Sort by type"
+msgstr "Sắp xếp theo kiểu"
+
+#: data/org.gnome.documents.gschema.xml:15
+msgid "Window size"
+msgstr "Kích thước cửa sổ"
+
+#: data/org.gnome.documents.gschema.xml:16
+msgid "Window size (width and height)."
+msgstr "Kích thước cửa sổ (rộng và cao)."
+
+#: data/org.gnome.documents.gschema.xml:20
+msgid "Window position"
+msgstr "Vị trí cửa sổ"
+
+#: data/org.gnome.documents.gschema.xml:21
+msgid "Window position (x and y)."
+msgstr "Vị trí cửa sổ (x và y)."
+
+#: data/org.gnome.documents.gschema.xml:25
+msgid "Window maximized"
+msgstr "Cửa sổ đã phóng to"
+
+#: data/org.gnome.documents.gschema.xml:26
+msgid "Window maximized state"
+msgstr "Trạng thái phóng to cửa sổ"
+
+#: data/org.gnome.documents.gschema.xml:30
+msgid "Night mode"
+msgstr "Chế độ đêm"
+
+#: data/org.gnome.documents.gschema.xml:31
+msgid "Whether the application is in night mode."
+msgstr "Có để ứng dụng ở chế độ đêm hay không."
+
+#: data/ui/documents-app-menu.ui:6 src/preview.js:434
 msgid "Night Mode"
 msgstr "Chế độ đêm"
 
-#: data/ui/app-menu.ui:12
+#: data/ui/documents-app-menu.ui:12
 msgid "Keyboard Shortcuts"
 msgstr "Phím tắt"
 
-#: data/ui/app-menu.ui:16
+#: data/ui/documents-app-menu.ui:16
 msgid "Help"
 msgstr "Trợ giúp"
 
-#: data/ui/app-menu.ui:20
-msgid "About"
-msgstr "Giới thiệu"
-
-#: data/ui/app-menu.ui:24
-msgctxt "app menu"
-msgid "Quit"
-msgstr "Thoát"
+#: data/ui/documents-app-menu.ui:20
+msgid "About Documents"
+msgstr "Giới thiệu Tài liệu"
 
 #: data/ui/help-overlay.ui:11
 msgctxt "shortcut window"
@@ -283,13 +221,13 @@ msgstr "Chép chữ đã chọn vào clipboard"
 
 #: data/ui/help-overlay.ui:106
 msgctxt "shortcut window"
-msgid "Rotate anti-clockwise"
+msgid "Rotate counterclockwise"
 msgstr "Xoay ngược chiều kim đồng hồ"
 
 #: data/ui/help-overlay.ui:113
 msgctxt "shortcut window"
 msgid "Rotate clockwise"
-msgstr "Xoay xuôi chiều kim đồng hồ"
+msgstr "Xoay theo chiều kim đồng hồ"
 
 #: data/ui/help-overlay.ui:120
 msgctxt "shortcut window"
@@ -326,16 +264,21 @@ msgid "New Collection…"
 msgstr "Bộ sưu tập mới…"
 
 #: data/ui/organize-collection-dialog.ui:73
-#: data/ui/organize-collection-dialog.ui:122 src/sharing.js:226
+#: data/ui/organize-collection-dialog.ui:122 src/sharing.js:219
 msgid "Add"
 msgstr "Thêm"
 
-#: data/ui/organize-collection-dialog.ui:167 src/overview.js:616
+#: data/ui/organize-collection-dialog.ui:163 data/ui/selection-toolbar.ui:88
+#: src/overview.js:1007 src/search.js:113
+msgid "Collections"
+msgstr "Bộ sưu tập"
+
+#: data/ui/organize-collection-dialog.ui:167 src/overview.js:575
 msgid "Cancel"
 msgstr "Thôi"
 
 #. Label for Done button in Sharing dialog
-#: data/ui/organize-collection-dialog.ui:173 src/sharing.js:112
+#: data/ui/organize-collection-dialog.ui:173 src/sharing.js:106
 msgid "Done"
 msgstr "Hoàn tất"
 
@@ -345,7 +288,7 @@ msgstr "_Chép"
 
 #. Translators: this is the Open action in a context menu
 #: data/ui/preview-menu.ui:6 data/ui/selection-toolbar.ui:9
-#: src/selections.js:988
+#: src/selections.js:929
 msgid "Open"
 msgstr "Mở"
 
@@ -357,7 +300,7 @@ msgstr "Sửa"
 msgid "Print…"
 msgstr "In…"
 
-#: data/ui/preview-menu.ui:21 src/preview.js:462
+#: data/ui/preview-menu.ui:21 src/preview.js:443
 msgid "Fullscreen"
 msgstr "Toàn màn hình"
 
@@ -382,7 +325,7 @@ msgid "Rotate ↷"
 msgstr "Quay ↷"
 
 #: data/ui/preview-menu.ui:62 data/ui/selection-toolbar.ui:79
-#: src/properties.js:61
+#: src/properties.js:56
 msgid "Properties"
 msgstr "Thuộc tính"
 
@@ -393,11 +336,6 @@ msgstr "Chọn hết"
 #: data/ui/selection-menu.ui:11
 msgid "Select None"
 msgstr "Không chọn gì cả"
-
-#: data/ui/selection-toolbar.ui:88 src/overview.js:1056 src/search.js:126
-#: src/search.js:132
-msgid "Collections"
-msgstr "Bộ sưu tập"
 
 #: data/ui/view-menu.ui:23
 msgid "View items as a grid of icons"
@@ -423,98 +361,88 @@ msgstr "Ngày"
 msgid "Name"
 msgstr "Tên"
 
-#: src/application.js:126
+#: src/application.js:115
 msgid "Show the version of the program"
 msgstr "Hiển thị phiên bản của chương trình"
 
-#: src/documents.js:794
+#: src/documents.js:754
 msgid "Failed to print document"
 msgstr "Gặp lỗi khi in tài liệu"
 
 #. Translators: this refers to local documents
-#: src/documents.js:836 src/search.js:459
+#: src/documents.js:791 src/search.js:410
 msgid "Local"
 msgstr "Máy nội bộ"
 
 #. Translators: Documents ships a "Getting Started with Documents"
 #. tutorial PDF. The "GNOME" string below is displayed as the author name
 #. of that document, and doesn't normally need to be translated.
-#: src/documents.js:879
+#: src/documents.js:834
 msgid "GNOME"
 msgstr "GNOME"
 
-#: src/documents.js:880
+#: src/documents.js:835
 msgid "Getting Started with Documents"
 msgstr "Lần đầu tiên dùng tài liệu"
 
-#: src/documents.js:905 src/documents.js:1115 src/documents.js:1218
-#: src/documents.js:1412
+#: src/documents.js:859 src/documents.js:1027 src/documents.js:1124
+#: src/documents.js:1250
 msgid "Collection"
 msgstr "Bộ sưu tập"
 
 #. overridden
-#: src/documents.js:972
+#: src/documents.js:939
 msgid "Google Docs"
 msgstr "Google Docs"
 
-#: src/documents.js:973
+#: src/documents.js:940
 msgid "Google"
 msgstr "Google"
 
-#: src/documents.js:1117 src/documents.js:1414
+#: src/documents.js:1029 src/documents.js:1252
 msgid "Spreadsheet"
 msgstr "Bảng tính"
 
-#: src/documents.js:1119 src/documents.js:1416 src/presentation.js:44
+#: src/documents.js:1031 src/documents.js:1254 src/presentation.js:39
 msgid "Presentation"
 msgstr "Trình diễn"
 
-#: src/documents.js:1121 src/documents.js:1418
-msgid "e-Book"
-msgstr "Sách điện tử"
-
-#: src/documents.js:1123 src/documents.js:1420
+#: src/documents.js:1033 src/documents.js:1256
 msgid "Document"
 msgstr "Tài liệu"
 
 #. overridden
-#: src/documents.js:1173
+#: src/documents.js:1080
 msgid "ownCloud"
 msgstr "ownCloud"
 
 #. overridden
-#: src/documents.js:1307 src/documents.js:1308
+#: src/documents.js:1179 src/documents.js:1180
 msgid "OneDrive"
 msgstr "OneDrive"
 
-#: src/documents.js:1594
+#: src/documents.js:1425
 msgid "Please check the network connection."
 msgstr "Vui lòng kiểm tra kết nối mạng."
 
-#: src/documents.js:1597
+#: src/documents.js:1428
 msgid "Please check the network proxy settings."
 msgstr "Vui lòng kiểm tra cài đặt ủy nhiệm mạng."
 
-#: src/documents.js:1600
+#: src/documents.js:1431
 msgid "Unable to sign in to the document service."
 msgstr "Không thể đăng nhập vào dịch vụ tài liệu."
 
-#: src/documents.js:1603
+#: src/documents.js:1434
 msgid "Unable to locate this document."
 msgstr "Không thể định vị tài liệu."
 
-#: src/documents.js:1606
+#: src/documents.js:1437
 #, javascript-format
 msgid "Hmm, something is fishy (%d)."
 msgstr "Hừm, có gì đó không ổn (%d)."
 
-#: src/documents.js:1613
-msgid ""
-"You are using a preview of Books. Full viewing capabilities are coming soon!"
-msgstr ""
-"Bạn đang sử dụng tính năng xem thử sách. Tính năng xem đầy đủ sẽ sớm có!"
-
-#: src/documents.js:1615
+#: src/documents.js:1443
 msgid ""
 "LibreOffice support is not available. Please contact your system "
 "administrator."
@@ -523,26 +451,21 @@ msgstr ""
 "bạn."
 
 #. Translators: %s is the title of a document
-#: src/documents.js:1638
+#: src/documents.js:1466
 #, javascript-format
 msgid "Oops! Unable to load “%s”"
 msgstr "Thật ngại quá! Không thể tải “%s”"
 
 #. view button, on the right of the toolbar
-#: src/edit.js:139
+#: src/edit.js:133
 msgid "View"
 msgstr "Xem"
 
-#: src/epubview.js:228
-#, javascript-format
-msgid "chapter %s of %s"
-msgstr "chương %s trên %s"
-
-#: src/evinceview.js:590 src/lib/gd-places-bookmarks.c:656
+#: src/evinceview.js:567 src/lib/gd-places-bookmarks.c:656
 msgid "Bookmarks"
 msgstr "Đánh dấu"
 
-#: src/evinceview.js:598
+#: src/evinceview.js:575
 msgid "Bookmark this page"
 msgstr "Đánh dấu trang này"
 
@@ -579,94 +502,87 @@ msgstr "Không có mục lục"
 msgid "Contents"
 msgstr "Mục lục"
 
-#: src/lib/gd-utils.c:328
-msgid "A document manager application"
-msgstr "Ứng dụng quản lý tài liệu"
-
-#: src/lib/gd-utils.c:333
-msgid "An e-books manager application"
-msgstr "Ứng dụng quản lý sách điện tử"
-
-#: src/lib/gd-utils.c:340
+#: src/lib/gd-utils.c:318
 msgid "translator-credits"
 msgstr "Nhóm Việt hóa GNOME <gnome-vi-list@gnome.org>"
 
-#: src/mainToolbar.js:91
+#: src/lib/gd-utils.c:319
+msgid "A document manager application"
+msgstr "Ứng dụng quản lý tài liệu"
+
+#: src/mainToolbar.js:87
+msgctxt "menu button tooltip"
+msgid "Menu"
+msgstr "Trình đơn"
+
+#: src/mainToolbar.js:97
 msgctxt "toolbar button tooltip"
 msgid "Search"
 msgstr "Tìm"
 
-#: src/mainToolbar.js:100
+#: src/mainToolbar.js:106
 msgid "Back"
 msgstr "Quay lại"
 
 #. Translators: only one item has been deleted and %s is its name
-#: src/notifications.js:48
+#: src/notifications.js:46
 #, javascript-format
 msgid "“%s” deleted"
 msgstr "Đã xóa “%s”"
 
 #. Translators: one or more items might have been deleted, and %d
 #. is the count
-#: src/notifications.js:52
+#: src/notifications.js:50
 #, javascript-format
 msgid "%d item deleted"
 msgid_plural "%d items deleted"
 msgstr[0] "Đã xóa %d mục"
 
-#: src/notifications.js:61 src/selections.js:387
+#: src/notifications.js:59 src/selections.js:358
 msgid "Undo"
 msgstr "Hoàn lại"
 
-#: src/notifications.js:159
+#: src/notifications.js:148
 #, javascript-format
 msgid "Printing “%s”: %s"
 msgstr "In “%s”: %s"
 
-#: src/notifications.js:215
+#: src/notifications.js:202
 msgid "Your documents are being indexed"
 msgstr "Đang đánh chỉ mục tài liệu của bạn"
 
-#: src/notifications.js:216
+#: src/notifications.js:203
 msgid "Some documents might not be available during this process"
 msgstr "Vài tài liệu sẽ không thể dùng trong suốt quá trình này"
 
 #. Translators: %s refers to an online account provider, e.g.
 #. "Google", or "Windows Live".
-#: src/notifications.js:238
+#: src/notifications.js:225
 #, javascript-format
 msgid "Fetching documents from %s"
 msgstr "Lấy tài liệu từ %s"
 
-#: src/notifications.js:240
+#: src/notifications.js:227
 msgid "Fetching documents from online accounts"
 msgstr "Lấy tài liệu từ tài khoản trực tuyến"
 
-#: src/overview.js:275
+#: src/overview.js:263
 msgid "No collections found"
 msgstr "Không tìm thấy bộ sưu tập"
 
-#: src/overview.js:277
-msgid "No books found"
-msgstr "Không tìm thấy sách nào"
-
-#: src/overview.js:277
+#: src/overview.js:265
 msgid "No documents found"
 msgstr "Không tìm thấy tài liệu nào"
 
-#: src/overview.js:286
+#: src/overview.js:274
 msgid "Try a different search"
 msgstr "Thử tìm kiểm khác"
 
-#: src/overview.js:293
-msgid "You can create collections from the Books view"
-msgstr "Bạn không thể tạo bộ sưu tập từ trình bày Sách"
-
-#: src/overview.js:295
+#: src/overview.js:279
 msgid "You can create collections from the Documents view"
 msgstr "Bạn không thể tạo bộ sưu tập từ trình bày Tài liệu"
 
-#: src/overview.js:305
+#: src/overview.js:284
 #, javascript-format
 msgid ""
 "Documents from your <a href=\"system-settings\">Online Accounts</a> and <a "
@@ -676,328 +592,397 @@ msgstr ""
 "<a href=\"file://%s\">Thư mục Tài liệu</a> sẽ xuất hiện ở đây."
 
 #. Translators: this is the menu to change view settings
-#: src/overview.js:562
+#: src/overview.js:522
 msgid "View Menu"
 msgstr "Xem trình đơn"
 
-#: src/overview.js:590
+#: src/overview.js:549
 msgid "Click on items to select them"
 msgstr "Nhấn để chọn"
 
-#: src/overview.js:592
+#: src/overview.js:551
 #, javascript-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "chọn %d"
 
-#: src/overview.js:669
+#: src/overview.js:631
 msgid "Select Items"
 msgstr "Chọn mục"
 
-#: src/overview.js:876
+#: src/overview.js:833
 msgid "Yesterday"
 msgstr "Hôm qua"
 
-#: src/overview.js:878
+#: src/overview.js:835
 #, javascript-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] "%d ngày trước"
 
-#: src/overview.js:882
+#: src/overview.js:839
 msgid "Last week"
 msgstr "Tuần trước"
 
-#: src/overview.js:884
+#: src/overview.js:841
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
 msgstr[0] "%d tuần trước"
 
-#: src/overview.js:888
+#: src/overview.js:845
 msgid "Last month"
 msgstr "Tháng trước"
 
-#: src/overview.js:890
+#: src/overview.js:847
 #, javascript-format
 msgid "%d month ago"
 msgid_plural "%d months ago"
 msgstr[0] "%d tháng trước"
 
-#: src/overview.js:894
+#: src/overview.js:851
 msgid "Last year"
 msgstr "Năm trước"
 
-#: src/overview.js:896
+#: src/overview.js:853
 #, javascript-format
 msgid "%d year ago"
 msgid_plural "%d years ago"
 msgstr[0] "%d năm trước"
 
-#: src/password.js:42
+#: src/password.js:38
 msgid "Password Required"
 msgstr "Yêu cầu mật khẩu"
 
-#: src/password.js:45
+#: src/password.js:41
 msgid "_Unlock"
 msgstr "_Mở khóa"
 
-#: src/password.js:61
+#: src/password.js:57
 #, javascript-format
 msgid "Document %s is locked and requires a password to be opened."
 msgstr "Tài liệu %s đã bị khóa và cần phải cung cấp mật khẩu để có thể mở nó."
 
-#: src/password.js:75
+#: src/password.js:71
 msgid "_Password"
 msgstr "_Mật khẩu"
 
-#: src/presentation.js:102
+#: src/presentation.js:95
 msgid "Running in presentation mode"
 msgstr "Chạy trong chế độ trình diễn"
 
-#: src/presentation.js:130
+#: src/presentation.js:121
 msgid "Present On"
 msgstr "Trình diễn bật"
 
 #. Translators: "Mirrored" describes when both displays show the same view
-#: src/presentation.js:166
+#: src/presentation.js:157
 msgid "Mirrored"
 msgstr "Màn hình bản sao"
 
-#: src/presentation.js:168
+#: src/presentation.js:159
 msgid "Primary"
 msgstr "Chính"
 
-#: src/presentation.js:170
+#: src/presentation.js:161
 msgid "Off"
 msgstr "Tắt"
 
-#: src/presentation.js:172
+#: src/presentation.js:163
 msgid "Secondary"
 msgstr "Phụ"
 
 #. Translators: this is the Open action in a context menu
-#: src/preview.js:445 src/selections.js:985
+#: src/preview.js:426 src/selections.js:926
 #, javascript-format
 msgid "Open with %s"
 msgstr "Mở với %s"
 
-#: src/preview.js:770
+#: src/preview.js:751
 msgid "Find Previous"
 msgstr "Tìm trước"
 
-#: src/preview.js:776
+#: src/preview.js:757
 msgid "Find Next"
 msgstr "Tìm kế"
 
 #. Title item
 #. Translators: "Title" is the label next to the document title
 #. in the properties dialog
-#: src/properties.js:81
+#: src/properties.js:76
 msgctxt "Document Title"
 msgid "Title"
 msgstr "Tiêu đề"
 
 #. Translators: "Author" is the label next to the document author
 #. in the properties dialog
-#: src/properties.js:90
+#: src/properties.js:85
 msgctxt "Document Author"
 msgid "Author"
 msgstr "Tác giả"
 
 #. Source item
-#: src/properties.js:97
+#: src/properties.js:92
 msgid "Source"
 msgstr "Nguồn"
 
 #. Date Modified item
-#: src/properties.js:103
+#: src/properties.js:98
 msgid "Date Modified"
 msgstr "Ngày thay đổi"
 
-#: src/properties.js:110
+#: src/properties.js:105
 msgid "Date Created"
 msgstr "Ngày tạo"
 
 #. Document type item
 #. Translators: "Type" is the label next to the document type
 #. (PDF, spreadsheet, ...) in the properties dialog
-#: src/properties.js:119
+#: src/properties.js:114
 msgctxt "Document Type"
 msgid "Type"
 msgstr "Kiểu"
 
 #. Translators: "Type" refers to a search filter on the document type
 #. (PDF, spreadsheet, ...)
-#: src/search.js:120
+#: src/search.js:108
 msgctxt "Search Filter"
 msgid "Type"
 msgstr "Kiểu"
 
 #. Translators: this refers to documents
-#: src/search.js:123 src/search.js:260 src/search.js:453
+#: src/search.js:111 src/search.js:218 src/search.js:404
 msgid "All"
 msgstr "Tất cả"
 
-#: src/search.js:136
+#: src/search.js:117
 msgid "PDF Documents"
 msgstr "Tài liệu PDF"
 
-#: src/search.js:143
-msgid "e-Books"
-msgstr "Sách điện tử"
-
-#: src/search.js:147
-msgid "Comics"
-msgstr "Truyện tranh"
-
-#: src/search.js:152
+#: src/search.js:122
 msgid "Presentations"
 msgstr "Trình diễn"
 
-#: src/search.js:155
+#: src/search.js:125
 msgid "Spreadsheets"
 msgstr "Bảng tính"
 
-#: src/search.js:158
+#: src/search.js:128
 msgid "Text Documents"
 msgstr "Văn bản"
 
 #. Translators: this is a verb that refers to "All", "Title", "Author",
 #. and "Content" as in "Match All", "Match Title", "Match Author", and
 #. "Match Content"
-#: src/search.js:257
+#: src/search.js:215
 msgid "Match"
 msgstr "Khớp"
 
 #. Translators: "Title" refers to "Match Title" when searching
-#: src/search.js:263
+#: src/search.js:221
 msgctxt "Search Filter"
 msgid "Title"
 msgstr "Tiêu đề"
 
 #. Translators: "Author" refers to "Match Author" when searching
-#: src/search.js:266
+#: src/search.js:224
 msgctxt "Search Filter"
 msgid "Author"
 msgstr "Tác giả"
 
 #. Translators: "Content" refers to "Match Content" when searching
-#: src/search.js:269
+#: src/search.js:227
 msgctxt "Search Filter"
 msgid "Content"
 msgstr "Nội dung"
 
-#: src/search.js:449
+#: src/search.js:400
 msgid "Sources"
 msgstr "Nguồn"
 
 #. Translators: the first %s is an online account provider name,
 #. e.g. "Google". The second %s is the identity used to log in,
 #. e.g. "foo@gmail.com".
-#: src/search.js:508
+#: src/search.js:456
 #, javascript-format
 msgid "%s (%s)"
 msgstr "%s (%s)"
 
-#: src/selections.js:360 src/selections.js:362
+#: src/selections.js:331 src/selections.js:333
 msgid "Rename…"
 msgstr "Đổi tên…"
 
-#: src/selections.js:366 src/selections.js:368
+#: src/selections.js:337 src/selections.js:339
 msgid "Delete"
 msgstr "Xóa"
 
-#: src/selections.js:382
+#: src/selections.js:353
 #, javascript-format
 msgid "“%s” removed"
 msgstr "Đã gỡ bỏ “%s”"
 
-#: src/selections.js:779
+#: src/selections.js:731
 msgid "Rename"
 msgstr "Đổi tên"
 
 #. Translators: "Collections" refers to documents in this context
-#: src/selections.js:785
+#: src/selections.js:737
 msgctxt "Dialog Title"
 msgid "Collections"
 msgstr "Bộ sưu tập"
 
-#: src/sharing.js:108
+#: src/sharing.js:102
 msgid "Sharing Settings"
 msgstr "Cài đặt chia sẻ"
 
 #. Label for widget group for changing document permissions
-#: src/sharing.js:145
+#: src/sharing.js:139
 msgid "Document permissions"
 msgstr "Quyền tài liệu"
 
 #. Label for permission change in Sharing dialog
-#: src/sharing.js:152 src/sharing.js:330
+#: src/sharing.js:146 src/sharing.js:323
 msgid "Change"
 msgstr "Thay đổi"
 
 #. Label for radiobutton that sets doc permission to private
-#: src/sharing.js:176 src/sharing.js:305
+#: src/sharing.js:170 src/sharing.js:298
 msgid "Private"
 msgstr "Riêng tư"
 
-#: src/sharing.js:186 src/sharing.js:298
+#: src/sharing.js:180 src/sharing.js:291
 msgid "Public"
 msgstr "Công cộng"
 
 #. Label for checkbutton that sets doc permission to Can edit
-#: src/sharing.js:190 src/sharing.js:300
+#: src/sharing.js:184 src/sharing.js:293
 msgid "Everyone can edit"
 msgstr "Mọi người có thể sửa"
 
 #. Label for widget group used for adding new contacts
-#: src/sharing.js:197
+#: src/sharing.js:191
 msgid "Add people"
 msgstr "Thêm người"
 
 #. Editable text in entry field
-#: src/sharing.js:204
+#: src/sharing.js:198
 msgid "Enter an email address"
 msgstr "Nhập địa chỉ thư điện tử của bạn"
 
-#: src/sharing.js:219 src/sharing.js:371
+#: src/sharing.js:212 src/sharing.js:362
 msgid "Can edit"
 msgstr "Có thể sửa"
 
-#: src/sharing.js:219 src/sharing.js:374
+#: src/sharing.js:212 src/sharing.js:365
 msgid "Can view"
 msgstr "Có thể xem"
 
-#: src/sharing.js:302
+#: src/sharing.js:295
 msgid "Everyone can read"
 msgstr "Mọi người có thể đọc"
 
-#: src/sharing.js:317
+#: src/sharing.js:310
 msgid "Save"
 msgstr "Lưu"
 
-#: src/sharing.js:368
+#: src/sharing.js:359
 msgid "Owner"
 msgstr "Chủ sở hữu"
 
-#: src/sharing.js:437
+#: src/sharing.js:426
 #, javascript-format
 msgid "You can ask %s for access"
 msgstr "Bạn có thể yêu cầu %s cho phép truy cập"
 
-#: src/sharing.js:474 src/sharing.js:510 src/sharing.js:567 src/sharing.js:584
-#: src/sharing.js:603
+#: src/sharing.js:463 src/sharing.js:499 src/sharing.js:556 src/sharing.js:573
+#: src/sharing.js:592
 msgid "The document was not updated"
 msgstr "Tài liệu chưa cập nhật"
 
-#: src/shellSearchProvider.js:285
+#: src/shellSearchProvider.js:274
 msgid "Untitled Document"
 msgstr "Tài liệu không tên"
 
-#: src/trackerController.js:176
+#: src/trackerController.js:170
 msgid "Unable to fetch the list of documents"
 msgstr "Không thể lấy danh sách tài liệu"
+
+#~ msgid "Books"
+#~ msgstr "Sách"
+
+#~ msgid "An e-book manager application for GNOME"
+#~ msgstr "Ứng dụng quản lý sách điện tử dành cho môi trường GNOME"
+
+#~ msgid ""
+#~ "A simple application to access and organize your e-books on GNOME. It is "
+#~ "meant to be a simple and elegant replacement for using a file manager to "
+#~ "deal with e-books."
+#~ msgstr ""
+#~ "Đây là ứng dụng đơn giản để truy cập, tổ chức sách điện tử của bạn trên "
+#~ "môi trường GNOME. Điều đó có nghĩa là nó phù hợp để thay thế cho bộ quản "
+#~ "lý tập tin khi dùng với sách điện tử."
+
+#~ msgid "View recent e-books"
+#~ msgstr "Sách điện tử bạn mới dùng"
+
+#~ msgid "Search through e-books"
+#~ msgstr "Tìm trong sách điện tử"
+
+#~ msgid "View e-books (PDF and comics) fullscreen"
+#~ msgstr "Hiển thị sách điện tử (PDF và truyện tranh) ở chế độ toàn màn hình"
+
+#~ msgid "Print e-books"
+#~ msgstr "In sách điện tử"
+
+#~ msgid "Access, manage and share books"
+#~ msgstr "Truy cập, quản lý và chia sẻ sách điện tử"
+
+#~ msgid "org.gnome.Books"
+#~ msgstr "org.gnome.Books"
+
+#~ msgid "Books;Comics;ePub;PDF;"
+#~ msgstr "Books;sách;điện;tử;Comics;ePub;PDF;"
+
+#~ msgid "org.gnome.Documents"
+#~ msgstr "org.gnome.Documents"
+
+#~ msgid "About"
+#~ msgstr "Giới thiệu"
+
+#~ msgctxt "app menu"
+#~ msgid "Quit"
+#~ msgstr "Thoát"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Rotate anti-clockwise"
+#~ msgstr "Xoay ngược chiều kim đồng hồ"
+
+#~ msgid "e-Book"
+#~ msgstr "Sách điện tử"
+
+#~ msgid ""
+#~ "You are using a preview of Books. Full viewing capabilities are coming "
+#~ "soon!"
+#~ msgstr ""
+#~ "Bạn đang sử dụng tính năng xem thử sách. Tính năng xem đầy đủ sẽ sớm có!"
+
+#~ msgid "chapter %s of %s"
+#~ msgstr "chương %s trên %s"
+
+#~ msgid "An e-books manager application"
+#~ msgstr "Ứng dụng quản lý sách điện tử"
+
+#~ msgid "No books found"
+#~ msgstr "Không tìm thấy sách nào"
+
+#~ msgid "You can create collections from the Books view"
+#~ msgstr "Bạn không thể tạo bộ sưu tập từ trình bày Sách"
+
+#~ msgid "e-Books"
+#~ msgstr "Sách điện tử"
+
+#~ msgid "Comics"
+#~ msgstr "Truyện tranh"
 
 #~ msgid "LibreOffice is required to view this document"
 #~ msgstr "Cần LibreOffice để xem tài liệu này"
@@ -1048,9 +1033,6 @@ msgstr "Không thể lấy danh sách tài liệu"
 
 #~ msgid "List"
 #~ msgstr "Danh sách"
-
-#~ msgid "About Documents"
-#~ msgstr "Giới thiệu Tài liệu"
 
 #~ msgid "Organize"
 #~ msgstr "Tổ chức"
