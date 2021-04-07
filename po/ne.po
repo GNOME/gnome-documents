@@ -6,10 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gnome Nepali Translation Project\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"documents&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-05-22 01:20+0000\n"
-"PO-Revision-Date: 2017-07-26 17:26+0545\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-documents/issues\n"
+"POT-Creation-Date: 2020-06-05 03:33+0000\n"
+"PO-Revision-Date: 2021-04-07 22:50+0545\n"
 "Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
 "Language-Team: Nepali Translation Team <chautari@gmail.com>\n"
 "Language: ne\n"
@@ -17,998 +16,957 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.4.2\n"
 
-#: ../data/org.gnome.Books.appdata.xml.in.h:1 ../data/org.gnome.Books.desktop.in.h:1
-#: ../src/application.js:111 ../src/lib/gd-utils.c:329 ../src/overview.js:1052
-msgid "Books"
-msgstr "किताबहरू"
-
-#: ../data/org.gnome.Books.appdata.xml.in.h:2
-msgid "An e-book manager application for GNOME"
-msgstr "जिनोमको लागि ई-किताब प्रबन्धक अनुप्रयोग"
-
-#: ../data/org.gnome.Books.appdata.xml.in.h:3
-msgid ""
-"A simple application to access and organize your e-books on GNOME. It is meant to be a simple "
-"and elegant replacement for using a file manager to deal with e-books."
-msgstr ""
-
-#: ../data/org.gnome.Books.appdata.xml.in.h:4 ../data/org.gnome.Documents.appdata.xml.in.h:4
-#, fuzzy
-msgid "It lets you:"
-msgstr "यो संवाद बाकसले तपाईँलाई एउटा प्रतिमा चयन गर्न अनुमति दिन्छ ।"
-
-#: ../data/org.gnome.Books.appdata.xml.in.h:5
-msgid "View recent e-books"
-msgstr ""
-
-#: ../data/org.gnome.Books.appdata.xml.in.h:6
-msgid "Search through e-books"
-msgstr ""
-
-#: ../data/org.gnome.Books.appdata.xml.in.h:7
-#, fuzzy
-#| msgid "View documents fullscreen"
-msgid "View e-books (PDF and comics) fullscreen"
-msgstr "पूरा पर्दामा कागजात हेर्नुहोस्"
-
-#: ../data/org.gnome.Books.appdata.xml.in.h:8
-#, fuzzy
-msgid "Print e-books"
-msgstr "किताबहरु;"
-
-#: ../data/org.gnome.Books.desktop.in.h:2
-#, fuzzy
-msgid "Access, manage and share books"
-msgstr "पात्रो पहुच र ब्यवस्थापन गर्नुहोस"
-
-#: ../data/org.gnome.Books.desktop.in.h:3
-msgid "Books;Comics;ePub;PDF;"
-msgstr ""
-
-#: ../data/org.gnome.books.gschema.xml.h:1 ../data/org.gnome.documents.gschema.xml.h:1
-#, fuzzy
-msgid "View as"
-msgstr "_दृष्य/"
-
-#: ../data/org.gnome.books.gschema.xml.h:2 ../data/org.gnome.documents.gschema.xml.h:2
-#, fuzzy
-msgid "View as type"
-msgstr "सजावट पद वर्णन गर्न सकिदैन: अज्ञात दृश्य वस्तु प्रकार \"%s\""
-
-#: ../data/org.gnome.books.gschema.xml.h:3 ../data/org.gnome.documents.gschema.xml.h:3
-msgid "Sort by"
-msgstr "क्रमबद्ध"
-
-#: ../data/org.gnome.books.gschema.xml.h:4 ../data/org.gnome.documents.gschema.xml.h:4
-msgid "Sort by type"
-msgstr "क्रमबद्ध प्रकार"
-
-#: ../data/org.gnome.books.gschema.xml.h:5 ../data/org.gnome.documents.gschema.xml.h:5
-msgid "Window size"
-msgstr "सञ्झ्याल साइज"
-
-#: ../data/org.gnome.books.gschema.xml.h:6 ../data/org.gnome.documents.gschema.xml.h:6
-msgid "Window size (width and height)."
-msgstr "सञ्झ्यालको उचाइ र चौडाई"
-
-#: ../data/org.gnome.books.gschema.xml.h:7 ../data/org.gnome.documents.gschema.xml.h:7
-msgid "Window position"
-msgstr "सञ्झ्यालको स्थान"
-
-#: ../data/org.gnome.books.gschema.xml.h:8 ../data/org.gnome.documents.gschema.xml.h:8
-msgid "Window position (x and y)."
-msgstr "सञ्झ्यालको  स्थान(X र Y)."
-
-#: ../data/org.gnome.books.gschema.xml.h:9 ../data/org.gnome.documents.gschema.xml.h:9
-msgid "Window maximized"
-msgstr "सञ्झ्यालको अधिकतम स्थिति"
-
-#: ../data/org.gnome.books.gschema.xml.h:10 ../data/org.gnome.documents.gschema.xml.h:10
-msgid "Window maximized state"
-msgstr "सञ्झ्यालको अधिकतम स्थिति"
-
-#: ../data/org.gnome.books.gschema.xml.h:11 ../data/org.gnome.documents.gschema.xml.h:11
-#, fuzzy
-msgid "Night mode"
-msgstr "मोड:"
-
-#: ../data/org.gnome.books.gschema.xml.h:12 ../data/org.gnome.documents.gschema.xml.h:12
-#, fuzzy
-msgid "Whether the application is in night mode."
-msgstr "जब अनुप्रयोगले सीधै औजारमा रङ्ग लगाउला"
-
-#: ../data/org.gnome.Documents.appdata.xml.in.h:1 ../data/org.gnome.Documents.desktop.in.h:1
-#: ../src/application.js:114 ../src/lib/gd-utils.c:322 ../src/overview.js:1052
+#: data/org.gnome.Documents.appdata.xml.in:7 data/org.gnome.Documents.desktop.in:3
+#: src/application.js:105 src/overview.js:1004
 msgid "Documents"
 msgstr "कागजातहरू"
 
-#: ../data/org.gnome.Documents.appdata.xml.in.h:2
+#: data/org.gnome.Documents.appdata.xml.in:8
 msgid "A document manager application for GNOME"
 msgstr "जिनोमको लागि कागजात प्रबन्धक अनुप्रयोग"
 
-#: ../data/org.gnome.Documents.appdata.xml.in.h:3
+#: data/org.gnome.Documents.appdata.xml.in:10
 msgid ""
-"A simple application to access, organize and share your documents on GNOME. It is meant to be a "
-"simple and elegant replacement for using a file manager to deal with documents. Seamless cloud "
-"integration is offered through GNOME Online Accounts."
+"A simple application to access, organize and share your documents on GNOME. It is "
+"meant to be a simple and elegant replacement for using a file manager to deal with "
+"documents. Seamless cloud integration is offered through GNOME Online Accounts."
 msgstr ""
 
-#: ../data/org.gnome.Documents.appdata.xml.in.h:5
+#: data/org.gnome.Documents.appdata.xml.in:16
+#, fuzzy
+msgid "It lets you:"
+msgstr ""
+"जिनोम स्क्रिनसट एक सरल उपयोगिता हो जसले तपाईंलाई आफ्नो कम्प्युटर स्क्रिनको तस्वीरहरू लिन दिन्छ। "
+"स्क्रिनसटहरू तपाईंको सम्पूर्ण स्क्रिन, कुनै पनि विशिष्ट अनुप्रयोग वा चयन आयताकार क्षेत्रमा हुन सक्छ। "
+"तपाईं ले लिएको तस्वीरहरू सिधै जिनोम क्लिपबोर्डमा पनि प्रतिलिपि गर्न सक्नुहुन्छ र अन्य अनुप्रयोगहरूमा "
+"टाँस्न सक्नुहुन्छ।"
+
+#: data/org.gnome.Documents.appdata.xml.in:18
 msgid "View recent local and online documents"
 msgstr ""
 
-#: ../data/org.gnome.Documents.appdata.xml.in.h:6
+#: data/org.gnome.Documents.appdata.xml.in:19
 msgid "Access your Google, ownCloud or OneDrive content"
 msgstr ""
 
-#: ../data/org.gnome.Documents.appdata.xml.in.h:7
-#, fuzzy
+#: data/org.gnome.Documents.appdata.xml.in:20
 msgid "Search through documents"
-msgstr "कागजात"
+msgstr "कागजातबाट खोज्नुहोस्"
 
-#: ../data/org.gnome.Documents.appdata.xml.in.h:8
+#: data/org.gnome.Documents.appdata.xml.in:21
 msgid "See new documents shared by friends"
 msgstr ""
 
-#: ../data/org.gnome.Documents.appdata.xml.in.h:9
+#: data/org.gnome.Documents.appdata.xml.in:22
 msgid "View documents fullscreen"
 msgstr "पूरा पर्दामा कागजात हेर्नुहोस्"
 
-#: ../data/org.gnome.Documents.appdata.xml.in.h:10
+#: data/org.gnome.Documents.appdata.xml.in:23
 msgid "Print documents"
 msgstr "कागजात मुद्रण गर्नुहोस्"
 
-#: ../data/org.gnome.Documents.appdata.xml.in.h:11
+#: data/org.gnome.Documents.appdata.xml.in:24
 msgid "Select favorites"
 msgstr "मनपर्ने छान्नुहोस्"
 
-#: ../data/org.gnome.Documents.appdata.xml.in.h:12
+#: data/org.gnome.Documents.appdata.xml.in:25
 msgid "Allow opening full featured editor for non-trivial changes"
 msgstr ""
 
-#: ../data/org.gnome.Documents.desktop.in.h:2
+#: data/org.gnome.Documents.appdata.xml.in:39
+msgid "The GNOME Project"
+msgstr "जिनोम परियोजना"
+
+#: data/org.gnome.Documents.desktop.in:4
 #, fuzzy
 msgid "Access, manage and share documents"
 msgstr "पात्रो पहुच र ब्यवस्थापन गर्नुहोस"
 
-#: ../data/org.gnome.Documents.desktop.in.h:3
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Documents.desktop.in:15
 msgid "Docs;PDF;Document;"
-msgstr "docs;पि डि यफ; कागजात;"
+msgstr "Docs;PDF;Document;"
 
-#: ../data/ui/app-menu.ui.h:1 ../src/preview.js:454
+#: data/org.gnome.documents.gschema.xml:5
+msgid "View as"
+msgstr "दृष्य"
+
+#: data/org.gnome.documents.gschema.xml:6
 #, fuzzy
-msgid "Night Mode"
-msgstr "मोड:"
+msgid "View as type"
+msgstr "डिस्क दृश्य शुरुवातमा \"प्रकार\" स्तम्भ देखाउनुहोस्"
 
-#: ../data/ui/app-menu.ui.h:2
+#: data/org.gnome.documents.gschema.xml:10
+msgid "Sort by"
+msgstr "क्रमबद्ध"
+
+#: data/org.gnome.documents.gschema.xml:11
+msgid "Sort by type"
+msgstr "क्रमबद्ध प्रकार"
+
+#: data/org.gnome.documents.gschema.xml:15
+msgid "Window size"
+msgstr "सञ्झ्याल साइज"
+
+#: data/org.gnome.documents.gschema.xml:16
+msgid "Window size (width and height)."
+msgstr "सञ्झ्यालको नाप( उचाइ र चौडाई )"
+
+#: data/org.gnome.documents.gschema.xml:20
+msgid "Window position"
+msgstr "सञ्झ्यालको स्थान"
+
+#: data/org.gnome.documents.gschema.xml:21
+msgid "Window position (x and y)."
+msgstr "सञ्झ्यालको  स्थान(X र Y)."
+
+#: data/org.gnome.documents.gschema.xml:25
+msgid "Window maximized"
+msgstr "सञ्झ्यालको अधिकतम स्थिति"
+
+#: data/org.gnome.documents.gschema.xml:26
+msgid "Window maximized state"
+msgstr "सञ्झ्यालको अधिकतम स्थिति"
+
+#: data/org.gnome.documents.gschema.xml:30
+msgid "Night mode"
+msgstr "रात मोड"
+
+#: data/org.gnome.documents.gschema.xml:31
+#, fuzzy
+msgid "Whether the application is in night mode."
+msgstr "रात मोड"
+
+#: data/ui/documents-app-menu.ui:6 src/preview.js:434
+msgid "Night Mode"
+msgstr "रात मोड"
+
+#: data/ui/documents-app-menu.ui:12
 msgid "Keyboard Shortcuts"
 msgstr "कुञ्जीपाटी सर्टकटहरू"
 
-#: ../data/ui/app-menu.ui.h:3
+#: data/ui/documents-app-menu.ui:16
 msgid "Help"
 msgstr "मद्दत गर्नुहोस्"
 
-#: ../data/ui/app-menu.ui.h:4
-msgid "About"
-msgstr "बारेमा"
+#: data/ui/documents-app-menu.ui:20
+msgid "About Documents"
+msgstr "कागजात बारेमा"
 
-#: ../data/ui/app-menu.ui.h:5
-msgctxt "app menu"
-msgid "Quit"
-msgstr "बन्द गर्नुहोस्"
-
-#: ../data/ui/help-overlay.ui.h:1
+#: data/ui/help-overlay.ui:11
 msgctxt "shortcut window"
 msgid "General"
 msgstr "सामान्य"
 
-#: ../data/ui/help-overlay.ui.h:2
+#: data/ui/help-overlay.ui:15
 msgctxt "shortcut window"
 msgid "Show help"
 msgstr "मद्दत देखाउनुहोस्"
 
-#: ../data/ui/help-overlay.ui.h:3
+#: data/ui/help-overlay.ui:22
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "बन्द गर्नुहोस्"
 
-#: ../data/ui/help-overlay.ui.h:4
+#: data/ui/help-overlay.ui:29
 msgctxt "shortcut window"
 msgid "Search"
 msgstr "खोज"
 
-#: ../data/ui/help-overlay.ui.h:5
+#: data/ui/help-overlay.ui:36
 msgctxt "shortcut window"
 msgid "Print the current document"
 msgstr "हालको कागजात मुद्रण गर्नुहोस्"
 
-#: ../data/ui/help-overlay.ui.h:6
+#: data/ui/help-overlay.ui:45
 msgctxt "shortcut window"
 msgid "Navigation"
 msgstr "नेभिगेशन"
 
-#: ../data/ui/help-overlay.ui.h:7
+#: data/ui/help-overlay.ui:49 data/ui/help-overlay.ui:57
 msgctxt "shortcut window"
 msgid "Go back"
 msgstr "पछाडी जानुहोस्"
 
-#: ../data/ui/help-overlay.ui.h:8
+#: data/ui/help-overlay.ui:67
 msgctxt "shortcut window"
 msgid "Preview"
 msgstr "पुर्वावलोकन"
 
-#: ../data/ui/help-overlay.ui.h:9
+#: data/ui/help-overlay.ui:71
 msgctxt "shortcut window"
 msgid "Zoom in"
 msgstr "जूम बढाउनुहोस्"
 
-#: ../data/ui/help-overlay.ui.h:10
+#: data/ui/help-overlay.ui:78
 msgctxt "shortcut window"
 msgid "Zoom out"
 msgstr "जुम घटाउनुहोस््"
 
-#: ../data/ui/help-overlay.ui.h:11
-#, fuzzy
-#| msgid "Bookmark this page"
+#: data/ui/help-overlay.ui:85
 msgctxt "shortcut window"
 msgid "Bookmark the current page"
-msgstr "यो पृष्ठ पुस्तकचिनो "
+msgstr "यो पृष्ठ पुस्तकचिनो राख्नुहोस्"
 
-#: ../data/ui/help-overlay.ui.h:12
+#: data/ui/help-overlay.ui:92
 #, fuzzy
 msgctxt "shortcut window"
 msgid "Open places and bookmarks dialog"
-msgstr "बाँन्की चयन गर्ने संवाद खोल्नुहोस्"
+msgstr "बचत गरिएको खेल संवाद खोल्नका लागि डाइरेक्टरी"
 
-#: ../data/ui/help-overlay.ui.h:13
-#, fuzzy
+#: data/ui/help-overlay.ui:99
 msgctxt "shortcut window"
 msgid "Copy selected text to clipboard"
 msgstr "चयन गरिएको पाठ क्लिपबोर्डमा प्रतिलिपि बनाउनुहोस्"
 
-#: ../data/ui/help-overlay.ui.h:14
-#, fuzzy
+#: data/ui/help-overlay.ui:106
 msgctxt "shortcut window"
-msgid "Rotate anti-clockwise"
-msgstr "घडीसरह घुमाउनुहोस्"
+msgid "Rotate counterclockwise"
+msgstr "घडी विपरित घुमाउनुहोस्"
 
-#: ../data/ui/help-overlay.ui.h:15
-#, fuzzy
+#: data/ui/help-overlay.ui:113
 msgctxt "shortcut window"
 msgid "Rotate clockwise"
 msgstr "घडीसरह घुमाउनुहोस्"
 
-#: ../data/ui/help-overlay.ui.h:16
-#, fuzzy
+#: data/ui/help-overlay.ui:120
 msgctxt "shortcut window"
 msgid "Next occurrence of the search string"
 msgstr "खोजी स्ट्रिङको पछिल्‍‌लो घटना फेला पार्नुहोस्"
 
-#: ../data/ui/help-overlay.ui.h:17
-#, fuzzy
+#: data/ui/help-overlay.ui:127
 msgctxt "shortcut window"
 msgid "Previous occurrence of the search string"
 msgstr "खोजी स्ट्रिङको अघिल्लो घटना फेला पार्नुहोस्"
 
-#: ../data/ui/help-overlay.ui.h:18
-#, fuzzy
-#| msgid "Presentation"
+#: data/ui/help-overlay.ui:134
 msgctxt "shortcut window"
 msgid "Presentation mode"
-msgstr "प्रस्तुति मोडमा चलिरहेको छ"
+msgstr "प्रस्तुति मोड"
 
-#: ../data/ui/help-overlay.ui.h:19
+#: data/ui/help-overlay.ui:141
 #, fuzzy
 msgctxt "shortcut window"
 msgid "Open action menu"
-msgstr "पहिलो प्यानलको मेनु देखाउने कि"
+msgstr "सञ्झ्याल मेनु खोल्नुहोस्"
 
-#: ../data/ui/help-overlay.ui.h:20
+#: data/ui/help-overlay.ui:148
 msgctxt "shortcut window"
 msgid "Fullscreen"
 msgstr "पूरा पर्दा"
 
-#: ../data/ui/organize-collection-dialog.ui.h:1
+#: data/ui/organize-collection-dialog.ui:40
 msgid "Enter a name for your first collection"
-msgstr ""
+msgstr "पहिलो संग्रहको नाम प्रवेश गर्नुहोस्"
 
-#: ../data/ui/organize-collection-dialog.ui.h:2
+#: data/ui/organize-collection-dialog.ui:56 data/ui/organize-collection-dialog.ui:113
 msgid "New Collection…"
 msgstr "नया सङ्कलन…"
 
-#: ../data/ui/organize-collection-dialog.ui.h:3 ../src/sharing.js:226
+#: data/ui/organize-collection-dialog.ui:73 data/ui/organize-collection-dialog.ui:122
+#: src/sharing.js:219
 msgid "Add"
 msgstr "थप्नुहोस्"
 
-#: ../data/ui/organize-collection-dialog.ui.h:4 ../src/overview.js:616
+#: data/ui/organize-collection-dialog.ui:163 data/ui/selection-toolbar.ui:88
+#: src/overview.js:1007 src/search.js:113
+msgid "Collections"
+msgstr "सङ्कलन"
+
+#: data/ui/organize-collection-dialog.ui:167 src/overview.js:575
 msgid "Cancel"
 msgstr "_रद्द"
 
 #. Label for Done button in Sharing dialog
-#: ../data/ui/organize-collection-dialog.ui.h:5 ../src/sharing.js:112
+#: data/ui/organize-collection-dialog.ui:173 src/sharing.js:106
 msgid "Done"
-msgstr "गरियो ।"
+msgstr "सम्पन्न भयो"
 
-#: ../data/ui/preview-context-menu.ui.h:1
+#: data/ui/preview-context-menu.ui:6
 msgid "_Copy"
-msgstr "प्रतिलिपि बनाउनुहोस्..."
+msgstr "प्रतिलिपि बनाउनुहोस्"
 
 #. Translators: this is the Open action in a context menu
-#: ../data/ui/preview-menu.ui.h:1 ../data/ui/selection-toolbar.ui.h:1 ../src/selections.js:982
+#: data/ui/preview-menu.ui:6 data/ui/selection-toolbar.ui:9 src/selections.js:929
 msgid "Open"
-msgstr "खोल्नुहोस्:"
+msgstr "खोल्नुहोस्"
 
-#: ../data/ui/preview-menu.ui.h:2
+#: data/ui/preview-menu.ui:10
 msgid "Edit"
 msgstr "सम्पादन"
 
-#: ../data/ui/preview-menu.ui.h:3
+#: data/ui/preview-menu.ui:15
 msgid "Print…"
-msgstr "मुद्रण:"
+msgstr "मुद्रण…"
 
-#: ../data/ui/preview-menu.ui.h:4 ../src/preview.js:463
+#: data/ui/preview-menu.ui:21 src/preview.js:443
 msgid "Fullscreen"
 msgstr "पूरा पर्दा"
 
-#: ../data/ui/preview-menu.ui.h:5
+#: data/ui/preview-menu.ui:27
 msgid "Present"
 msgstr "हाल"
 
-#: ../data/ui/preview-menu.ui.h:6
+#: data/ui/preview-menu.ui:35
 msgid "Zoom In"
-msgstr "जुम "
+msgstr "जूम बढाउनुहोस्"
 
-#: ../data/ui/preview-menu.ui.h:7
+#: data/ui/preview-menu.ui:41
 msgid "Zoom Out"
 msgstr "जुम घटाउनुहोस्"
 
-#: ../data/ui/preview-menu.ui.h:8
+#: data/ui/preview-menu.ui:49
 msgid "Rotate ↶"
-msgstr " ↶घुमाउनुहोस्:"
+msgstr "↶घुमाउनुहोस्"
 
-#: ../data/ui/preview-menu.ui.h:9
+#: data/ui/preview-menu.ui:55
 msgid "Rotate ↷"
-msgstr "↷घुमाउनुहोस्:"
+msgstr "↷घुमाउनुहोस्"
 
-#: ../data/ui/preview-menu.ui.h:10 ../data/ui/selection-toolbar.ui.h:2 ../src/properties.js:61
+#: data/ui/preview-menu.ui:62 data/ui/selection-toolbar.ui:79 src/properties.js:56
 msgid "Properties"
-msgstr "गुण: "
+msgstr "गुणहरू"
 
-#: ../data/ui/selection-menu.ui.h:1
+#: data/ui/selection-menu.ui:6
 msgid "Select All"
 msgstr "सबै छान्नुहोस्"
 
-#: ../data/ui/selection-menu.ui.h:2
+#: data/ui/selection-menu.ui:11
 msgid "Select None"
 msgstr "कुनै पनि चयन नगर्नुहोस्"
 
-#: ../data/ui/selection-toolbar.ui.h:3 ../src/overview.js:1056 ../src/search.js:126
-#: ../src/search.js:132
-msgid "Collections"
-msgstr "सङ्कलन"
-
-#: ../data/ui/view-menu.ui.h:1
+#: data/ui/view-menu.ui:23
 #, fuzzy
 msgid "View items as a grid of icons"
-msgstr ""
-"\n"
-"\n"
-"त्यहाँ यो दृश्यमा देखाउन कुनै वस्तुहरू छैनन् ।"
+msgstr "ग्रिड दृश्य"
 
-#: ../data/ui/view-menu.ui.h:2
+#: data/ui/view-menu.ui:40
 msgid "View items as a list"
-msgstr "दृश्य सामाग्रीहरूको सुची "
+msgstr "सामाग्रीहरूको सुचीमा हेर्नुहोस्"
 
-#: ../data/ui/view-menu.ui.h:3
+#: data/ui/view-menu.ui:73
 msgid "Sort"
 msgstr "क्रमबद्व गर्नुहोस्"
 
-#: ../data/ui/view-menu.ui.h:4
+#: data/ui/view-menu.ui:84
 msgid "Author"
 msgstr "लेखक"
 
-#: ../data/ui/view-menu.ui.h:5
+#: data/ui/view-menu.ui:93
 msgid "Date"
 msgstr "मिति"
 
-#: ../data/ui/view-menu.ui.h:6
+#: data/ui/view-menu.ui:102
 msgid "Name"
 msgstr "नाम"
 
-#: ../src/application.js:125
-#, fuzzy
+#: src/application.js:115
 msgid "Show the version of the program"
-msgstr "प्रोग्रामको संस्करण आंक  देखाऊ र बाहिरिउ"
+msgstr "प्रोग्रामको संस्करण देखाउनुहोस्"
 
-#: ../src/documents.js:776
+#: src/documents.js:754
 msgid "Failed to print document"
 msgstr "कागजात मुद्रण गर्न असफल भयो"
 
 #. Translators: this refers to local documents
-#: ../src/documents.js:818 ../src/search.js:459
+#: src/documents.js:791 src/search.js:410
 msgid "Local"
 msgstr "स्थानीय"
 
 #. Translators: Documents ships a "Getting Started with Documents"
 #. tutorial PDF. The "GNOME" string below is displayed as the author name
 #. of that document, and doesn't normally need to be translated.
-#: ../src/documents.js:861
+#: src/documents.js:834
 msgid "GNOME"
 msgstr "जिनोम"
 
-#: ../src/documents.js:862
+#: src/documents.js:835
 #, fuzzy
 msgid "Getting Started with Documents"
-msgstr "कागजात"
+msgstr "सुरु गरिएको छैन"
 
-#: ../src/documents.js:887 ../src/documents.js:1097 ../src/documents.js:1200
-#: ../src/documents.js:1394
+#: src/documents.js:859 src/documents.js:1027 src/documents.js:1124
+#: src/documents.js:1250
 msgid "Collection"
 msgstr "सङ्कलन"
 
 #. overridden
-#: ../src/documents.js:954
+#: src/documents.js:939
 msgid "Google Docs"
 msgstr "गुगल डक्स"
 
-#: ../src/documents.js:955
+#: src/documents.js:940
 msgid "Google"
 msgstr "गुगल"
 
-#: ../src/documents.js:1099 ../src/documents.js:1396
+#: src/documents.js:1029 src/documents.js:1252
 msgid "Spreadsheet"
 msgstr "स्प्रेडसिट"
 
-#: ../src/documents.js:1101 ../src/documents.js:1398 ../src/presentation.js:44
+#: src/documents.js:1031 src/documents.js:1254 src/presentation.js:39
 msgid "Presentation"
 msgstr "प्रस्तुतिकरण"
 
-#: ../src/documents.js:1103 ../src/documents.js:1400
-#, fuzzy
-msgid "e-Book"
-msgstr " पाठक"
-
-#: ../src/documents.js:1105 ../src/documents.js:1402
+#: src/documents.js:1033 src/documents.js:1256
 msgid "Document"
 msgstr "कागजात"
 
 #. overridden
-#: ../src/documents.js:1155
+#: src/documents.js:1080
 msgid "ownCloud"
 msgstr "ownCloud"
 
 #. overridden
-#: ../src/documents.js:1289 ../src/documents.js:1290
+#: src/documents.js:1179 src/documents.js:1180
 msgid "OneDrive"
-msgstr ""
+msgstr "वानड्राईभ"
 
-#: ../src/documents.js:1576
-#, fuzzy
+#: src/documents.js:1425
 msgid "Please check the network connection."
-msgstr "तपाईँको इन्टरनेट जडान जाँच गर्नुहोस्।"
+msgstr "सञ्जालमा जडान जाच्नुहोस्."
 
-#: ../src/documents.js:1579
+#: src/documents.js:1428
+#, fuzzy
 msgid "Please check the network proxy settings."
-msgstr ""
+msgstr "सञ्जालमा जडान जाच्नुहोस्"
 
-#: ../src/documents.js:1582
+#: src/documents.js:1431
 #, fuzzy
 msgid "Unable to sign in to the document service."
-msgstr "कार्य स्थापना गर्न असक्षम %s: %s\n"
-
-#: ../src/documents.js:1585
-msgid "Unable to locate this document."
 msgstr "कागजात फेला पार्न असफल भयो"
 
-#: ../src/documents.js:1588
+#: src/documents.js:1434
+msgid "Unable to locate this document."
+msgstr "कागजात फेला पार्न असफल भयो."
+
+#: src/documents.js:1437
 #, javascript-format
 msgid "Hmm, something is fishy (%d)."
 msgstr ""
 
-#: ../src/documents.js:1595
-msgid "You are using a preview of Books. Full viewing capabilities are coming soon!"
-msgstr ""
-
-#: ../src/documents.js:1597
+#: src/documents.js:1443
 msgid "LibreOffice support is not available. Please contact your system administrator."
 msgstr ""
 
 #. Translators: %s is the title of a document
-#: ../src/documents.js:1620
+#: src/documents.js:1466
 #, javascript-format
 msgid "Oops! Unable to load “%s”"
 msgstr "%s लोड गर्न असमर्थ"
 
 #. view button, on the right of the toolbar
-#: ../src/edit.js:139
+#: src/edit.js:133
 msgid "View"
 msgstr "दृष्य"
 
-#: ../src/epubview.js:228
-#, fuzzy, javascript-format
-#| msgid "Page %u of %u"
-msgid "chapter %s of %s"
-msgstr "अध्याय मेनु"
-
-#: ../src/evinceview.js:592 ../src/lib/gd-places-bookmarks.c:656
+#: src/evinceview.js:567 src/lib/gd-places-bookmarks.c:656
 msgid "Bookmarks"
 msgstr "पुस्तकचिनो"
 
-#: ../src/evinceview.js:600
+#: src/evinceview.js:575
 msgid "Bookmark this page"
-msgstr "यो पृष्ठ पुस्तकचिनो "
+msgstr "यो पृष्ठ पुस्तकचिनो"
 
-#: ../src/lib/gd-nav-bar.c:242
+#: src/lib/gd-nav-bar.c:242
 #, c-format
 msgid "Page %u of %u"
-msgstr " %u को %u पृष्ठ"
+msgstr "%2u को %1u पृष्ठ"
 
-#: ../src/lib/gd-pdf-loader.c:142
+#: src/lib/gd-pdf-loader.c:142
 msgid "Unable to load the document"
 msgstr "कागजात लोड गर्न असफल भयो"
 
 #. Translators: %s is the number of the page, already formatted
 #. * as a string, for example "Page 5".
 #.
-#: ../src/lib/gd-places-bookmarks.c:321
+#: src/lib/gd-places-bookmarks.c:321
 #, c-format
 msgid "Page %s"
 msgstr "पृष्ठ %s"
 
-#: ../src/lib/gd-places-bookmarks.c:384
+#: src/lib/gd-places-bookmarks.c:384
 msgid "No bookmarks"
 msgstr "पुस्तकचिनो छैन"
 
-#: ../src/lib/gd-places-bookmarks.c:392 ../src/lib/gd-places-links.c:257
+#: src/lib/gd-places-bookmarks.c:392 src/lib/gd-places-links.c:257
 msgid "Loading…"
-msgstr "लोड गर्दै..."
+msgstr "लोड गर्दैछ…"
 
-#: ../src/lib/gd-places-links.c:342
-#, fuzzy
+#: src/lib/gd-places-links.c:342
 msgid "No table of contents"
-msgstr "तालिकामा छैन ।"
+msgstr "पृष्ठ तालिका छैन"
 
-#: ../src/lib/gd-places-links.c:514
+#: src/lib/gd-places-links.c:514
 msgid "Contents"
 msgstr "सामाग्रीहरू"
 
-#: ../src/lib/gd-utils.c:323
+#: src/lib/gd-utils.c:318
+msgid "translator-credits"
+msgstr "pawan chitrakar < chautari@gmail.com >"
+
+#: src/lib/gd-utils.c:319
 msgid "A document manager application"
 msgstr "कागजात प्रबन्धक अनुप्रयोग"
 
-#: ../src/lib/gd-utils.c:330
-#, fuzzy
-#| msgid "A document manager application"
-msgid "An e-books manager application"
-msgstr "कागजात प्रबन्धक अनुप्रयोग"
+#: src/mainToolbar.js:87
+msgctxt "menu button tooltip"
+msgid "Menu"
+msgstr "मेनु"
 
-#: ../src/lib/gd-utils.c:338
-msgid "translator-credits"
-msgstr "Pawan Chitrakar < chautari@gmail.com >"
-
-#: ../src/mainToolbar.js:91
+#: src/mainToolbar.js:97
 msgctxt "toolbar button tooltip"
 msgid "Search"
 msgstr "खोज"
 
-#: ../src/mainToolbar.js:100
+#: src/mainToolbar.js:106
 msgid "Back"
 msgstr "पछाडि"
 
 #. Translators: only one item has been deleted and %s is its name
-#: ../src/notifications.js:48
+#: src/notifications.js:46
 #, javascript-format
 msgid "“%s” deleted"
 msgstr "\"%s\" मेटियो"
 
 #. Translators: one or more items might have been deleted, and %d
 #. is the count
-#: ../src/notifications.js:52
+#: src/notifications.js:50
 #, javascript-format
 msgid "%d item deleted"
 msgid_plural "%d items deleted"
 msgstr[0] "%d सामाग्री मेटियो"
 msgstr[1] "%d सामाग्रीहरू मेटियो"
 
-#: ../src/notifications.js:61 ../src/selections.js:387
+#: src/notifications.js:59 src/selections.js:358
 msgid "Undo"
 msgstr "पूर्वस्थितिमा फर्काउनुहोस्"
 
-#: ../src/notifications.js:159
+#: src/notifications.js:148
 #, javascript-format
 msgid "Printing “%s”: %s"
 msgstr "मुद्रण कार्य “%s” : %s"
 
-#: ../src/notifications.js:215
+#: src/notifications.js:202
 msgid "Your documents are being indexed"
 msgstr ""
 
-#: ../src/notifications.js:216
+#: src/notifications.js:203
 msgid "Some documents might not be available during this process"
 msgstr ""
 
 #. Translators: %s refers to an online account provider, e.g.
 #. "Google", or "Windows Live".
-#: ../src/notifications.js:238
-#, fuzzy, javascript-format
+#: src/notifications.js:225
+#, javascript-format
 msgid "Fetching documents from %s"
-msgstr "%s बाट:"
+msgstr "%s बाट कागजाट ल्याउनुहोस्"
 
-#: ../src/notifications.js:240
+#: src/notifications.js:227
+#, fuzzy
 msgid "Fetching documents from online accounts"
-msgstr ""
+msgstr "%s बाट कागजाट ल्याउनुहोस्"
 
-#: ../src/overview.js:275
+#: src/overview.js:263
 msgid "No collections found"
 msgstr "सङ्कलन भेटिएन"
 
-#: ../src/overview.js:277
-msgid "No books found"
-msgstr "किताब भेटिएन"
-
-#: ../src/overview.js:277
+#: src/overview.js:265
 msgid "No documents found"
 msgstr "कागजात भेटिएन"
 
-#: ../src/overview.js:286
+#: src/overview.js:274
 msgid "Try a different search"
 msgstr "फरक खोज कोशिश गर्नुहोस्"
 
-#: ../src/overview.js:293
-msgid "You can create collections from the Books view"
-msgstr ""
-
-#: ../src/overview.js:295
+#: src/overview.js:279
+#, fuzzy
 msgid "You can create collections from the Documents view"
-msgstr ""
+msgstr "पुस्तक दृष्यबाट संग्रह बनाउनुहोस्"
 
-#: ../src/overview.js:305
+#: src/overview.js:284
 #, javascript-format
 msgid ""
-"Documents from your <a href=\"system-settings\">Online Accounts</a> and <a href=\"file://%s"
-"\">Documents folder</a> will appear here."
+"Documents from your <a href=\"system-settings\">Online Accounts</a> and <a href="
+"\"file://%s\">Documents folder</a> will appear here."
 msgstr ""
 
 #. Translators: this is the menu to change view settings
-#: ../src/overview.js:562
+#: src/overview.js:522
 msgid "View Menu"
 msgstr "दृष्य मेनु"
 
-#: ../src/overview.js:590
+#: src/overview.js:549
 msgid "Click on items to select them"
 msgstr "वस्तुहरू चयनका लागि क्लिक गर्नुहोस्"
 
-#: ../src/overview.js:592
+#: src/overview.js:551
 #, javascript-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d छानियो"
 msgstr[1] "%d छानियो"
 
-#: ../src/overview.js:669
+#: src/overview.js:631
 msgid "Select Items"
 msgstr "वस्तु चयन गर्नुहोस्"
 
-#: ../src/overview.js:876
+#: src/overview.js:833
 msgid "Yesterday"
 msgstr "हिजो"
 
-#: ../src/overview.js:878
+#: src/overview.js:835
 #, javascript-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] "%d दिन अघि"
 msgstr[1] "%d दिन अघि"
 
-#: ../src/overview.js:882
+#: src/overview.js:839
 msgid "Last week"
 msgstr "गएको हप्ता"
 
-#: ../src/overview.js:884
+#: src/overview.js:841
 #, javascript-format
 msgid "%d week ago"
 msgid_plural "%d weeks ago"
 msgstr[0] "%d हप्ता अघि"
 msgstr[1] "%d हप्ता अघि"
 
-#: ../src/overview.js:888
+#: src/overview.js:845
 msgid "Last month"
 msgstr "गएको महिना"
 
-#: ../src/overview.js:890
+#: src/overview.js:847
 #, javascript-format
 msgid "%d month ago"
 msgid_plural "%d months ago"
 msgstr[0] "%d महिना अघि"
 msgstr[1] "%d महिना अघि"
 
-#: ../src/overview.js:894
+#: src/overview.js:851
 msgid "Last year"
 msgstr "गएको वर्ष"
 
-#: ../src/overview.js:896
+#: src/overview.js:853
 #, javascript-format
 msgid "%d year ago"
 msgid_plural "%d years ago"
 msgstr[0] "%d वर्ष अघि"
 msgstr[1] "%d वर्ष अघि"
 
-#: ../src/password.js:42
+#: src/password.js:38
 msgid "Password Required"
 msgstr "पासवर्ड चाहियो"
 
-#: ../src/password.js:45
+#: src/password.js:41
 msgid "_Unlock"
 msgstr "ताल्चा हटाउनुहोस्"
 
-#: ../src/password.js:61
+#: src/password.js:57
 #, javascript-format
 msgid "Document %s is locked and requires a password to be opened."
-msgstr "“%s” कागजात ताल्‍‌चा लगाइएको छ र यो खोल्‍‌नु भन्दा पहिला पासवर्ड आवश्यक हुन्छ ।"
+msgstr "“%s” कागजात ताल्‍‌चा लगाइएको छ र यो खोल्‍‌नु भन्दा पहिला पासवर्ड आवश्यक हुन्छ ।."
 
-#: ../src/password.js:75
+#: src/password.js:71
 msgid "_Password"
-msgstr "पासवर्ड: "
+msgstr "पासवर्ड"
 
-#: ../src/presentation.js:102
+#: src/presentation.js:95
 msgid "Running in presentation mode"
 msgstr "प्रस्तुति मोडमा चलिरहेको छ"
 
-#: ../src/presentation.js:130
+#: src/presentation.js:121
 #, fuzzy
 msgid "Present On"
 msgstr "हाल"
 
 #. Translators: "Mirrored" describes when both displays show the same view
-#: ../src/presentation.js:166
+#: src/presentation.js:157
 msgid "Mirrored"
 msgstr "ऐना"
 
-#: ../src/presentation.js:168
+#: src/presentation.js:159
 msgid "Primary"
 msgstr "मुख्य"
 
-#: ../src/presentation.js:170
+#: src/presentation.js:161
 msgid "Off"
 msgstr "बन्द"
 
-#: ../src/presentation.js:172
+#: src/presentation.js:163
 msgid "Secondary"
 msgstr "द्धितीयक"
 
 #. Translators: this is the Open action in a context menu
-#: ../src/preview.js:446 ../src/selections.js:979
+#: src/preview.js:426 src/selections.js:926
 #, javascript-format
 msgid "Open with %s"
 msgstr "%sसंग खोल्नुहोस्"
 
-#: ../src/preview.js:777
+#: src/preview.js:751
 msgid "Find Previous"
 msgstr "अघिल्लो फेला पार्नुहोस्"
 
-#: ../src/preview.js:783
+#: src/preview.js:757
 msgid "Find Next"
 msgstr "पछिल्लो फेला पार्नुहोस्"
 
 #. Title item
 #. Translators: "Title" is the label next to the document title
 #. in the properties dialog
-#: ../src/properties.js:81
+#: src/properties.js:76
 msgctxt "Document Title"
 msgid "Title"
-msgstr "शीर्षक:"
+msgstr "शिर्षक"
 
 #. Translators: "Author" is the label next to the document author
 #. in the properties dialog
-#: ../src/properties.js:90
+#: src/properties.js:85
 msgctxt "Document Author"
 msgid "Author"
-msgstr "लेखक:"
+msgstr "लेखक"
 
 #. Source item
-#: ../src/properties.js:97
+#: src/properties.js:92
 msgid "Source"
-msgstr "स्रोत:"
+msgstr "स्रोत"
 
 #. Date Modified item
-#: ../src/properties.js:103
+#: src/properties.js:98
 msgid "Date Modified"
 msgstr "मिति परिमार्जन गरियो"
 
-#: ../src/properties.js:110
-#, fuzzy
+#: src/properties.js:105
 msgid "Date Created"
-msgstr "यसमा सिर्जित "
+msgstr "सिर्जित मिति"
 
 #. Document type item
 #. Translators: "Type" is the label next to the document type
 #. (PDF, spreadsheet, ...) in the properties dialog
-#: ../src/properties.js:119
+#: src/properties.js:114
 msgctxt "Document Type"
 msgid "Type"
 msgstr "प्रकार"
 
 #. Translators: "Type" refers to a search filter on the document type
 #. (PDF, spreadsheet, ...)
-#: ../src/search.js:120
+#: src/search.js:108
 msgctxt "Search Filter"
 msgid "Type"
 msgstr "प्रकार"
 
 #. Translators: this refers to documents
-#: ../src/search.js:123 ../src/search.js:260 ../src/search.js:453
+#: src/search.js:111 src/search.js:218 src/search.js:404
 msgid "All"
 msgstr "सबै"
 
-#: ../src/search.js:136
+#: src/search.js:117
 msgid "PDF Documents"
 msgstr "पि डि यफ कागजातहरु"
 
-#: ../src/search.js:143
-#, fuzzy
-#| msgid "Bookmarks"
-msgid "e-Books"
-msgstr "किताबहरु;"
-
-#: ../src/search.js:147
-msgid "Comics"
-msgstr ""
-
-#: ../src/search.js:152
+#: src/search.js:122
 msgid "Presentations"
 msgstr "प्रस्तुतिकरण"
 
-#: ../src/search.js:155
+#: src/search.js:125
 msgid "Spreadsheets"
 msgstr "स्प्रेडशिटहरू"
 
-#: ../src/search.js:158
+#: src/search.js:128
 msgid "Text Documents"
 msgstr "कागजात"
 
 #. Translators: this is a verb that refers to "All", "Title", "Author",
 #. and "Content" as in "Match All", "Match Title", "Match Author", and
 #. "Match Content"
-#: ../src/search.js:257
+#: src/search.js:215
 msgid "Match"
 msgstr "सबै मिलाउनुहोस्"
 
 #. Translators: "Title" refers to "Match Title" when searching
-#: ../src/search.js:263
+#: src/search.js:221
 msgctxt "Search Filter"
 msgid "Title"
-msgstr "शीर्षक:"
+msgstr "शिर्षक"
 
 #. Translators: "Author" refers to "Match Author" when searching
-#: ../src/search.js:266
+#: src/search.js:224
 msgctxt "Search Filter"
 msgid "Author"
-msgstr "लेखक:"
+msgstr "लेखक"
 
 #. Translators: "Content" refers to "Match Content" when searching
-#: ../src/search.js:269
-#, fuzzy
-#| msgid "Contents"
+#: src/search.js:227
 msgctxt "Search Filter"
 msgid "Content"
-msgstr "सामाग्री बाकस"
+msgstr "सामग्री"
 
-#: ../src/search.js:449
+#: src/search.js:400
 msgid "Sources"
 msgstr "स्रोत"
 
 #. Translators: the first %s is an online account provider name,
 #. e.g. "Google". The second %s is the identity used to log in,
 #. e.g. "foo@gmail.com".
-#: ../src/search.js:508
+#: src/search.js:456
 #, javascript-format
 msgid "%s (%s)"
 msgstr "%s (%s)"
 
-#: ../src/selections.js:360 ../src/selections.js:362
+#: src/selections.js:331 src/selections.js:333
 msgid "Rename…"
-msgstr "पुन: नामकरण गर्नुहोस्..."
+msgstr "पुन: नामकरण गर्नुहोस्…"
 
-#: ../src/selections.js:366 ../src/selections.js:368
+#: src/selections.js:337 src/selections.js:339
 msgid "Delete"
 msgstr "मेट्नुहोस्"
 
-#: ../src/selections.js:382
+#: src/selections.js:353
 #, javascript-format
 msgid "“%s” removed"
 msgstr "\"%s\" हटाउनुहोस्"
 
-#: ../src/selections.js:779
+#: src/selections.js:731
 msgid "Rename"
 msgstr "पुन: नामाकरण गर्नुहोस्"
 
 #. Translators: "Collections" refers to documents in this context
-#: ../src/selections.js:785
+#: src/selections.js:737
 msgctxt "Dialog Title"
 msgid "Collections"
 msgstr "सङ्कलन"
 
-#: ../src/sharing.js:108
+#: src/sharing.js:102
 msgid "Sharing Settings"
 msgstr "साझेदारी सेटिङ्ग"
 
 #. Label for widget group for changing document permissions
-#: ../src/sharing.js:145
+#: src/sharing.js:139
 msgid "Document permissions"
 msgstr "कागजात अनुमतिहरू"
 
 #. Label for permission change in Sharing dialog
-#: ../src/sharing.js:152 ../src/sharing.js:330
+#: src/sharing.js:146 src/sharing.js:323
 msgid "Change"
 msgstr "परिवर्तन गर्नुहोस्"
 
 #. Label for radiobutton that sets doc permission to private
-#: ../src/sharing.js:176 ../src/sharing.js:305
+#: src/sharing.js:170 src/sharing.js:298
 msgid "Private"
 msgstr "व्यक्तिगत"
 
-#: ../src/sharing.js:186 ../src/sharing.js:298
+#: src/sharing.js:180 src/sharing.js:291
 msgid "Public"
 msgstr "सार्वजनिक"
 
 #. Label for checkbutton that sets doc permission to Can edit
-#: ../src/sharing.js:190 ../src/sharing.js:300
+#: src/sharing.js:184 src/sharing.js:293
 msgid "Everyone can edit"
 msgstr "सबै सम्पादन सक्षम"
 
 #. Label for widget group used for adding new contacts
-#: ../src/sharing.js:197
+#: src/sharing.js:191
 msgid "Add people"
 msgstr "मानिस थप्नुहोस्"
 
 #. Editable text in entry field
-#: ../src/sharing.js:204
+#: src/sharing.js:198
 msgid "Enter an email address"
 msgstr "ईमेल ठेगाना प्रवेश गर्नुहोस्"
 
-#: ../src/sharing.js:219 ../src/sharing.js:371
+#: src/sharing.js:212 src/sharing.js:362
 msgid "Can edit"
 msgstr "सम्पादन गर्न सकिन्छ"
 
-#: ../src/sharing.js:219 ../src/sharing.js:374
+#: src/sharing.js:212 src/sharing.js:365
 msgid "Can view"
 msgstr "हेर्न सकिन्छ"
 
-#: ../src/sharing.js:302
+#: src/sharing.js:295
 msgid "Everyone can read"
 msgstr "सबैले पढ्न सक्षम"
 
-#: ../src/sharing.js:317
+#: src/sharing.js:310
 msgid "Save"
 msgstr "बचत गर्नुहोस्"
 
-#: ../src/sharing.js:368
+#: src/sharing.js:359
 msgid "Owner"
-msgstr "मालिक:"
+msgstr "मालिक"
 
-#: ../src/sharing.js:437
-#, fuzzy, javascript-format
+#: src/sharing.js:426
+#, javascript-format
 msgid "You can ask %s for access"
-msgstr ""
-"तपाईँ पहुँच \"%s\" मा लगइन हुनु पर्दछ ।\n"
-"%s"
+msgstr "%s संग पहुच लिनुहोस्"
 
-#: ../src/sharing.js:474 ../src/sharing.js:510 ../src/sharing.js:567 ../src/sharing.js:584
-#: ../src/sharing.js:603
-#, fuzzy
+#: src/sharing.js:463 src/sharing.js:499 src/sharing.js:556 src/sharing.js:573
+#: src/sharing.js:592
 msgid "The document was not updated"
-msgstr "अद्यावधिक गरियो"
+msgstr "कागजात अद्यावधिक छैन"
 
-#: ../src/shellSearchProvider.js:285
+#: src/shellSearchProvider.js:274
 msgid "Untitled Document"
 msgstr "शीर्षक नभएको कागजात"
 
-#: ../src/trackerController.js:176
+#: src/trackerController.js:170
 #, fuzzy
 msgid "Unable to fetch the list of documents"
-msgstr "फाइल तान्न असक्षम भयो, सर्भरले भन्यो '%s'"
+msgstr "अद्यावधिकहरू सुची पाउन असक्षम भयो"
+
+#~ msgid "Books"
+#~ msgstr "किताबहरू"
+
+#~ msgid "An e-book manager application for GNOME"
+#~ msgstr "जिनोमको लागि ई-किताब प्रबन्धक अनुप्रयोग"
+
+#, fuzzy
+#~| msgid "View documents fullscreen"
+#~ msgid "View e-books (PDF and comics) fullscreen"
+#~ msgstr "पूरा पर्दामा कागजात हेर्नुहोस्"
+
+#, fuzzy
+#~ msgid "Print e-books"
+#~ msgstr "किताबहरु;"
+
+#, fuzzy
+#~ msgid "Access, manage and share books"
+#~ msgstr "पात्रो पहुच र ब्यवस्थापन गर्नुहोस"
+
+#~ msgid "About"
+#~ msgstr "बारेमा"
+
+#~ msgctxt "app menu"
+#~ msgid "Quit"
+#~ msgstr "बन्द गर्नुहोस्"
+
+#, fuzzy
+#~ msgctxt "shortcut window"
+#~ msgid "Rotate anti-clockwise"
+#~ msgstr "घडीसरह घुमाउनुहोस्"
+
+#, fuzzy
+#~ msgid "e-Book"
+#~ msgstr " पाठक"
+
+#, fuzzy
+#~| msgid "Page %u of %u"
+#~ msgid "chapter %s of %s"
+#~ msgstr "अध्याय मेनु"
+
+#, fuzzy
+#~| msgid "A document manager application"
+#~ msgid "An e-books manager application"
+#~ msgstr "कागजात प्रबन्धक अनुप्रयोग"
+
+#~ msgid "No books found"
+#~ msgstr "किताब भेटिएन"
+
+#, fuzzy
+#~| msgid "Bookmarks"
+#~ msgid "e-Books"
+#~ msgstr "किताबहरु;"
 
 #~ msgid "Settings"
 #~ msgstr "सेटिङ"
