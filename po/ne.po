@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Gnome Nepali Translation Project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-documents/issues\n"
 "POT-Creation-Date: 2020-06-05 03:33+0000\n"
-"PO-Revision-Date: 2021-04-07 22:50+0545\n"
+"PO-Revision-Date: 2021-04-17 19:00+0545\n"
 "Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
 "Language-Team: Nepali Translation Team <chautari@gmail.com>\n"
 "Language: ne\n"
@@ -29,27 +29,25 @@ msgstr "जिनोमको लागि कागजात प्रबन्
 
 #: data/org.gnome.Documents.appdata.xml.in:10
 msgid ""
-"A simple application to access, organize and share your documents on GNOME. It is "
-"meant to be a simple and elegant replacement for using a file manager to deal with "
-"documents. Seamless cloud integration is offered through GNOME Online Accounts."
+"A simple application to access, organize and share your documents on GNOME. It is meant to be a "
+"simple and elegant replacement for using a file manager to deal with documents. Seamless cloud "
+"integration is offered through GNOME Online Accounts."
 msgstr ""
+"जिनोममा तपाईँको कागजात पहुँच गर्न, संगठित गर्न र साझेदारी गर्न एउटा साधारण अनुप्रयोग । यो कागजातसँग व्यवहार गर्न "
+"फाइल प्रबन्धक प्रयोग गर्नका लागि सरल र सुरुचिपूर्ण प्रतिस्थापन हुनको लागि हो। जिनोम अनलाइन खाता मार्फत सीमलेस "
+"क्लाउड इन्टिग्रेसन प्रस्ताव गरिएको छ ।."
 
 #: data/org.gnome.Documents.appdata.xml.in:16
-#, fuzzy
 msgid "It lets you:"
-msgstr ""
-"जिनोम स्क्रिनसट एक सरल उपयोगिता हो जसले तपाईंलाई आफ्नो कम्प्युटर स्क्रिनको तस्वीरहरू लिन दिन्छ। "
-"स्क्रिनसटहरू तपाईंको सम्पूर्ण स्क्रिन, कुनै पनि विशिष्ट अनुप्रयोग वा चयन आयताकार क्षेत्रमा हुन सक्छ। "
-"तपाईं ले लिएको तस्वीरहरू सिधै जिनोम क्लिपबोर्डमा पनि प्रतिलिपि गर्न सक्नुहुन्छ र अन्य अनुप्रयोगहरूमा "
-"टाँस्न सक्नुहुन्छ।"
+msgstr "तपाईँलाई यसले दिन्छ:"
 
 #: data/org.gnome.Documents.appdata.xml.in:18
 msgid "View recent local and online documents"
-msgstr ""
+msgstr "हालैका स्थानीय र अनलाइन कागजातहरू हेर्नुहोस्"
 
 #: data/org.gnome.Documents.appdata.xml.in:19
 msgid "Access your Google, ownCloud or OneDrive content"
-msgstr ""
+msgstr "तपाईँको गुगल, वनक्लाउड वा वनड्राइभ सामग्री पहुँच गर्नुहोस्"
 
 #: data/org.gnome.Documents.appdata.xml.in:20
 msgid "Search through documents"
@@ -57,7 +55,7 @@ msgstr "कागजातबाट खोज्नुहोस्"
 
 #: data/org.gnome.Documents.appdata.xml.in:21
 msgid "See new documents shared by friends"
-msgstr ""
+msgstr "साथीहरु द्वारा साझा गरिएको नयाँ कागजात हेर्नुहोस्"
 
 #: data/org.gnome.Documents.appdata.xml.in:22
 msgid "View documents fullscreen"
@@ -73,16 +71,15 @@ msgstr "मनपर्ने छान्नुहोस्"
 
 #: data/org.gnome.Documents.appdata.xml.in:25
 msgid "Allow opening full featured editor for non-trivial changes"
-msgstr ""
+msgstr "साना परिवर्तनका लागि पूरा विशेषता भएको सम्पादक खोल्न अनुमति दिनुहोस्"
 
 #: data/org.gnome.Documents.appdata.xml.in:39
 msgid "The GNOME Project"
 msgstr "जिनोम परियोजना"
 
 #: data/org.gnome.Documents.desktop.in:4
-#, fuzzy
 msgid "Access, manage and share documents"
-msgstr "पात्रो पहुच र ब्यवस्थापन गर्नुहोस"
+msgstr "कागजात पहुँच, व्यवस्थापन र साझेदारी गर्नुहोस्"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Documents.desktop.in:15
@@ -94,9 +91,8 @@ msgid "View as"
 msgstr "दृष्य"
 
 #: data/org.gnome.documents.gschema.xml:6
-#, fuzzy
 msgid "View as type"
-msgstr "डिस्क दृश्य शुरुवातमा \"प्रकार\" स्तम्भ देखाउनुहोस्"
+msgstr "प्रकार को दृश्य"
 
 #: data/org.gnome.documents.gschema.xml:10
 msgid "Sort by"
@@ -135,9 +131,8 @@ msgid "Night mode"
 msgstr "रात मोड"
 
 #: data/org.gnome.documents.gschema.xml:31
-#, fuzzy
 msgid "Whether the application is in night mode."
-msgstr "रात मोड"
+msgstr "अनुप्रयोग रातीको शैलीमा छ या छैन ।."
 
 #: data/ui/documents-app-menu.ui:6 src/preview.js:434
 msgid "Night Mode"
@@ -211,10 +206,9 @@ msgid "Bookmark the current page"
 msgstr "यो पृष्ठ पुस्तकचिनो राख्नुहोस्"
 
 #: data/ui/help-overlay.ui:92
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Open places and bookmarks dialog"
-msgstr "बचत गरिएको खेल संवाद खोल्नका लागि डाइरेक्टरी"
+msgstr "स्थानहरू र पुस्तकचिनोहरूको संवाद खोल्नुहोस्"
 
 #: data/ui/help-overlay.ui:99
 msgctxt "shortcut window"
@@ -247,10 +241,9 @@ msgid "Presentation mode"
 msgstr "प्रस्तुति मोड"
 
 #: data/ui/help-overlay.ui:141
-#, fuzzy
 msgctxt "shortcut window"
 msgid "Open action menu"
-msgstr "सञ्झ्याल मेनु खोल्नुहोस्"
+msgstr "कार्य मेनु खोल्नुहोस्"
 
 #: data/ui/help-overlay.ui:148
 msgctxt "shortcut window"
@@ -270,8 +263,8 @@ msgstr "नया सङ्कलन…"
 msgid "Add"
 msgstr "थप्नुहोस्"
 
-#: data/ui/organize-collection-dialog.ui:163 data/ui/selection-toolbar.ui:88
-#: src/overview.js:1007 src/search.js:113
+#: data/ui/organize-collection-dialog.ui:163 data/ui/selection-toolbar.ui:88 src/overview.js:1007
+#: src/search.js:113
 msgid "Collections"
 msgstr "सङ्कलन"
 
@@ -338,9 +331,8 @@ msgid "Select None"
 msgstr "कुनै पनि चयन नगर्नुहोस्"
 
 #: data/ui/view-menu.ui:23
-#, fuzzy
 msgid "View items as a grid of icons"
-msgstr "ग्रिड दृश्य"
+msgstr "प्रतिमा ग्रिडको रूपमा वस्तुहरू हेर्नुहोस्"
 
 #: data/ui/view-menu.ui:40
 msgid "View items as a list"
@@ -348,7 +340,7 @@ msgstr "सामाग्रीहरूको सुचीमा हेर्�
 
 #: data/ui/view-menu.ui:73
 msgid "Sort"
-msgstr "क्रमबद्व गर्नुहोस्"
+msgstr "क्रमबद्व "
 
 #: data/ui/view-menu.ui:84
 msgid "Author"
@@ -383,12 +375,10 @@ msgid "GNOME"
 msgstr "जिनोम"
 
 #: src/documents.js:835
-#, fuzzy
 msgid "Getting Started with Documents"
-msgstr "सुरु गरिएको छैन"
+msgstr "कागजात संग सुरुवाट गर्नुहोस्"
 
-#: src/documents.js:859 src/documents.js:1027 src/documents.js:1124
-#: src/documents.js:1250
+#: src/documents.js:859 src/documents.js:1027 src/documents.js:1124 src/documents.js:1250
 msgid "Collection"
 msgstr "सङ्कलन"
 
@@ -428,14 +418,12 @@ msgid "Please check the network connection."
 msgstr "सञ्जालमा जडान जाच्नुहोस्."
 
 #: src/documents.js:1428
-#, fuzzy
 msgid "Please check the network proxy settings."
-msgstr "सञ्जालमा जडान जाच्नुहोस्"
+msgstr "कृपया सञ्जाल प्रोक्सी सेटिङ जाँच गर्नुहोस् ।."
 
 #: src/documents.js:1431
-#, fuzzy
 msgid "Unable to sign in to the document service."
-msgstr "कागजात फेला पार्न असफल भयो"
+msgstr "कागजात सेवामा साइन इन गर्न अक्षम ।."
 
 #: src/documents.js:1434
 msgid "Unable to locate this document."
@@ -444,11 +432,11 @@ msgstr "कागजात फेला पार्न असफल भयो."
 #: src/documents.js:1437
 #, javascript-format
 msgid "Hmm, something is fishy (%d)."
-msgstr ""
+msgstr "हमम केहि गडिबडि छ (%d)."
 
 #: src/documents.js:1443
 msgid "LibreOffice support is not available. Please contact your system administrator."
-msgstr ""
+msgstr "लिब्रअफिस समर्थन उपलब्ध छैन । कृपया तपाईँको प्रणाली प्रशासकलाई सम्पर्क गर्नुहोस् ।."
 
 #. Translators: %s is the title of a document
 #: src/documents.js:1466
@@ -550,11 +538,11 @@ msgstr "मुद्रण कार्य “%s” : %s"
 
 #: src/notifications.js:202
 msgid "Your documents are being indexed"
-msgstr ""
+msgstr "तपाईँको कागजात अनुक्रमण गरिएको छ"
 
 #: src/notifications.js:203
 msgid "Some documents might not be available during this process"
-msgstr ""
+msgstr "यो प्रक्रिया गर्दा केही कागजात उपलब्ध नहुन सक्छ"
 
 #. Translators: %s refers to an online account provider, e.g.
 #. "Google", or "Windows Live".
@@ -564,9 +552,8 @@ msgid "Fetching documents from %s"
 msgstr "%s बाट कागजाट ल्याउनुहोस्"
 
 #: src/notifications.js:227
-#, fuzzy
 msgid "Fetching documents from online accounts"
-msgstr "%s बाट कागजाट ल्याउनुहोस्"
+msgstr "अनलाइन खाता कागजाट ल्याउनुहोस्"
 
 #: src/overview.js:263
 msgid "No collections found"
@@ -581,16 +568,17 @@ msgid "Try a different search"
 msgstr "फरक खोज कोशिश गर्नुहोस्"
 
 #: src/overview.js:279
-#, fuzzy
 msgid "You can create collections from the Documents view"
-msgstr "पुस्तक दृष्यबाट संग्रह बनाउनुहोस्"
+msgstr "कागजात दृष्यबाट संग्रह बनाउनुहोस्"
 
 #: src/overview.js:284
 #, javascript-format
 msgid ""
-"Documents from your <a href=\"system-settings\">Online Accounts</a> and <a href="
-"\"file://%s\">Documents folder</a> will appear here."
+"Documents from your <a href=\"system-settings\">Online Accounts</a> and <a href=\"file://%s"
+"\">Documents folder</a> will appear here."
 msgstr ""
+"तपाईँको <a href=\"system-settings\">अनलाइन खाता</a> र <a href=\"file://%s\">कागजात फोल्डरबाट</a> "
+"कागजातहरू यहाँ देखा पर्नेछ।."
 
 #. Translators: this is the menu to change view settings
 #: src/overview.js:522
@@ -678,9 +666,8 @@ msgid "Running in presentation mode"
 msgstr "प्रस्तुति मोडमा चलिरहेको छ"
 
 #: src/presentation.js:121
-#, fuzzy
 msgid "Present On"
-msgstr "हाल"
+msgstr "हालको समय"
 
 #. Translators: "Mirrored" describes when both displays show the same view
 #: src/presentation.js:157
@@ -901,8 +888,7 @@ msgstr "मालिक"
 msgid "You can ask %s for access"
 msgstr "%s संग पहुच लिनुहोस्"
 
-#: src/sharing.js:463 src/sharing.js:499 src/sharing.js:556 src/sharing.js:573
-#: src/sharing.js:592
+#: src/sharing.js:463 src/sharing.js:499 src/sharing.js:556 src/sharing.js:573 src/sharing.js:592
 msgid "The document was not updated"
 msgstr "कागजात अद्यावधिक छैन"
 
@@ -911,9 +897,8 @@ msgid "Untitled Document"
 msgstr "शीर्षक नभएको कागजात"
 
 #: src/trackerController.js:170
-#, fuzzy
 msgid "Unable to fetch the list of documents"
-msgstr "अद्यावधिकहरू सुची पाउन असक्षम भयो"
+msgstr "कागजात सुची पाउन असक्षम भयो"
 
 #~ msgid "Books"
 #~ msgstr "किताबहरू"
