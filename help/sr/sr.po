@@ -625,7 +625,7 @@ msgid ""
 "button and selecting various <link xref=\"filter\">filters</link>."
 msgstr ""
 "Можете да ограничите или да проберете резултате претраге тако што ћете "
-"кликнути на дугме < :media-1/> и изабрати разне <link xref=\"filter\""
+"кликнути на дугме <_:media-1/> и изабрати разне <link xref=\"filter\""
 ">филтере</link>."
 
 #. (itstool) path: info/desc
